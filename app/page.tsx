@@ -64,8 +64,8 @@ export default function Home() {
             mixBlendMode: "screen"
           }}
         >
-          "All that is gold does not glitter,<br />
-          Not all those who wander are lost."
+          &ldquo;All that is gold does not glitter,<br />
+          Not all those who wander are lost.&rdquo;
         </p>
       </div>
 
