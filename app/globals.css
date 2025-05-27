@@ -118,189 +118,205 @@ body {
   width: 1.6%;
   height: 1.6%;
   background: radial-gradient(
-    circle,
+    circle at center,
     rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.9) 20%,
-    rgba(255, 255, 255, 0.6) 40%,
-    rgba(255, 255, 255, 0.3) 60%,
-    rgba(255, 255, 255, 0.1) 80%,
+    rgba(255, 255, 255, 0.9) 10%,
+    rgba(255, 255, 255, 0.7) 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 70%,
+    rgba(255, 255, 255, 0.1) 85%,
     rgba(255, 255, 255, 0) 100%
   );
+  filter: blur(4px);
+  animation: 
+    tunnelPulse 15s ease-in-out infinite,
+    randomMove 15s ease-in-out infinite;
+  mix-blend-mode: screen;
   border-radius: 50%;
-  filter: blur(1px);
   box-shadow: 
-    0 0 20px rgba(255, 255, 255, 0.8),
-    0 0 40px rgba(255, 255, 255, 0.6),
-    0 0 60px rgba(255, 255, 255, 0.4),
-    0 0 80px rgba(255, 255, 255, 0.2);
-  animation: tunnelPulse 4s ease-in-out infinite;
+    0 0 10px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.2),
+    0 0 40px rgba(255, 255, 255, 0.1);
 }
 
+/* Left side beams */
 .light-beam-1 {
-  left: 15%;
-  animation: beamFloatLeft1 8s ease-in-out infinite;
-  animation-delay: 0s;
+  left: 10%;
+  height: 100%;
+  width: 2px;
+  animation: beamFloatLeft1 15s ease-in-out infinite;
+  animation-delay: 3s;
 }
 
 .light-beam-2 {
-  left: 30%;
-  animation: beamFloatLeft2 7s ease-in-out infinite;
-  animation-delay: 1s;
-}
-
-.light-beam-3 {
-  left: 45%;
-  animation: beamFloatLeft3 9s ease-in-out infinite;
+  left: 27%;
+  height: 60%;
+  width: 1.5px;
+  animation: beamFloatLeft2 15s ease-in-out infinite;
   animation-delay: 2s;
 }
 
+.light-beam-3 {
+  left: 40%;
+  height: 30%;
+  width: 1px;
+  animation: beamFloatLeft3 15s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Right side beams (mirrored) */
 .light-beam-4 {
-  right: 45%;
-  animation: beamFloatRight1 8.5s ease-in-out infinite;
-  animation-delay: 0.5s;
+  left: 60%;
+  height: 30%;
+  width: 1px;
+  animation: beamFloatRight3 15s ease-in-out infinite;
+  animation-delay: 1s;
 }
 
 .light-beam-5 {
-  right: 30%;
-  animation: beamFloatRight2 7.5s ease-in-out infinite;
-  animation-delay: 1.5s;
+  left: 73%;
+  height: 60%;
+  width: 1.5px;
+  animation: beamFloatRight2 15s ease-in-out infinite;
+  animation-delay: 2s;
 }
 
 .light-beam-6 {
-  right: 15%;
-  animation: beamFloatRight3 9.5s ease-in-out infinite;
-  animation-delay: 2.5s;
+  left: 90%;
+  height: 100%;
+  width: 2px;
+  animation: beamFloatRight1 15s ease-in-out infinite;
+  animation-delay: 3s;
 }
 
 @keyframes tunnelPulse {
   0%, 100% { 
-    opacity: 0.6; 
-    transform: translate(-50%, -50%) scale(1); 
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.6);
+    filter: blur(4px) brightness(0.6);
   }
   25% { 
-    opacity: 0.9; 
+    opacity: 1;
     transform: translate(-50%, -50%) scale(1.2); 
+    filter: blur(4px) brightness(1.2);
   }
   50% { 
-    opacity: 1; 
-    transform: translate(-50%, -50%) scale(1.5); 
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(0.9);
+    filter: blur(4px) brightness(0.9);
   }
   75% { 
     opacity: 0.9; 
-    transform: translate(-50%, -50%) scale(1.2); 
+    transform: translate(-50%, -50%) scale(1.1);
+    filter: blur(4px) brightness(1.1);
+  }
+}
+
+@keyframes randomMove {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+  25% {
+    transform: translate(-50%, -50%) translate(5px, -3px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translate(-4px, 4px);
+  }
+  75% {
+    transform: translate(-50%, -50%) translate(3px, 2px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(0, 0);
   }
 }
 
 @keyframes beamFloatLeft1 {
   0%, 100% { 
-    opacity: 0.3; 
-    transform: translateX(0px) rotate(2deg); 
+    transform: translateX(0) scaleY(1);
+    opacity: 0;
   }
-  25% { 
-    opacity: 0.7; 
-    transform: translateX(-15px) rotate(-1deg); 
+  15%, 85% {
+    transform: translateX(-15px) scaleY(1.2);
+    opacity: 0.95;
   }
   50% { 
+    transform: translateX(0) scaleY(1);
     opacity: 1; 
-    transform: translateX(-25px) rotate(1deg); 
-  }
-  75% { 
-    opacity: 0.6; 
-    transform: translateX(-10px) rotate(-0.5deg); 
   }
 }
 
 @keyframes beamFloatLeft2 {
   0%, 100% { 
-    opacity: 0.4; 
-    transform: translateX(0px) rotate(-1deg); 
+    transform: translateX(0) scaleY(1);
+    opacity: 0;
   }
-  30% { 
-    opacity: 0.8; 
-    transform: translateX(-20px) rotate(1.5deg); 
-  }
-  60% { 
+  15%, 85% {
+    transform: translateX(-12px) scaleY(1.1);
     opacity: 0.9; 
-    transform: translateX(-30px) rotate(-1deg); 
   }
-  80% { 
-    opacity: 0.5; 
-    transform: translateX(-15px) rotate(0.5deg); 
+  50% {
+    transform: translateX(0) scaleY(1);
+    opacity: 0.95;
   }
 }
 
 @keyframes beamFloatLeft3 {
   0%, 100% { 
-    opacity: 0.2; 
-    transform: translateX(0px) rotate(1.5deg); 
+    transform: translateX(0) scaleY(1);
+    opacity: 0;
   }
-  35% { 
-    opacity: 0.6; 
-    transform: translateX(-18px) rotate(-2deg); 
+  15%, 85% {
+    transform: translateX(-10px) scaleY(1.1);
+    opacity: 0.95;
   }
-  70% { 
-    opacity: 0.8; 
-    transform: translateX(-35px) rotate(1deg); 
-  }
-  85% { 
-    opacity: 0.4; 
-    transform: translateX(-12px) rotate(-0.5deg); 
+  50% {
+    transform: translateX(0) scaleY(1);
+    opacity: 1;
   }
 }
 
 @keyframes beamFloatRight1 {
   0%, 100% { 
-    opacity: 0.35; 
-    transform: translateX(0px) rotate(-2deg); 
+    transform: translateX(0) scaleY(1);
+    opacity: 0;
   }
-  40% { 
-    opacity: 0.75; 
-    transform: translateX(20px) rotate(1deg); 
-  }
-  65% { 
+  15%, 85% {
+    transform: translateX(15px) scaleY(1.2);
     opacity: 0.95; 
-    transform: translateX(28px) rotate(-1.5deg); 
   }
-  90% { 
-    opacity: 0.5; 
-    transform: translateX(10px) rotate(0.5deg); 
+  50% {
+    transform: translateX(0) scaleY(1);
+    opacity: 1;
   }
 }
 
 @keyframes beamFloatRight2 {
   0%, 100% { 
-    opacity: 0.25; 
-    transform: translateX(0px) rotate(1deg); 
+    transform: translateX(0) scaleY(1);
+    opacity: 0;
   }
-  20% { 
-    opacity: 0.65; 
-    transform: translateX(25px) rotate(-1.5deg); 
+  15%, 85% {
+    transform: translateX(12px) scaleY(1.1);
+    opacity: 0.9;
   }
-  55% { 
-    opacity: 0.85; 
-    transform: translateX(32px) rotate(2deg); 
-  }
-  75% { 
-    opacity: 0.45; 
-    transform: translateX(18px) rotate(-0.5deg); 
+  50% {
+    transform: translateX(0) scaleY(1);
+    opacity: 0.95;
   }
 }
 
 @keyframes beamFloatRight3 {
   0%, 100% { 
-    opacity: 0.3; 
-    transform: translateX(0px) rotate(-1.5deg); 
+    transform: translateX(0) scaleY(1);
+    opacity: 0;
   }
-  45% { 
-    opacity: 0.7; 
-    transform: translateX(22px) rotate(2deg); 
+  15%, 85% {
+    transform: translateX(10px) scaleY(1.1);
+    opacity: 0.95;
   }
-  80% { 
-    opacity: 0.9; 
-    transform: translateX(30px) rotate(-1deg); 
-  }
-  95% { 
-    opacity: 0.4; 
-    transform: translateX(8px) rotate(0.5deg); 
+  50% {
+    transform: translateX(0) scaleY(1);
+    opacity: 1;
   }
 }
