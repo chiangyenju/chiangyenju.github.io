@@ -5,8 +5,6 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  basePath: '/chiangyenju.github.io',
-  assetPrefix: '/chiangyenju.github.io/',
 }
 
 module.exports = nextConfig 
