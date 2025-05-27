@@ -142,7 +142,7 @@ body {
 
 /* Left side beams */
 .light-beam-1 {
-  left: 10%;
+  left: 15%;
   height: 100%;
   width: 2px;
   animation: beamFloatLeft1 15s ease-in-out infinite;
@@ -150,7 +150,7 @@ body {
 }
 
 .light-beam-2 {
-  left: 27%;
+  left: 30%;
   height: 60%;
   width: 1.5px;
   animation: beamFloatLeft2 15s ease-in-out infinite;
@@ -158,7 +158,7 @@ body {
 }
 
 .light-beam-3 {
-  left: 40%;
+  left: 42%;
   height: 30%;
   width: 1px;
   animation: beamFloatLeft3 15s ease-in-out infinite;
@@ -167,7 +167,7 @@ body {
 
 /* Right side beams (mirrored) */
 .light-beam-4 {
-  left: 60%;
+  left: 58%;
   height: 30%;
   width: 1px;
   animation: beamFloatRight3 15s ease-in-out infinite;
@@ -175,7 +175,7 @@ body {
 }
 
 .light-beam-5 {
-  left: 73%;
+  left: 70%;
   height: 60%;
   width: 1.5px;
   animation: beamFloatRight2 15s ease-in-out infinite;
@@ -183,7 +183,7 @@ body {
 }
 
 .light-beam-6 {
-  left: 90%;
+  left: 85%;
   height: 100%;
   width: 2px;
   animation: beamFloatRight1 15s ease-in-out infinite;
@@ -253,11 +253,11 @@ body {
   }
   15%, 85% {
     transform: translateX(-12px) scaleY(1.1);
-    opacity: 0.9; 
+    opacity: 0.95; 
   }
   50% {
     transform: translateX(0) scaleY(1);
-    opacity: 0.95;
+    opacity: 1;
   }
 }
 
@@ -298,30 +298,26 @@ body {
   }
   15%, 85% {
     transform: translateX(12px) scaleY(1.1);
-    opacity: 0.9;
+    opacity: 0.95;
   }
   50% {
     transform: translateX(0) scaleY(1);
-    opacity: 0.95;
+    opacity: 1;
   }
 }
 
 @keyframes beamFloatRight3 {
   0%, 100% { 
+    transform: translateX(0) scaleY(1);
     opacity: 0;
-    transform: translateY(0px) translateX(0px);
   }
-  25% { 
-    opacity: 0.7;
-    transform: translateY(-15px) translateX(3px);
+  15%, 85% {
+    transform: translateX(10px) scaleY(1.1);
+    opacity: 0.95;
   }
-  50% { 
+  50% {
+    transform: translateX(0) scaleY(1);
     opacity: 1;
-    transform: translateY(-8px) translateX(-2px);
-  }
-  75% { 
-    opacity: 0.8;
-    transform: translateY(-20px) translateX(1px);
   }
 }
 
