@@ -116,7 +116,7 @@ export default function Navigation() {
             <Link 
               ref={(el) => { itemRefs.current['about'] = el; }}
               href="/about" 
-              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative ${
+              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/about') || pathname === '/' 
                   ? 'text-white' 
                   : 'text-white/50 hover:text-white/80'
@@ -130,7 +130,7 @@ export default function Navigation() {
             <Link 
               ref={(el) => { itemRefs.current['projects'] = el; }}
               href="/projects" 
-              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative ${
+              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/projects') 
                   ? 'text-white' 
                   : 'text-white/50 hover:text-white/80'
@@ -144,7 +144,7 @@ export default function Navigation() {
             <Link 
               ref={(el) => { itemRefs.current['music'] = el; }}
               href="/music" 
-              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative ${
+              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/music') 
                   ? 'text-white' 
                   : 'text-white/50 hover:text-white/80'
@@ -158,7 +158,7 @@ export default function Navigation() {
             <Link 
               ref={(el) => { itemRefs.current['sandbox'] = el; }}
               href="/sandbox" 
-              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative ${
+              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/sandbox') 
                   ? 'text-white' 
                   : 'text-white/50 hover:text-white/80'

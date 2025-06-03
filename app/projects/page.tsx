@@ -37,9 +37,9 @@ interface FigmaProject {
     };
     premiumFruit: {
       title: string;
-  description: string;
-  images: string[];
-  tags: string[];
+      description: string;
+      images: string[];
+      tags: string[];
     };
   };
 }
@@ -78,7 +78,12 @@ const figmaProjects: FigmaProject[] = [
       description: "Mapping the complete user experience from photo upload to design completion, including AI processing steps and decision points.",
       images: []
     },
-    screens: [],
+    screens: [
+      "/projects/figma-projects/philo-homes/login-mockup.png",
+      "/projects/figma-projects/philo-homes/homepage-mockup.png",
+      "/projects/figma-projects/philo-homes/capture-mockup.png",
+      "/projects/figma-projects/philo-homes/results-mockup.png"
+    ],
     components: []
   },
   {
@@ -109,26 +114,26 @@ const figmaProjects: FigmaProject[] = [
       elasticBookCover: {
         title: "Elastic Book Cover",
         description: "Flexible book cover with a refined nature-inspired design, offering stylish protection for your favorite reads.",
-    images: [
-      "/projects/the-one-prime/optimized_1BookCover.jpg",
-      "/projects/the-one-prime/optimized_1OUTER-05.jpg", 
-      "/projects/the-one-prime/optimized_bookcover-package-mockup.jpg",
-      "/projects/the-one-prime/optimized_2BookCover.jpg",
-      "/projects/the-one-prime/optimized_2OUTER-05.jpg",
-      "/projects/the-one-prime/optimized_3BookCover.jpg",
-      "/projects/the-one-prime/optimized_3OUTER-05.jpg",
-      "/projects/the-one-prime/optimized_4BookCover.jpg",
-      "/projects/the-one-prime/optimized_4OUTER-05.jpg",
-      "/projects/the-one-prime/optimized_5BookCover.jpg",
+        images: [
+          "/projects/the-one-prime/optimized_1BookCover.jpg",
+          "/projects/the-one-prime/optimized_1OUTER-05.jpg", 
+          "/projects/the-one-prime/optimized_bookcover-package-mockup.jpg",
+          "/projects/the-one-prime/optimized_2BookCover.jpg",
+          "/projects/the-one-prime/optimized_2OUTER-05.jpg",
+          "/projects/the-one-prime/optimized_3BookCover.jpg",
+          "/projects/the-one-prime/optimized_3OUTER-05.jpg",
+          "/projects/the-one-prime/optimized_4BookCover.jpg",
+          "/projects/the-one-prime/optimized_4OUTER-05.jpg",
+          "/projects/the-one-prime/optimized_5BookCover.jpg",
           "/projects/the-one-prime/optimized_5OUTER-05.jpg"
-    ],
-    tags: ["stretchable", "washable", "non-adhesive"]
-  },
+        ],
+        tags: ["stretchable", "washable", "non-adhesive"]
+      },
       premiumFruit: {
         title: "Premium Fruit Giftbox",
         description: "Rare, premium fruits—perfect for elegant festival gifting and farm-fresh experiences.",
         images: ["/projects/fruit/optimized_giftbox.jpg"],
-    tags: ["premium-graded", "farm-fresh", "gift-ready"]
+        tags: ["premium-graded", "farm-fresh", "gift-ready"]
       }
     }
   }
@@ -136,6 +141,7 @@ const figmaProjects: FigmaProject[] = [
 
 export default function Projects() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedMockup, setSelectedMockup] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>('');
   const [coverflowIndex, setCoverflowIndex] = useState<number>(0);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
@@ -214,7 +220,7 @@ export default function Projects() {
         projectId: project.id
       });
 
-      // Add project sections - special handling for E-commerce
+      // Add project sections - special handling for E-commerce and Interior Design
       if (project.id === 'ecommerce-web') {
         // Only show physical product sections for E-commerce
         toc.push({
@@ -232,8 +238,8 @@ export default function Projects() {
       } else {
         // Standard sections for other projects
         projectSections.forEach((section) => {
-          // Skip components section if project doesn't have components
-          if (section.id === 'components' && !project.components) {
+          // Skip components section for interior design project and if project doesn't have components
+          if (section.id === 'components' && (project.id === 'philo-homes' || !project.components)) {
             return;
           }
           
@@ -365,11 +371,6 @@ export default function Projects() {
             />
                 )}
               </div>
-
-        {/* Divider */}
-        <div className="w-full flex justify-center mb-16">
-          <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
-        </div>
       </div>
 
       {/* Overview */}
@@ -390,9 +391,7 @@ export default function Projects() {
         
         {/* Compact Layout */}
         <div className="max-w-3xl mx-auto relative">
-          
           <div className="space-y-8">
-            
             {/* Problem */}
             <div className="text-left relative">
               <p className="text-white/90 leading-relaxed"
@@ -436,29 +435,80 @@ export default function Projects() {
               {project.outcome}
             </p>
           </div>
+
+          {/* Room Transformation Flow */}
+          <div className="mt-16 relative max-w-4xl mx-auto">
+            <div className="flex flex-col items-center relative">
+              {/* Initial Room with Tag */}
+              <div className="flex flex-col items-center mb-24">
+                <div className="relative w-64 aspect-[4/3] rounded-lg overflow-hidden mb-8">
+                  <Image
+                    src="/projects/figma-projects/philo-homes/empty-room.png"
+                    alt="Empty Room"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative">
+                  <div className="absolute left-1/2 -top-8 w-px h-8 bg-white/20"></div>
+                  <div className="relative px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/80">
+                    Living Room
+                  </div>
         </div>
       </div>
 
-      {/* AI Context Divider for Interior Design AI */}
-      {project.id === 'philo-homes' && (
-        <div className="mb-24 text-center">
-          <div className="flex items-center justify-center space-x-4 text-white/60 text-sm">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                AI Analysis Complete
-              </span>
+              {/* Style Options and Results */}
+              <div className="grid grid-cols-2 gap-32 w-full relative">
+                {/* Simple Dot Divider */}
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2">
+                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" style={{ animation: 'bounceHorizontal 3s infinite' }}></div>
             </div>
-            <div className="w-px h-4 bg-white/20"></div>
-            <span style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-              Design Suggestions Ready
-            </span>
+
+                {/* Left Path - Transitional */}
+                <div className="relative flex flex-col items-center">
+                  <div className="relative mb-16">
+                    <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/80">
+                      Transitional Style
+          </div>
+                    {/* Connecting line from Style to Image */}
+                    <div className="absolute left-1/2 -translate-x-1/2 h-16 w-px bg-white/20 -bottom-16"></div>
+        </div>
+                  <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+                    <Image
+                      src="/projects/figma-projects/philo-homes/results-1.png"
+                      alt="Transitional Style Result"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Right Path - Modern Farmhouse */}
+                <div className="relative flex flex-col items-center">
+                  <div className="relative mb-16">
+                    <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/80">
+                      Modern Farmhouse
+                    </div>
+                    {/* Connecting line from Style to Image */}
+                    <div className="absolute left-1/2 -translate-x-1/2 h-16 w-px bg-white/20 -bottom-16"></div>
+                  </div>
+                  <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+                    <Image
+                      src="/projects/figma-projects/philo-homes/results-2.png"
+                      alt="Modern Farmhouse Result"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      )}
+      </div>
 
-      {/* Dot Divider between Overview and Design Systems */}
-      <div className="w-full flex justify-center mb-16">
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
         <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
       </div>
 
@@ -518,15 +568,15 @@ export default function Projects() {
 
           {/* Color Palette Section */}
           <div className="mt-16 space-y-8">
-            {/* Single button-like container for all colors */}
-            <div className="inline-block p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-              <div className="flex flex-wrap gap-6 items-center justify-center">
-                <div className="w-3 h-3 bg-slate-900 rounded-full"></div>
-                <div className="w-3 h-3 bg-stone-100 rounded-full"></div>
-                <div className="w-3 h-3 bg-amber-600 rounded-full"></div>
-                <div className="w-3 h-3 bg-slate-600 rounded-full"></div>
-                <div className="w-3 h-3 bg-red-600 rounded-full"></div>
-                <div className="w-3 h-3 bg-indigo-400 rounded-full"></div>
+            {/* Simplified color dots container without button styling */}
+            <div className="max-w-md mx-auto">
+              <div className="flex flex-wrap gap-8 items-center justify-center">
+                <div className="w-4 h-4 bg-slate-900 rounded-full"></div>
+                <div className="w-4 h-4 bg-stone-100 rounded-full"></div>
+                <div className="w-4 h-4 bg-amber-600 rounded-full"></div>
+                <div className="w-4 h-4 bg-slate-600 rounded-full"></div>
+                <div className="w-4 h-4 bg-red-600 rounded-full"></div>
+                <div className="w-4 h-4 bg-indigo-400 rounded-full"></div>
               </div>
             </div>
           </div>
@@ -551,49 +601,258 @@ export default function Projects() {
         </div>
       </div>
 
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
+        <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+      </div>
+
       {/* User Flow */}
-      {project.userFlow.images.length > 0 && (
         <div 
           ref={(el) => { sectionRefs.current[`${project.id}-user-flow`] = el; }}
           id={`${project.id}-user-flow`} 
           className="mb-24"
         >
-          <h2 className="text-3xl text-white mb-6 leading-tight"
+        <h2 className="text-white/60 mb-16 leading-tight text-sm tracking-widest"
              style={{ 
-               fontFamily: 'Georgia, serif',
+             fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
-               letterSpacing: '0.01em'
+             letterSpacing: '0.15em'
              }}>
-            {project.userFlow.title}
+          USER FLOW
           </h2>
-          <p className="text-white/70 mb-12 leading-loose text-lg"
-             style={{ 
-               fontFamily: 'Helvetica Neue, Arial, sans-serif',
-               fontWeight: '200',
-               letterSpacing: '0.01em'
-             }}>
-            {project.userFlow.description}
+
+        {/* User Flow Section */}
+        <div className="max-w-xl mx-auto space-y-6">
+          {/* Step 1 */}
+          <div className="relative flex items-center gap-2 group">
+            <div className="w-6 h-6 flex items-center justify-center shrink-0">
+              <span className="text-white/40 text-xs font-light tracking-wider">01</span>
+            </div>
+            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+              <div className="absolute inset-0 backdrop-blur-[3px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar1_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat',
+                    width: '200%',
+                    height: '200%',
+                    transform: 'translate(-25%, -25%) scale(0.5)'
+                  }}></div>
+                </div>
+              </div>
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light1_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                    Photo Upload
+                  </h3>
+                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                    Upload room photos through drag-and-drop or camera capture
           </p>
         </div>
-      )}
+              </div>
+            </div>
+          </div>
+
+          {/* Step 2 */}
+          <div className="relative flex items-center gap-2 group">
+            <div className="w-6 h-6 flex items-center justify-center shrink-0">
+              <span className="text-white/40 text-xs font-light tracking-wider">02</span>
+            </div>
+            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+              <div className="absolute inset-0 backdrop-blur-[3px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar2_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat',
+                    width: '200%',
+                    height: '200%',
+                    transform: 'translate(-25%, -25%) scale(0.5)'
+                  }}></div>
+                </div>
+              </div>
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light2_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                    AI Analysis
+                  </h3>
+                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                    Analyze room dimensions, lighting, and furniture layout
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          <div className="relative flex items-center gap-2 group">
+            <div className="w-6 h-6 flex items-center justify-center shrink-0">
+              <span className="text-white/40 text-xs font-light tracking-wider">03</span>
+            </div>
+            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+              <div className="absolute inset-0 backdrop-blur-[3px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar3_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat',
+                    width: '200%',
+                    height: '200%',
+                    transform: 'translate(-25%, -25%) scale(0.5)'
+                  }}></div>
+                </div>
+              </div>
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light3_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                    Style Selection
+                  </h3>
+                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                    Browse curated design styles or create custom preferences
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 4 */}
+          <div className="relative flex items-center gap-2 group">
+            <div className="w-6 h-6 flex items-center justify-center shrink-0">
+              <span className="text-white/40 text-xs font-light tracking-wider">04</span>
+            </div>
+            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+              <div className="absolute inset-0 backdrop-blur-[3px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar4_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat',
+                    width: '200%',
+                    height: '200%',
+                    transform: 'translate(-25%, -25%) scale(0.5)'
+                  }}></div>
+                </div>
+              </div>
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light4_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                    Design Generation
+                  </h3>
+                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                    Generate multiple design options with realistic visualizations
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Step 5 */}
+          <div className="relative flex items-center gap-2 group">
+            <div className="w-6 h-6 flex items-center justify-center shrink-0">
+              <span className="text-white/40 text-xs font-light tracking-wider">05</span>
+            </div>
+            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+              <div className="absolute inset-0 backdrop-blur-[3px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar5_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                    backgroundRepeat: 'repeat',
+                    width: '200%',
+                    height: '200%',
+                    transform: 'translate(-25%, -25%) scale(0.5)'
+                  }}></div>
+                </div>
+              </div>
+              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light5_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                    Direct Purchase
+                  </h3>
+                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                    One-click purchase from curated partner stores
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
+        <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+      </div>
 
       {/* Interface Designs */}
-      {project.screens.length > 0 && (
+      {project.screens && project.screens.length > 0 && (
         <div 
           ref={(el) => { sectionRefs.current[`${project.id}-interface`] = el; }}
           id={`${project.id}-interface`} 
           className="mb-24"
         >
-          <h2 className="text-3xl text-white mb-12 leading-tight"
+          <h2 className="text-white/60 mb-16 leading-tight text-sm tracking-widest"
              style={{ 
-               fontFamily: 'Georgia, serif',
+               fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
-               letterSpacing: '0.01em'
+               letterSpacing: '0.15em'
              }}>
-            Interface Designs
+            INTERFACE
           </h2>
+
+          {/* Large Preview Area */}
+          <div className="mb-8">
+            <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
+              {(selectedMockup || project.screens[0]) && (
+                <Image
+                  src={selectedMockup || project.screens[0]}
+                  alt="Selected Interface Mockup"
+                  fill
+                  className="object-contain bg-black/20 backdrop-blur-sm"
+                  priority
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Mockup Thumbnails */}
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+            {project.screens.map((image, index) => (
+              <div 
+                key={index} 
+                className="group relative shrink-0 snap-center cursor-pointer"
+                style={{ width: 'calc(25% - 12px)' }}
+                onClick={() => setSelectedMockup(image)}
+              >
+                <div className="relative overflow-hidden rounded-xl transition-transform">
+                  {selectedMockup === image && (
+                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white/90 z-10"></div>
+                  )}
+                  <div className="aspect-[4/3]">
+                    <Image
+                      src={image}
+                      alt={`Interface Mockup ${index + 1}`}
+                      fill
+                      className={`object-cover transform transition-all duration-500 ${
+                        selectedMockup === image 
+                          ? 'brightness-100' 
+                          : 'brightness-75 hover:brightness-100'
+                      }`}
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
+
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
+        <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+      </div>
 
       {/* Components */}
       {project.components && project.components.length > 0 && (
@@ -724,15 +983,8 @@ export default function Projects() {
              }}>
             {project.subtitle}
           </p>
-                  </div>
-
-        {/* Remove hero image section */}
-        
-        {/* Divider */}
-        <div className="w-full flex justify-center mb-16">
-          <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
-                    </div>
-                  </div>
+        </div>
+      </div>
 
       {/* Physical Products */}
       {project.physicalProducts && (
@@ -743,6 +995,15 @@ export default function Projects() {
             id={`${project.id}-elastic-book-cover`} 
             className="mb-40"
           >
+            <h2 className="text-white/60 mb-12 leading-tight text-sm tracking-widest"
+                style={{ 
+                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                  fontWeight: '300',
+                  letterSpacing: '0.15em'
+                }}>
+              ELASTIC BOOK COVER
+            </h2>
+
             {/* Coverflow Gallery */}
             <div className="w-full max-w-6xl mx-auto px-8 mb-16">
               <div className="relative flex items-center justify-center">
@@ -840,27 +1101,17 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Title and Description */}
-            <div className="max-w-2xl mx-auto text-center mb-8">
-              <h2 className="text-white/60 mb-6 leading-tight text-sm tracking-widest"
-                  style={{ 
-                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                    fontWeight: '300',
-                    letterSpacing: '0.15em'
-                  }}>
-                ELASTIC BOOK COVER
-              </h2>
-              <p className="text-white/90 leading-relaxed"
-                 style={{ 
-                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                   fontWeight: '300',
-                   letterSpacing: '0.01em',
-                   fontSize: '15px',
-                   lineHeight: '1.5'
-                 }}>
-                Flexible book cover with a refined nature-inspired design, offering stylish protection for your favorite reads.
-              </p>
-            </div>
+            {/* Description */}
+            <p className="text-white/90 mb-8 leading-relaxed text-center"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 fontSize: '15px',
+                 lineHeight: '1.5'
+               }}>
+              Flexible book cover with a refined nature-inspired design, offering stylish protection for your favorite reads.
+            </p>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 justify-center">
@@ -895,16 +1146,6 @@ export default function Projects() {
                 }}>
               PREMIUM FRUIT GIFTBOX
             </h2>
-            <p className="text-white/90 mb-12 leading-relaxed"
-               style={{ 
-                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                 fontWeight: '300',
-                 letterSpacing: '0.01em',
-                 fontSize: '15px',
-                 lineHeight: '1.5'
-               }}>
-              {project.physicalProducts.premiumFruit.description}
-            </p>
 
             {/* Single Fruit Image */}
             <div className="flex justify-center mb-12">
@@ -921,6 +1162,18 @@ export default function Projects() {
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
               </div>
             </div>
+
+            {/* Description */}
+            <p className="text-white/90 mb-8 leading-relaxed text-center"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 fontSize: '15px',
+                 lineHeight: '1.5'
+               }}>
+              {project.physicalProducts.premiumFruit.description}
+            </p>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 justify-center">
@@ -1039,6 +1292,14 @@ export default function Projects() {
           }
           60% {
             transform: translateY(-2px);
+          }
+        }
+        @keyframes bounceHorizontal {
+          0%, 100% {
+            transform: translateX(-8rem);
+          }
+          50% {
+            transform: translateX(8rem);
           }
         }
       `}</style>
