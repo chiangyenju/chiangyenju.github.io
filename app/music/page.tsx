@@ -6,7 +6,7 @@ export default function Music() {
   const [selectedWidget, setSelectedWidget] = useState<'playlist' | 'likes' | 'tracks'>('playlist');
 
   // Replace 'your-username' with your actual SoundCloud username
-  const soundcloudUsername = 'your-username';
+  const soundcloudUsername = 'chiangyenju';
 
   const widgets = {
     playlist: {
@@ -119,24 +119,6 @@ export default function Music() {
               title={`SoundCloud ${widgets[selectedWidget].title}`}
             />
           </div>
-        </div>
-
-        {/* Setup Instructions (Remove after setup) */}
-        <div className="max-w-2xl mx-auto mt-16 p-6 bg-amber-500/10 border border-amber-500/20 rounded-2xl">
-          <h3 className="text-amber-200 text-lg font-medium mb-3">
-            🔧 Setup Required
-          </h3>
-          <p className="text-amber-100/80 text-sm leading-relaxed mb-4">
-            To complete the SoundCloud integration:
-          </p>
-          <ol className="text-amber-100/80 text-sm space-y-2 list-decimal list-inside">
-            <li>Replace <code className="bg-amber-500/20 px-1 rounded">'your-username'</code> in the code with your actual SoundCloud username</li>
-            <li>Test the widgets to ensure they load correctly</li>
-            <li>Remove this setup section once everything works</li>
-          </ol>
-          <p className="text-amber-100/60 text-xs mt-4">
-            Note: You can also customize the widget colors and features by modifying the URL parameters.
-          </p>
         </div>
 
         {/* Additional Info */}
