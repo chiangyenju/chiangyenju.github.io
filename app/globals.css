@@ -4,6 +4,51 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom scrollbar styles */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+.scrollbar-default::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-default::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.scrollbar-default::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.scrollbar-default::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Glass paper effect */
+.glass-paper {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ink text colors */
+.ink-text {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.faded-ink-text {
+  color: rgba(255, 255, 255, 0.6);
+}
+
 :root {
   /* E-ink inspired dark palette - only used colors */
   --color-paper: #1a1a1a;
@@ -54,21 +99,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-faded-ink);
-}
-
-/* Used utility classes */
-.ink-text {
-  color: var(--color-ink);
-}
-
-.faded-ink-text {
-  color: var(--color-faded-ink);
-}
-
-.glass-paper {
-  background: rgba(26, 26, 26, 0.85);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(154, 152, 149, 0.1);
 }
 
 ::selection {
