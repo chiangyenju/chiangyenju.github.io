@@ -12,7 +12,6 @@ export default function Navigation() {
   const itemRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   const isActive = (path: string) => {
-    if (path === '/' && pathname === '/about') return true;
     return pathname === path;
   };
 
@@ -20,7 +19,6 @@ export default function Navigation() {
     if (pathname === '/projects') return 'projects';
     if (pathname === '/music') return 'music';
     if (pathname === '/sandbox') return 'sandbox';
-    if (pathname === '/about' || pathname === '/') return 'about';
     return null;
   };
 
@@ -61,7 +59,7 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
           {/* Logo/Brand - Smaller */}
-          <Link href="/about" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <span
               style={{
                 display: 'inline-flex',
@@ -112,20 +110,6 @@ export default function Navigation() {
                 animation: activeItem && !hoveredItem ? 'bounce 2s infinite' : 'none'
               }}
             />
-
-            <Link 
-              ref={(el) => { itemRefs.current['about'] = el; }}
-              href="/about" 
-              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
-                isActive('/about') || pathname === '/' 
-                  ? 'text-white' 
-                  : 'text-white/50 hover:text-white/80'
-              }`}
-              onMouseEnter={() => handleMouseEnter('about')}
-              onMouseLeave={handleMouseLeave}
-            >
-              About
-            </Link>
 
             <Link 
               ref={(el) => { itemRefs.current['projects'] = el; }}
