@@ -1103,6 +1103,7 @@ export default function Projects() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 justify-center">
+              {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
               {project.physicalProducts.elasticBookCover.tags.map((tag, _) => (
                 <span 
                   key={tag}
@@ -1165,6 +1166,7 @@ export default function Projects() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 justify-center">
+              {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
               {project.physicalProducts.premiumFruit.tags.map((tag, _) => (
                 <span 
                   key={tag}
@@ -1209,6 +1211,7 @@ export default function Projects() {
                 }}
               />
 
+              {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
               {tableOfContents.map((item, index) => {
                 const isActive = activeSection === item.id;
                 const isProject = item.type === 'project';
