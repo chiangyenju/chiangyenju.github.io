@@ -5,15 +5,15 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <section className="min-h-screen w-full bg-black">
-      <div className="max-w-4xl mx-auto px-8 py-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-16">
         
         {/* Hero Section - Personal Introduction */}
-        <div className="text-center mt-32 mb-20">
+        <div className="text-center mt-16 sm:mt-32 mb-12 sm:mb-20">
           
           {/* Personal Introduction */}
-          <div className="max-w-3xl mx-auto space-y-16">
+          <div className="max-w-3xl mx-auto space-y-8 sm:space-y-16">
             <p 
-              className="text-lg text-white/70" 
+              className="text-base sm:text-lg text-white/70" 
               style={{ 
                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
                 lineHeight: '1.4',
@@ -34,7 +34,7 @@ export default function Home() {
             </p>
             
             <p 
-              className="text-6xl text-white/70" 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white/70" 
               style={{ 
                 fontFamily: 'Georgia, serif',
                 lineHeight: '1.2',
@@ -45,8 +45,8 @@ export default function Home() {
               I enjoy creating things.
             </p>
             
-            <p 
-              className="text-lg text-white/70" 
+            <div 
+              className="text-base sm:text-lg text-white/70" 
               style={{ 
                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
                 lineHeight: '1.4',
@@ -54,61 +54,64 @@ export default function Home() {
                 fontWeight: '200'
               }}
             >
-              <Link
-                href="/projects"
-                className="text-white/70 hover:text-white transition-colors duration-300 mx-3"
-                style={{
-                  fontWeight: '300',
-                  fontSize: '0.875rem'
-                }}
-              >
-                mobile application
-              </Link>
-              <Link
-                href="/projects"
-                className="text-white/70 hover:text-white transition-colors duration-300 mx-3"
-                style={{
-                  fontWeight: '300',
-                  fontSize: '0.875rem'
-                }}
-              >
-                web interface
-              </Link>
-              <Link
-                href="/projects"
-                className="text-white/70 hover:text-white transition-colors duration-300 mx-3"
-                style={{
-                  fontWeight: '300',
-                  fontSize: '0.875rem'
-                }}
-              >
-                physical product
-              </Link>
-              <Link
-                href="/music"
-                className="text-white/70 hover:text-white transition-colors duration-300 mx-3"
-                style={{
-                  fontWeight: '300',
-                  fontSize: '0.875rem'
-                }}
-              >
-                EDM music
-              </Link>
-              <Link
-                href="/sandbox"
-                className="text-white/70 hover:text-white transition-colors duration-300 mx-3"
-                style={{
-                  fontWeight: '300',
-                  fontSize: '0.875rem'
-                }}
-              >
-                visual design
-              </Link>
-            </p>
+              {/* Mobile: Stack tags vertically, Desktop: Inline */}
+              <div className="flex flex-wrap justify-center gap-x-2 gap-y-3 sm:gap-x-6">
+                <Link
+                  href="/projects"
+                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  style={{
+                    fontWeight: '300',
+                    fontSize: '0.875rem'
+                  }}
+                >
+                  mobile application
+                </Link>
+                <Link
+                  href="/projects"
+                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  style={{
+                    fontWeight: '300',
+                    fontSize: '0.875rem'
+                  }}
+                >
+                  web interface
+                </Link>
+                <Link
+                  href="/projects"
+                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  style={{
+                    fontWeight: '300',
+                    fontSize: '0.875rem'
+                  }}
+                >
+                  physical product
+                </Link>
+                <Link
+                  href="/music"
+                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  style={{
+                    fontWeight: '300',
+                    fontSize: '0.875rem'
+                  }}
+                >
+                  EDM music
+                </Link>
+                <Link
+                  href="/sandbox"
+                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  style={{
+                    fontWeight: '300',
+                    fontSize: '0.875rem'
+                  }}
+                >
+                  visual design
+                </Link>
+              </div>
+            </div>
           </div>
 
           {/* Floating Moon Dot - moved outside space-y container */}
-          <div className="flex justify-center mt-32">
+          <div className="flex justify-center mt-16 sm:mt-32">
             <div 
               className="w-2 h-2 bg-white/60 rounded-full"
               style={{ 

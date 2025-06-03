@@ -428,8 +428,8 @@ export default function Projects() {
           <div className="mt-16 relative max-w-4xl mx-auto">
             <div className="flex flex-col items-center relative">
               {/* Initial Room with Tag */}
-              <div className="flex flex-col items-center mb-24">
-                <div className="relative w-64 aspect-[4/3] rounded-lg overflow-hidden mb-8">
+              <div className="flex flex-col items-center mb-12 sm:mb-24">
+                <div className="relative w-48 sm:w-64 aspect-[4/3] rounded-lg overflow-hidden mb-8">
                   <Image
                     src="/projects/figma-projects/philo-homes/empty-room.png"
                     alt="Empty Room"
@@ -446,7 +446,7 @@ export default function Projects() {
       </div>
 
               {/* Style Options and Results */}
-              <div className="grid grid-cols-2 gap-32 w-full relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 lg:gap-32 w-full relative">
                 {/* Simple Dot Divider */}
                 <div className="absolute -top-6 left-1/2 -translate-x-1/2">
                   <div className="w-1.5 h-1.5 bg-white/40 rounded-full" style={{ animation: 'bounceHorizontal 3s infinite' }}></div>
@@ -454,12 +454,12 @@ export default function Projects() {
 
                 {/* Left Path - Transitional */}
                 <div className="relative flex flex-col items-center">
-                  <div className="relative mb-16">
+                  <div className="relative mb-8 sm:mb-16">
                     <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/80">
                       Transitional Style
           </div>
                     {/* Connecting line from Style to Image */}
-                    <div className="absolute left-1/2 -translate-x-1/2 h-16 w-px bg-white/20 -bottom-16"></div>
+                    <div className="absolute left-1/2 -translate-x-1/2 h-8 sm:h-16 w-px bg-white/20 -bottom-8 sm:-bottom-16"></div>
         </div>
                   <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
                     <Image
@@ -473,12 +473,12 @@ export default function Projects() {
 
                 {/* Right Path - Modern Farmhouse */}
                 <div className="relative flex flex-col items-center">
-                  <div className="relative mb-16">
+                  <div className="relative mb-8 sm:mb-16">
                     <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/80">
                       Modern Farmhouse
                     </div>
                     {/* Connecting line from Style to Image */}
-                    <div className="absolute left-1/2 -translate-x-1/2 h-16 w-px bg-white/20 -bottom-16"></div>
+                    <div className="absolute left-1/2 -translate-x-1/2 h-8 sm:h-16 w-px bg-white/20 -bottom-8 sm:-bottom-16"></div>
                   </div>
                   <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
                     <Image
@@ -993,23 +993,23 @@ export default function Projects() {
             </h2>
 
             {/* Coverflow Gallery */}
-            <div className="w-full max-w-6xl mx-auto px-8 mb-16">
+            <div className="w-full max-w-6xl mx-auto px-4 sm:px-8 mb-16">
               <div className="relative flex items-center justify-center">
                 
-                {/* Left Arrow */}
+                {/* Left Arrow - Responsive */}
                 <button
                   onClick={() => handleCoverflowScroll('left')}
                   disabled={coverflowIndex === 0}
-                  className="w-16 h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 mr-12"
+                  className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 mr-4 sm:mr-8 lg:mr-12"
                 >
-                  <svg className="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
 
-                {/* Coverflow Container */}
-                <div className="h-80 flex items-center justify-center overflow-hidden">
-                  <div className="flex items-center space-x-4" style={{ perspective: '1000px' }}>
+                {/* Coverflow Container - Responsive */}
+                <div className="h-48 sm:h-64 lg:h-80 flex items-center justify-center overflow-hidden">
+                  <div className="flex items-center space-x-2 sm:space-x-4" style={{ perspective: '1000px' }}>
                     {getVisibleImages().map(({ image, originalIndex, isBlank }, displayIndex) => {
                       const centerIndex = Math.floor(7 / 2);
                       const isCenter = displayIndex === centerIndex;
@@ -1022,15 +1022,15 @@ export default function Projects() {
                             key={`blank-${displayIndex}`}
                             className={`relative transition-all duration-700 ease-out ${
                               isCenter 
-                                ? 'w-72 h-48 z-30 scale-110' 
-                                : 'w-56 h-36 z-20 scale-90 opacity-70'
+                                ? 'w-48 h-32 sm:w-64 sm:h-40 lg:w-72 lg:h-48 z-30 scale-110' 
+                                : 'w-36 h-24 sm:w-48 sm:h-32 lg:w-56 lg:h-36 z-20 scale-90 opacity-70'
                             }`}
                             style={{
                               transform: isCenter 
                                 ? 'rotateY(0deg) translateZ(0px)' 
                                 : isLeft 
-                                  ? `rotateY(45deg) translateZ(-${distance * 50}px) translateX(${distance * 15}px)` 
-                                  : `rotateY(-45deg) translateZ(-${distance * 50}px) translateX(-${distance * 15}px)`,
+                                  ? `rotateY(45deg) translateZ(-${distance * 30}px) translateX(${distance * 10}px)` 
+                                  : `rotateY(-45deg) translateZ(-${distance * 30}px) translateX(-${distance * 10}px)`,
                               transformStyle: 'preserve-3d'
                             }}
                           >
@@ -1044,15 +1044,15 @@ export default function Projects() {
                           key={originalIndex}
                           className={`relative cursor-pointer transition-all duration-700 ease-out ${
                             isCenter 
-                              ? 'w-72 h-48 z-30 scale-110' 
-                              : 'w-56 h-36 z-20 scale-90 opacity-70'
+                              ? 'w-48 h-32 sm:w-64 sm:h-40 lg:w-72 lg:h-48 z-30 scale-110' 
+                              : 'w-36 h-24 sm:w-48 sm:h-32 lg:w-56 lg:h-36 z-20 scale-90 opacity-70'
                           }`}
                           style={{
                             transform: isCenter 
                               ? 'rotateY(0deg) translateZ(0px)' 
                               : isLeft 
-                                ? `rotateY(45deg) translateZ(-${distance * 50}px) translateX(${distance * 15}px)` 
-                                : `rotateY(-45deg) translateZ(-${distance * 50}px) translateX(-${distance * 15}px)`,
+                                ? `rotateY(45deg) translateZ(-${distance * 30}px) translateX(${distance * 10}px)` 
+                                : `rotateY(-45deg) translateZ(-${distance * 30}px) translateX(-${distance * 10}px)`,
                             transformStyle: 'preserve-3d'
                           }}
                           onClick={() => setSelectedImage(selectedImage === image ? null : image)}
@@ -1076,13 +1076,13 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Right Arrow */}
+                {/* Right Arrow - Responsive */}
                 <button
                   onClick={() => handleCoverflowScroll('right')}
                   disabled={coverflowIndex === bookCoverImages.length - 1}
-                  className="w-16 h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 ml-12"
+                  className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 ml-4 sm:ml-8 lg:ml-12"
                 >
-                  <svg className="w-8 h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -1139,7 +1139,7 @@ export default function Projects() {
             {/* Single Fruit Image */}
             <div className="flex justify-center mb-12">
               <div 
-                className="relative w-96 h-64 cursor-pointer group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-700"
+                className="relative w-72 sm:w-80 md:w-96 h-48 sm:h-56 md:h-64 cursor-pointer group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-700"
                 onClick={() => setSelectedImage(selectedImage === "/projects/fruit/optimized_giftbox.jpg" ? null : "/projects/fruit/optimized_giftbox.jpg")}
               >
                 <Image
@@ -1185,9 +1185,9 @@ export default function Projects() {
 
   return (
     <section className="min-h-screen w-full bg-black">
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         {/* Main Content */}
-        <div className="flex-1 lg:mr-80 max-w-5xl mx-auto px-12 py-32">
+        <div className="flex-1 lg:mr-80 max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-32">
           {/* All Projects in Continuous Scroll */}
           {filteredProjects.map((project) => (
             project.id === 'ecommerce-web' ? 
@@ -1196,8 +1196,8 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Table of Contents Sidebar - Right Side */}
-        <div className="hidden lg:block w-64 fixed right-8 top-1/2 transform -translate-y-1/2 h-[70vh] overflow-y-auto scrollbar-hide hover:scrollbar-default">
+        {/* Table of Contents Sidebar - Right Side - Hidden on mobile/tablet */}
+        <div className="hidden xl:block w-64 fixed right-8 top-1/2 transform -translate-y-1/2 h-[70vh] overflow-y-auto scrollbar-hide hover:scrollbar-default">
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
             
             <nav className="space-y-1 relative" ref={navRef}>
