@@ -150,9 +150,6 @@ export default function Projects() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [dotPosition, setDotPosition] = useState(0);
 
-  // Get all unique tags
-  const allTags = Array.from(new Set(figmaProjects.flatMap(project => project.tags)));
-
   // Show all projects without filtering
   const filteredProjects = figmaProjects;
 
@@ -191,15 +188,6 @@ export default function Projects() {
     }
     
     return result;
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch (category) {
-      case 'mobile': return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-      case 'web': return 'bg-green-500/20 text-green-300 border-green-500/30';
-      case 'design-system': return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
-      default: return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
-    }
   };
 
   // Generate table of contents for all projects
@@ -1115,9 +1103,9 @@ export default function Projects() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 justify-center">
-              {project.physicalProducts.elasticBookCover.tags.map((tag, index) => (
+              {project.physicalProducts.elasticBookCover.tags.map((tag, _) => (
                 <span 
-                  key={index}
+                  key={tag}
                   className="px-3 py-1 text-xs text-white/60 bg-white/5 rounded-full border border-white/10"
                   style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}
                 >
@@ -1177,9 +1165,9 @@ export default function Projects() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 justify-center">
-              {project.physicalProducts.premiumFruit.tags.map((tag, index) => (
+              {project.physicalProducts.premiumFruit.tags.map((tag, _) => (
                 <span 
-                  key={index}
+                  key={tag}
                   className="px-3 py-1 text-xs text-white/60 bg-white/5 rounded-full border border-white/10"
                   style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}
                 >
