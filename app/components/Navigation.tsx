@@ -62,8 +62,8 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-        <div className="flex items-center justify-between md:justify-between">
-          {/* Logo/Brand - Responsive */}
+        <div className="flex flex-col items-center space-y-4">
+          {/* Logo/Brand - Center aligned */}
           <Link href="/" className="flex items-center">
             <span
               style={{
@@ -102,7 +102,7 @@ export default function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links - Center aligned below logo */}
           <div ref={navRef} className="hidden md:flex items-center space-x-8 relative">
             {/* Single unified dot that moves and bounces */}
             <div 
@@ -159,8 +159,8 @@ export default function Navigation() {
             </Link>
           </div>
 
-          {/* Mobile menu button - centered on mobile */}
-          <div className="md:hidden flex-1 flex justify-center">
+          {/* Mobile menu button - below logo on mobile */}
+          <div className="md:hidden">
             <button 
               className="p-2 text-white/50 hover:text-white/80 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -176,13 +176,13 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Center aligned */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-white/10">
-            <div className="flex flex-col space-y-4 pt-4">
+            <div className="flex flex-col items-center space-y-4 pt-4">
               <Link 
                 href="/projects" 
-                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none ${
+                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none text-center ${
                   isActive('/projects') 
                     ? 'text-white' 
                     : 'text-white/70 hover:text-white'
@@ -194,7 +194,7 @@ export default function Navigation() {
               
               <Link 
                 href="/music" 
-                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none ${
+                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none text-center ${
                   isActive('/music') 
                     ? 'text-white' 
                     : 'text-white/70 hover:text-white'
@@ -206,7 +206,7 @@ export default function Navigation() {
               
               <Link 
                 href="/sandbox" 
-                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none ${
+                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none text-center ${
                   isActive('/sandbox') 
                     ? 'text-white' 
                     : 'text-white/70 hover:text-white'
