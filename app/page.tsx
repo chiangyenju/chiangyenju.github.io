@@ -105,32 +105,19 @@ export default function Home() {
               </p>
             </div>
             
-            {/* Call to Action Button - Both mobile and desktop with gradient border and foil */}
+            {/* Call to Action Button - Minimal and elegant style */}
             <div className="mt-8 sm:mt-12">
               <Link
                 href="/projects"
-                className="inline-block px-8 py-3 rounded-full text-white hover:text-white transition-all duration-300 backdrop-blur-sm relative overflow-hidden group"
+                className="inline-block px-6 py-2 rounded-full text-white/90 hover:text-white border border-white/20 hover:border-white/40 transition-all duration-300"
                 style={{
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
-                  fontSize: '16px',
-                  letterSpacing: '0.02em',
-                  background: 'rgba(0,0,0,0.3)',
-                  border: '2px solid transparent',
-                  backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), linear-gradient(135deg, #ffffff40, #ffffff80, #ffffff40)',
-                  backgroundOrigin: 'border-box',
-                  backgroundClip: 'content-box, border-box'
+                  fontSize: '14px',
+                  letterSpacing: '0.02em'
                 }}
               >
-                {/* Foil effect overlay */}
-                <div 
-                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                  style={{
-                    background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%)',
-                    animation: 'shimmer 2s infinite'
-                  }}
-                />
-                <span className="relative z-10">Projects</span>
+                Projects
               </Link>
             </div>
             
@@ -269,15 +256,6 @@ export default function Home() {
           }
           50% {
             transform: translateY(-12px);
-          }
-        }
-        
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
           }
         }
       `}</style>
