@@ -323,17 +323,16 @@ export default function Projects() {
         className="mb-20"
       >
         <div className="mb-8">
-          <h1 className="text-2xl text-white mb-2 leading-tight" 
+          <h1 className="text-xl sm:text-2xl lg:text-3xl text-white mb-2 leading-tight" 
                style={{ 
                  fontFamily: 'Georgia, serif',
                  fontWeight: '300',
                  letterSpacing: '0.01em',
-                 color: 'white',
-                 fontSize: '2rem'
+                 color: 'white'
                }}>
             {project.title}
           </h1>
-          <p className="text-lg text-white/70 leading-relaxed"
+          <p className="text-sm sm:text-base lg:text-lg text-white/70 leading-relaxed"
              style={{ 
                fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '200',
@@ -993,82 +992,83 @@ export default function Projects() {
             </h2>
 
             {/* Coverflow Gallery */}
-            <div className="w-full max-w-6xl mx-auto px-4 sm:px-8 mb-16">
+            <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 lg:px-8 mb-16">
               <div className="relative flex items-center justify-center">
                 
-                {/* Left Arrow - Responsive */}
+                {/* Left Arrow - More prominent on mobile */}
                 <button
                   onClick={() => handleCoverflowScroll('left')}
                   disabled={coverflowIndex === 0}
-                  className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 mr-4 sm:mr-8 lg:mr-12"
+                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-white/20 hover:bg-white/30 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 mr-2 sm:mr-4 lg:mr-8 flex-shrink-0 z-40"
                 >
-                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
 
-                {/* Coverflow Container - Responsive */}
-                <div className="h-48 sm:h-64 lg:h-80 flex items-center justify-center overflow-hidden">
-                  <div className="flex items-center space-x-2 sm:space-x-4" style={{ perspective: '1000px' }}>
+                {/* Coverflow Container - Simplified for mobile */}
+                <div className="h-32 sm:h-48 lg:h-80 flex items-center justify-center overflow-hidden flex-1">
+                  <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-4" style={{ perspective: '800px' }}>
                     {getVisibleImages().map(({ image, originalIndex, isBlank }, displayIndex) => {
                       const centerIndex = Math.floor(7 / 2);
                       const isCenter = displayIndex === centerIndex;
                       const isLeft = displayIndex < centerIndex;
                       const distance = Math.abs(displayIndex - centerIndex);
                       
+                      // Simplified sizing for mobile
+                      const mobileSize = isCenter ? 'w-24 h-16' : 'w-16 h-10';
+                      const tabletSize = isCenter ? 'w-32 h-20' : 'w-24 h-15';
+                      const desktopSize = isCenter ? 'w-72 h-48' : 'w-56 h-36';
+                      
                       if (isBlank) {
                         return (
                           <div 
                             key={`blank-${displayIndex}`}
-                            className={`relative transition-all duration-700 ease-out ${
-                              isCenter 
-                                ? 'w-48 h-32 sm:w-64 sm:h-40 lg:w-72 lg:h-48 z-30 scale-110' 
-                                : 'w-36 h-24 sm:w-48 sm:h-32 lg:w-56 lg:h-36 z-20 scale-90 opacity-70'
-                            }`}
+                            className={`relative transition-all duration-500 ease-out ${mobileSize} sm:${tabletSize} lg:${desktopSize} ${
+                              isCenter ? 'z-30 scale-110' : 'z-20 scale-90 opacity-70'
+                            } mobile-transform-${isCenter ? 'center' : isLeft ? 'left' : 'right'}`}
                             style={{
                               transform: isCenter 
                                 ? 'rotateY(0deg) translateZ(0px)' 
                                 : isLeft 
-                                  ? `rotateY(45deg) translateZ(-${distance * 30}px) translateX(${distance * 10}px)` 
-                                  : `rotateY(-45deg) translateZ(-${distance * 30}px) translateX(-${distance * 10}px)`,
+                                  ? `rotateY(30deg) translateZ(-${distance * 20}px) translateX(${distance * 8}px)` 
+                                  : `rotateY(-30deg) translateZ(-${distance * 20}px) translateX(-${distance * 8}px)`,
                               transformStyle: 'preserve-3d'
                             }}
                           >
                             {/* Blank space */}
-                      </div>
+                          </div>
                         );
                       }
                       
                       return (
                         <div 
                           key={originalIndex}
-                          className={`relative cursor-pointer transition-all duration-700 ease-out ${
-                            isCenter 
-                              ? 'w-48 h-32 sm:w-64 sm:h-40 lg:w-72 lg:h-48 z-30 scale-110' 
-                              : 'w-36 h-24 sm:w-48 sm:h-32 lg:w-56 lg:h-36 z-20 scale-90 opacity-70'
-                          }`}
+                          className={`relative cursor-pointer transition-all duration-500 ease-out ${mobileSize} sm:${tabletSize} lg:${desktopSize} ${
+                            isCenter ? 'z-30 scale-110' : 'z-20 scale-90 opacity-70'
+                          } mobile-transform-${isCenter ? 'center' : isLeft ? 'left' : 'right'}`}
                           style={{
                             transform: isCenter 
                               ? 'rotateY(0deg) translateZ(0px)' 
                               : isLeft 
-                                ? `rotateY(45deg) translateZ(-${distance * 30}px) translateX(${distance * 10}px)` 
-                                : `rotateY(-45deg) translateZ(-${distance * 30}px) translateX(-${distance * 10}px)`,
+                                ? `rotateY(30deg) translateZ(-${distance * 20}px) translateX(${distance * 8}px)` 
+                                : `rotateY(-30deg) translateZ(-${distance * 20}px) translateX(-${distance * 8}px)`,
                             transformStyle: 'preserve-3d'
                           }}
                           onClick={() => setSelectedImage(selectedImage === image ? null : image)}
                         >
-                          <div className="w-full h-full rounded-lg overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
+                          <div className="w-full h-full rounded-md sm:rounded-lg overflow-hidden shadow-lg sm:shadow-2xl hover:shadow-xl transition-shadow duration-300">
                             {image && (
-                          <Image
-                            src={image}
+                              <Image
+                                src={image}
                                 alt={`Book Cover ${originalIndex + 1}`}
-                            fill
+                                fill
                                 className="object-cover"
-                          />
+                              />
                             )}
                           </div>
                           {isCenter && (
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-lg"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent rounded-md sm:rounded-lg"></div>
                           )}
                         </div>
                       );
@@ -1076,16 +1076,31 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Right Arrow - Responsive */}
+                {/* Right Arrow - More prominent on mobile */}
                 <button
                   onClick={() => handleCoverflowScroll('right')}
                   disabled={coverflowIndex === bookCoverImages.length - 1}
-                  className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 ml-4 sm:ml-8 lg:ml-12"
+                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-white/20 hover:bg-white/30 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 ml-2 sm:ml-4 lg:ml-8 flex-shrink-0 z-40"
                 >
-                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
+              </div>
+              
+              {/* Mobile indicator dots */}
+              <div className="flex justify-center mt-4 sm:hidden">
+                <div className="flex space-x-2">
+                  {bookCoverImages.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCoverflowIndex(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === coverflowIndex ? 'bg-white/80' : 'bg-white/30'
+                      }`}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -1185,9 +1200,50 @@ export default function Projects() {
 
   return (
     <section className="min-h-screen w-full bg-black">
+      {/* Mobile Navigation - Only visible on mobile/tablet */}
+      <div className="xl:hidden sticky top-0 z-40 bg-black/90 backdrop-blur-sm border-b border-white/10">
+        <div className="px-4 sm:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-white/90 text-sm font-medium tracking-wide"
+                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+              Navigation
+            </h2>
+            <button
+              onClick={() => setActiveSection('')}
+              className="text-white/60 hover:text-white/90 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+          
+          {/* Mobile TOC - Horizontal scroll */}
+          <div className="mt-3 overflow-x-auto scrollbar-hide">
+            <div className="flex space-x-4 pb-2">
+              {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
+              {tableOfContents.filter(item => item.type === 'project').map((item, index) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`whitespace-nowrap px-3 py-1 text-xs rounded-full transition-all duration-300 ${
+                    activeSection === item.id
+                      ? 'bg-white/20 text-white'
+                      : 'bg-white/5 text-white/70 hover:text-white/90 hover:bg-white/10'
+                  }`}
+                  style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}
+                >
+                  {item.title}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-col lg:flex-row">
-        {/* Main Content */}
-        <div className="flex-1 lg:mr-80 max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-32">
+        {/* Main Content - Adjusted margins for better mobile experience */}
+        <div className="flex-1 xl:mr-80 max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 py-8 sm:py-16 lg:py-32">
           {/* All Projects in Continuous Scroll */}
           {filteredProjects.map((project) => (
             project.id === 'ecommerce-web' ? 
@@ -1251,19 +1307,19 @@ export default function Projects() {
       {/* Lightbox */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-8 bg-black/95 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-sm"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-7xl max-h-full">
+          <div className="relative max-w-7xl max-h-full w-full">
             <Image
               src={selectedImage}
               alt="Expanded view"
               width={1600}
               height={1200}
-              className="object-contain max-h-[90vh] max-w-full"
+              className="object-contain max-h-[90vh] max-w-full w-full h-auto"
             />
             <button
-              className="absolute -top-4 -right-4 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white/90 text-2xl transition-colors"
+              className="absolute -top-4 -right-4 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white/90 text-2xl transition-colors bg-black/50 rounded-full"
               onClick={() => setSelectedImage(null)}
             >
               ×
@@ -1291,6 +1347,26 @@ export default function Projects() {
           }
           50% {
             transform: translateX(8rem);
+          }
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        
+        /* Mobile-specific coverflow transforms */
+        @media (max-width: 640px) {
+          .mobile-transform-center {
+            transform: translateX(0) !important;
+          }
+          .mobile-transform-left {
+            transform: translateX(4px) !important;
+          }
+          .mobile-transform-right {
+            transform: translateX(-4px) !important;
           }
         }
       `}</style>
