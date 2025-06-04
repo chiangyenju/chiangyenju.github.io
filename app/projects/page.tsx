@@ -518,91 +518,93 @@ export default function Projects() {
           
           {/* Typography Section */}
           <div className="relative w-fit mx-auto space-y-12">
+            
+            {/* Mobile indicators above image - visible only on mobile */}
+            <div className="block sm:hidden text-center mb-4">
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-white/70 text-sm italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  headings
+                </span>
+                <div className="w-6 h-px bg-white/60"></div>
+                <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+              </div>
+            </div>
+
             {/* Logo */}
             <div className="relative w-fit mx-auto mb-16">
               <Image
                 src="/projects/figma-projects/philo-homes/philo-logo.png"
                 alt="Philo Logo"
-                width={160}
-                height={80}
-                className="h-8 sm:h-10 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                width={200}
+                height={100}
+                className="h-12 sm:h-14 md:h-16 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => setSelectedImage("/projects/figma-projects/philo-homes/philo-logo.png")}
               />
               
-              {/* Line indicators with adjusted positioning - hidden on mobile */}
+              {/* Desktop line indicators - hidden on mobile */}
               <div className="absolute top-0 -left-32 transform hidden sm:block">
                 <div className="flex items-center">
-                  <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <span className="text-white/70 text-sm italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     headings
                   </span>
-                  <div className="w-6 h-px bg-white/60 ml-2"></div>
-                  <div className="w-1 h-1 bg-white/60 rounded-full ml-1"></div>
+                  <div className="w-8 h-px bg-white/60 ml-2"></div>
+                  <div className="w-1.5 h-1.5 bg-white/60 rounded-full ml-1"></div>
                 </div>
               </div>
               
               <div className="absolute bottom-0 -right-32 transform hidden sm:block">
                 <div className="flex items-center">
-                  <div className="w-1 h-1 bg-white/60 rounded-full mr-1"></div>
-                  <div className="w-6 h-px bg-white/60 mr-2"></div>
-                  <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <div className="w-1.5 h-1.5 bg-white/60 rounded-full mr-1"></div>
+                  <div className="w-8 h-px bg-white/60 mr-2"></div>
+                  <span className="text-white/70 text-sm italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     body
                   </span>
                 </div>
               </div>
+            </div>
 
-              {/* Mobile indicators - visible only on mobile */}
-              <div className="block sm:hidden relative">
-                {/* Headings indicator - points to upper part */}
-                <div className="absolute -left-8 top-2 flex items-center gap-2">
-                  <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    headings
-                  </span>
-                  <div className="w-4 h-px bg-white/60"></div>
-                  <div className="w-1 h-1 bg-white/60 rounded-full"></div>
-                </div>
-                
-                {/* Body indicator - points to lower part */}
-                <div className="absolute -right-8 bottom-2 flex items-center gap-2">
-                  <div className="w-1 h-1 bg-white/60 rounded-full"></div>
-                  <div className="w-4 h-px bg-white/60"></div>
-                  <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    body
-                  </span>
-                </div>
+            {/* Mobile indicators below image - visible only on mobile */}
+            <div className="block sm:hidden text-center mt-4">
+              <div className="flex items-center justify-center gap-2">
+                <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
+                <div className="w-6 h-px bg-white/60"></div>
+                <span className="text-white/70 text-sm italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  body
+                </span>
               </div>
             </div>
           </div>
 
           {/* Color Palette Section */}
           <div className="mt-16 space-y-8">
-            {/* Simplified color dots container without button styling */}
+            {/* Enhanced color dots container */}
             <div className="max-w-md mx-auto">
-              <div className="flex flex-wrap gap-6 sm:gap-8 items-center justify-center">
-                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-slate-900 rounded-full"></div>
-                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-stone-100 rounded-full"></div>
-                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-amber-600 rounded-full"></div>
-                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-slate-600 rounded-full"></div>
-                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-600 rounded-full"></div>
-                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-indigo-400 rounded-full"></div>
+              <div className="flex flex-wrap gap-8 sm:gap-10 md:gap-12 items-center justify-center">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-slate-900 rounded-full shadow-lg"></div>
+                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-stone-100 rounded-full shadow-lg"></div>
+                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-amber-600 rounded-full shadow-lg"></div>
+                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-slate-600 rounded-full shadow-lg"></div>
+                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-red-600 rounded-full shadow-lg"></div>
+                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-indigo-400 rounded-full shadow-lg"></div>
               </div>
             </div>
           </div>
 
           {/* Button Components */}
-          <div className="flex gap-6 sm:gap-8 items-center justify-center">
+          <div className="flex gap-8 sm:gap-10 md:gap-12 items-center justify-center">
             <Image
               src="/projects/figma-projects/philo-homes/back-button.png"
               alt="Back Button Component"
-              width={120}
-              height={40}
-              className="h-6 sm:h-8 w-auto object-contain"
+              width={150}
+              height={50}
+              className="h-8 sm:h-10 md:h-12 w-auto object-contain"
             />
             <Image
               src="/projects/figma-projects/philo-homes/next-button.png"
               alt="Next Button Component"
-              width={120}
-              height={40}
-              className="h-6 sm:h-8 w-auto object-contain"
+              width={150}
+              height={50}
+              className="h-8 sm:h-10 md:h-12 w-auto object-contain"
             />
           </div>
         </div>
