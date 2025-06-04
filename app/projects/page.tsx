@@ -322,7 +322,7 @@ export default function Projects() {
         id={`project-${project.id}`} 
         className="mb-20"
       >
-        <div className="mb-8 px-4 sm:px-0">
+        <div className="mb-8 px-4 sm:px-0 text-center">
           <h1 className="text-xl sm:text-2xl text-white mb-2 leading-tight" 
                style={{ 
                  fontFamily: 'Georgia, serif',
@@ -367,7 +367,7 @@ export default function Projects() {
         className="mb-24 px-4 sm:px-0"
       >
         {/* Overview Title */}
-        <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest"
+        <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
            style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
              fontWeight: '300',
@@ -504,7 +504,7 @@ export default function Projects() {
         id={`${project.id}-design-systems`} 
         className="mb-24 px-4 sm:px-0"
       >
-        <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest"
+        <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest text-center"
            style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
              fontWeight: '300',
@@ -598,7 +598,7 @@ export default function Projects() {
           id={`${project.id}-user-flow`} 
           className="mb-24 px-4 sm:px-0"
         >
-        <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest"
+        <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest text-center"
              style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
@@ -778,7 +778,7 @@ export default function Projects() {
           id={`${project.id}-interface`} 
           className="mb-24 px-4 sm:px-0"
         >
-          <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest"
+          <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest text-center"
              style={{ 
                fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
@@ -847,7 +847,7 @@ export default function Projects() {
           id={`${project.id}-components`} 
           className="mb-24"
         >
-          <h2 className="text-3xl text-white mb-12 leading-tight"
+          <h2 className="text-3xl text-white mb-12 leading-tight text-center"
              style={{ 
                fontFamily: 'Georgia, serif',
                fontWeight: '300',
@@ -863,7 +863,7 @@ export default function Projects() {
         <div className="mb-24">
           {/* Elastic Book Cover */}
           <div className="mb-20">
-            <h2 className="text-3xl text-white mb-6 leading-tight"
+            <h2 className="text-3xl text-white mb-6 leading-tight text-center"
                style={{ 
                  fontFamily: 'Georgia, serif',
                  fontWeight: '300',
@@ -871,7 +871,7 @@ export default function Projects() {
                }}>
               {project.physicalProducts.elasticBookCover.title}
             </h2>
-            <p className="text-white/70 mb-12 leading-loose text-lg"
+            <p className="text-white/70 mb-12 leading-loose text-lg text-center"
                style={{ 
                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
                  fontWeight: '200',
@@ -901,19 +901,21 @@ export default function Projects() {
 
           {/* Premium Fruit Giftbox */}
           <div>
-            <h2 className="text-3xl text-white mb-6 leading-tight"
-               style={{ 
-                 fontFamily: 'Georgia, serif',
-                 fontWeight: '300',
-                 letterSpacing: '0.01em'
-               }}>
-              {project.physicalProducts.premiumFruit.title}
+            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
+                style={{ 
+                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                  fontWeight: '300',
+                  letterSpacing: '0.15em'
+                }}>
+              PREMIUM FRUIT GIFTBOX
             </h2>
-            <p className="text-white/70 mb-12 leading-loose text-lg"
+            <p className="text-white/90 mb-8 leading-relaxed text-center px-4 sm:px-0"
                style={{ 
                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                 fontWeight: '200',
-                 letterSpacing: '0.01em'
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 fontSize: '14px',
+                 lineHeight: '1.5'
                }}>
               {project.physicalProducts.premiumFruit.description}
             </p>
@@ -950,7 +952,7 @@ export default function Projects() {
         id={`project-${project.id}`} 
         className="mb-20"
       >
-        <div className="mb-8 px-4 sm:px-0">
+        <div className="mb-8 px-4 sm:px-0 text-center">
           <h1 className="text-xl sm:text-2xl text-white mb-2 leading-tight" 
                style={{ 
                  fontFamily: 'Georgia, serif',
@@ -980,7 +982,7 @@ export default function Projects() {
             id={`${project.id}-elastic-book-cover`} 
             className="mb-40 px-4 sm:px-0"
           >
-            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest"
+            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
@@ -1125,7 +1127,7 @@ export default function Projects() {
             id={`${project.id}-premium-fruit`} 
             className="mb-40 px-4 sm:px-0"
           >
-            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest"
+            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
