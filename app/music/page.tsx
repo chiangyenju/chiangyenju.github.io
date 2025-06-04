@@ -3,54 +3,52 @@
 export default function Music() {
   const soundcloudUsername = 'chiangyenju';
 
-  // Direct link to Void (radio edit) track - much smaller
-  const voidTrackUrl = `https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/${soundcloudUsername}/void-radio-edit&color=%23333333&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&buying=false&liking=false&download=false&sharing=false&show_playcount=false&show_bpm=false`;
-
-  // Compact tracks playlist
-  const tracksListUrl = `https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/${soundcloudUsername}/tracks&color=%23333333&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&show_artwork=false&buying=false&liking=false&download=false&sharing=false&show_playcount=false&show_bpm=false`;
+  // Single track - Void (radio edit)
+  const voidTrackUrl = `https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/${soundcloudUsername}/void-radio-edit&color=%23000000&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false&show_artwork=true`;
 
   return (
-    <section className="min-h-screen w-full bg-black">
-      <div className="max-w-2xl mx-auto px-4 sm:px-8 py-16 sm:py-24 lg:py-32">
-        
-        {/* Much Smaller SoundCloud Player */}
-        <div className="relative mb-8">
-          <iframe
-            width="100%"
-            height="120"
-            scrolling="no"
-            frameBorder="no"
-            src={voidTrackUrl}
-            className="rounded-lg"
-            style={{
-              background: 'transparent',
-              border: 'none',
-              filter: 'brightness(0.8) contrast(1.2)',
-            }}
-            title="SoundCloud Player - Void (radio edit)"
-          />
-        </div>
+    <section className="min-h-screen w-full bg-black flex flex-col items-center justify-center">
+      <div className="text-center mb-12">
+        <h1 
+          className="text-white text-4xl mb-4"
+          style={{ 
+            fontFamily: 'Helvetica Neue, Arial, sans-serif',
+            fontWeight: '300'
+          }}
+        >
+          Music
+        </h1>
+        <p 
+          className="text-white/60 text-lg"
+          style={{ 
+            fontFamily: 'Helvetica Neue, Arial, sans-serif',
+            fontWeight: '300'
+          }}
+        >
+          Currently under construction
+        </p>
+      </div>
 
-        {/* Compact Song Playlist */}
-        <div className="relative">
-          <div className="bg-gray-900/50 rounded-lg p-3">
+      {/* SoundCloud Player Below */}
+      <div className="w-full max-w-2xl px-4 sm:px-8">
+        <div className="flex justify-center">
+          <div className="w-full max-w-xl bg-black rounded-lg p-4">
             <iframe
               width="100%"
-              height="200"
+              height="120"
               scrolling="no"
               frameBorder="no"
-              src={tracksListUrl}
-              className="rounded-lg"
+              src={voidTrackUrl}
+              className="rounded-lg mx-auto block"
               style={{
-                background: 'transparent',
+                background: '#000000',
                 border: 'none',
-                filter: 'brightness(0.9) contrast(1.1)',
+                filter: 'brightness(1) contrast(1)',
               }}
-              title="SoundCloud Tracks Playlist"
+              title="SoundCloud Player - Void (radio edit)"
             />
           </div>
         </div>
-
       </div>
     </section>
   );
