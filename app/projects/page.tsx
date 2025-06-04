@@ -452,12 +452,14 @@ export default function Projects() {
             <div className="flex flex-col items-center relative">
               {/* Initial Room with Tag */}
               <div className="flex flex-col items-center mb-12 sm:mb-24">
-                <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 aspect-[4/3] rounded-lg overflow-hidden mb-8">
+                <div className="relative w-full max-w-sm sm:w-72 md:w-80 lg:w-96 aspect-[16/9] rounded-lg overflow-hidden mb-8">
                   <Image
                     src="/projects/figma-projects/philo-homes/empty-room.png"
                     alt="Empty Room"
                     fill
-                    className="object-cover"
+                    className="object-contain bg-white/5"
+                    priority
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 288px, (max-width: 1024px) 320px, 384px"
                   />
                 </div>
                 <div className="relative">
@@ -484,12 +486,13 @@ export default function Projects() {
                     {/* Connecting line from Style to Image */}
                     <div className="absolute left-1/2 -translate-x-1/2 h-8 sm:h-16 w-px bg-white/20 -bottom-8 sm:-bottom-16"></div>
         </div>
-                  <div className="relative w-full max-w-xs sm:max-w-none aspect-[4/3] rounded-lg overflow-hidden">
+                  <div className="relative w-full max-w-xs sm:max-w-none aspect-[16/9] rounded-lg overflow-hidden">
                     <Image
                       src="/projects/figma-projects/philo-homes/results-1.png"
                       alt="Transitional Style Result"
                       fill
-                      className="object-cover"
+                      className="object-contain bg-white/5"
+                      sizes="(max-width: 640px) 320px, 100vw"
                     />
                   </div>
                 </div>
@@ -503,12 +506,13 @@ export default function Projects() {
                     {/* Connecting line from Style to Image */}
                     <div className="absolute left-1/2 -translate-x-1/2 h-8 sm:h-16 w-px bg-white/20 -bottom-8 sm:-bottom-16"></div>
                   </div>
-                  <div className="relative w-full max-w-xs sm:max-w-none aspect-[4/3] rounded-lg overflow-hidden">
+                  <div className="relative w-full max-w-xs sm:max-w-none aspect-[16/9] rounded-lg overflow-hidden">
                     <Image
                       src="/projects/figma-projects/philo-homes/results-2.png"
                       alt="Modern Farmhouse Result"
                       fill
-                      className="object-cover"
+                      className="object-contain bg-white/5"
+                      sizes="(max-width: 640px) 320px, 100vw"
                     />
                   </div>
                 </div>
@@ -564,6 +568,8 @@ export default function Projects() {
                 height={100}
                 className="h-12 sm:h-14 md:h-16 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => setSelectedImage("/projects/figma-projects/philo-homes/philo-logo.png")}
+                priority
+                sizes="200px"
               />
               
               {/* Desktop line indicators - hidden on mobile */}
@@ -623,6 +629,7 @@ export default function Projects() {
               width={150}
               height={50}
               className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+              sizes="150px"
             />
             <Image
               src="/projects/figma-projects/philo-homes/next-button.png"
@@ -630,6 +637,7 @@ export default function Projects() {
               width={150}
               height={50}
               className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+              sizes="150px"
             />
           </div>
         </div>
@@ -861,6 +869,14 @@ export default function Projects() {
                     }`}
                     style={{ objectPosition: 'center center' }}
                     onClick={() => setSelectedImage(image)}
+                    priority={index === 0}
+                    sizes={
+                      isLaterImage 
+                        ? isHorizontal 
+                          ? '320px'  // Horizontal images
+                          : '208px'  // Later vertical images
+                        : '256px'    // First image
+                    }
                   />
                 </div>
               );

@@ -1,14 +1,29 @@
 "use client";
 
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function Home() {
+  // Ensure page starts at top and prevent scrolling
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+    
+    // Prevent scrolling
+    document.body.style.overflow = 'hidden';
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
   return (
-    <section className="min-h-screen w-full bg-black">
-      <div className="max-w-4xl mx-auto px-6 sm:px-8 py-6 sm:py-12">
+    <section className="h-screen w-full bg-black overflow-hidden">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 py-6 sm:py-12 h-full flex flex-col justify-center">
         
         {/* Hero Section - Personal Introduction */}
-        <div className="text-center mt-4 sm:mt-8 mb-8 sm:mb-12">
+        <div className="text-center">
           
           {/* Personal Introduction */}
           <div className="max-w-3xl mx-auto space-y-8 sm:space-y-12">
@@ -90,27 +105,32 @@ export default function Home() {
               </p>
             </div>
             
-            {/* Call to Action Button - Both mobile and desktop with gradient */}
+            {/* Call to Action Button - Both mobile and desktop with gradient border and foil */}
             <div className="mt-8 sm:mt-12">
               <Link
                 href="/projects"
-                className="inline-block px-8 py-3 rounded-full text-white hover:text-white transition-all duration-300 backdrop-blur-sm border border-transparent hover:border-white/20"
+                className="inline-block px-8 py-3 rounded-full text-white hover:text-white transition-all duration-300 backdrop-blur-sm relative overflow-hidden group"
                 style={{
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
                   fontSize: '16px',
                   letterSpacing: '0.02em',
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%)',
-                  boxShadow: '0 4px 15px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.1) 100%)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%)';
+                  background: 'rgba(0,0,0,0.3)',
+                  border: '2px solid transparent',
+                  backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), linear-gradient(135deg, #ffffff40, #ffffff80, #ffffff40)',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'content-box, border-box'
                 }}
               >
-                Projects
+                {/* Foil effect overlay */}
+                <div 
+                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                  style={{
+                    background: 'linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.8) 50%, transparent 70%)',
+                    animation: 'shimmer 2s infinite'
+                  }}
+                />
+                <span className="relative z-10">Projects</span>
               </Link>
             </div>
             
@@ -241,7 +261,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* CSS for moon floating animation */}
+      {/* CSS for animations */}
       <style jsx>{`
         @keyframes moonFloat {
           0%, 100% {
@@ -249,6 +269,15 @@ export default function Home() {
           }
           50% {
             transform: translateY(-12px);
+          }
+        }
+        
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
           }
         }
       `}</style>
