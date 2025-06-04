@@ -150,6 +150,10 @@ export default function Projects() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [dotPosition, setDotPosition] = useState(0);
 
+  // Touch gesture handling for coverflow
+  const touchStartRef = useRef<number>(0);
+  const coverflowRef = useRef<HTMLDivElement>(null);
+
   // Show all projects without filtering
   const filteredProjects = figmaProjects;
 
@@ -163,6 +167,30 @@ export default function Projects() {
     } else if (direction === 'right' && coverflowIndex < bookCoverImages.length - 1) {
       setCoverflowIndex(coverflowIndex + 1);
     }
+  };
+
+  // Touch gesture handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStartRef.current - touchEnd;
+    
+    if (Math.abs(diff) > 50) { // Minimum swipe distance
+      if (diff > 0) {
+        // Swiped left - go to next image
+        handleCoverflowScroll('right');
+      } else {
+        // Swiped right - go to previous image
+        handleCoverflowScroll('left');
+      }
+    }
+    
+    touchStartRef.current = 0;
   };
 
   const getVisibleImages = () => {
@@ -249,35 +277,31 @@ export default function Projects() {
   // Scroll spy functionality
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + (window.innerHeight / 2); // Middle of viewport
-
-      // Find which section is currently in view
+      const scrollPosition = window.scrollY + 200;
       let currentSection = '';
       
+      // Check which section is currently in view
       Object.entries(sectionRefs.current).forEach(([sectionId, element]) => {
         if (element) {
-          const { offsetTop } = element;
-          if (scrollPosition >= offsetTop) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = rect.top + window.scrollY;
+          
+          if (scrollPosition >= elementTop) {
             currentSection = sectionId;
           }
         }
       });
-
-      setActiveSection(currentSection);
+      
+      if (currentSection !== activeSection) {
+        setActiveSection(currentSection);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-
+    handleScroll(); // Initial call
+    
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [filteredProjects]);
-
-  // Update dot position when active section changes
-  useEffect(() => {
-    if (activeSection && !hoveredItem) {
-      updateDotPosition(activeSection);
-    }
-  }, [activeSection, hoveredItem]);
+  }, [activeSection]);
 
   const updateDotPosition = (itemId: string) => {
     const itemElement = itemRefs.current[itemId];
@@ -286,7 +310,7 @@ export default function Projects() {
     if (itemElement && navElement) {
       const navRect = navElement.getBoundingClientRect();
       const itemRect = itemElement.getBoundingClientRect();
-      const position = itemRect.top - navRect.top + (itemRect.height / 2) - 2; // Center the dot
+      const position = itemRect.top - navRect.top + (itemRect.height / 2);
       setDotPosition(position);
     }
   };
@@ -306,7 +330,7 @@ export default function Projects() {
   const scrollToSection = (sectionId: string) => {
     const element = sectionRefs.current[sectionId];
     if (element) {
-      const offsetTop = element.offsetTop - 100; // Account for header
+      const offsetTop = element.offsetTop - 100;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -332,7 +356,7 @@ export default function Projects() {
                }}>
             {project.title}
           </h1>
-          <p className="text-base sm:text-lg text-white/70 leading-relaxed"
+          <p className="text-sm sm:text-lg text-white/70 leading-relaxed"
              style={{ 
                fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '200',
@@ -341,23 +365,24 @@ export default function Projects() {
             {project.subtitle}
           </p>
         </div>
-        
+
         {/* Hero Image */}
-        <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 to-black relative mb-12 mx-4 sm:mx-0">
-          {project.hero && (
-                <Image
-              src={project.hero}
-              alt={project.title}
-              width={1200}
-              height={800}
-              className="w-full h-auto"
-              priority={true}
-              quality={90}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-            />
-                )}
-        </div>
+        {project.hero && (
+          <div className="flex justify-center mb-12 px-4 sm:px-0">
+            <div 
+              className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[500px] cursor-pointer group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-700"
+              onClick={() => setSelectedImage(selectedImage === project.hero ? null : project.hero)}
+            >
+              <Image
+                src={project.hero}
+                alt={`${project.title} Hero`}
+                fill
+                className="object-cover transition-all duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Overview */}
@@ -971,7 +996,7 @@ export default function Projects() {
                }}>
             {project.title}
           </h1>
-          <p className="text-base sm:text-lg text-white/70 leading-relaxed"
+          <p className="text-sm sm:text-lg text-white/70 leading-relaxed"
              style={{ 
                fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '200',
@@ -1015,8 +1040,13 @@ export default function Projects() {
                   </svg>
                 </button>
 
-                {/* Coverflow Container - Mobile-First Responsive */}
-                <div className="h-48 sm:h-64 lg:h-96 flex items-center justify-center overflow-hidden max-w-sm sm:max-w-xl lg:max-w-5xl">
+                {/* Coverflow Container - Mobile-First Responsive with Touch Support */}
+                <div 
+                  ref={coverflowRef}
+                  className="h-56 sm:h-72 lg:h-[450px] flex items-center justify-center overflow-hidden max-w-sm sm:max-w-xl lg:max-w-6xl"
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
+                >
                   <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-6" style={{ perspective: '1000px' }}>
                     {getVisibleImages().map(({ image, originalIndex, isBlank }, displayIndex) => {
                       const centerIndex = Math.floor(7 / 2);
@@ -1030,8 +1060,8 @@ export default function Projects() {
                             key={`blank-${displayIndex}`}
                             className={`relative transition-all duration-700 ease-out ${
                               isCenter 
-                                ? 'w-32 h-20 sm:w-48 sm:h-32 lg:w-72 lg:h-48 z-30 scale-110' 
-                                : 'w-20 h-14 sm:w-36 sm:h-24 lg:w-48 lg:h-32 z-20 scale-90 opacity-70'
+                                ? 'w-40 h-28 sm:w-64 sm:h-44 lg:w-96 lg:h-64 z-30 scale-110' 
+                                : 'w-24 h-18 sm:w-40 sm:h-28 lg:w-56 lg:h-40 z-20 scale-90 opacity-70'
                             }`}
                             style={{
                               transform: isCenter 
@@ -1052,8 +1082,8 @@ export default function Projects() {
                           key={originalIndex}
                           className={`relative cursor-pointer transition-all duration-700 ease-out ${
                             isCenter 
-                              ? 'w-32 h-20 sm:w-48 sm:h-32 lg:w-72 lg:h-48 z-30 scale-110' 
-                              : 'w-20 h-14 sm:w-36 sm:h-24 lg:w-48 lg:h-32 z-20 scale-90 opacity-70'
+                              ? 'w-40 h-28 sm:w-64 sm:h-44 lg:w-96 lg:h-64 z-30 scale-110' 
+                              : 'w-24 h-18 sm:w-40 sm:h-28 lg:w-56 lg:h-40 z-20 scale-90 opacity-70'
                           }`}
                           style={{
                             transform: isCenter 
@@ -1072,7 +1102,7 @@ export default function Projects() {
                                 alt={`Book Cover ${originalIndex + 1}`}
                                 fill
                                 className="object-cover"
-                                sizes="(max-width: 640px) 128px, (max-width: 1024px) 192px, 288px"
+                                sizes="(max-width: 640px) 160px, (max-width: 1024px) 256px, 384px"
                               />
                             )}
                           </div>

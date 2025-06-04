@@ -11,7 +11,7 @@ export default function Home() {
         <div className="text-center mt-4 sm:mt-16 mb-10 sm:mb-20">
           
           {/* Personal Introduction */}
-          <div className="max-w-3xl mx-auto space-y-8 sm:space-y-16">
+          <div className="max-w-3xl mx-auto space-y-10 sm:space-y-20">
             <p 
               className="text-sm sm:text-xl lg:text-2xl text-white/70" 
               style={{ 
@@ -35,9 +35,9 @@ export default function Home() {
             
             {/* Mobile: Split alignment, Desktop: Center aligned */}
             <div className="block sm:hidden">
-              <div className="flex flex-col items-center space-y-1">
+              <div className="flex flex-col items-center space-y-2">
                 <p 
-                  className="text-4xl text-white/70" 
+                  className="text-5xl text-white/70" 
                   style={{ 
                     fontFamily: 'Georgia, serif',
                     lineHeight: '1.2',
@@ -48,7 +48,7 @@ export default function Home() {
                   I enjoy
                 </p>
                 <p 
-                  className="text-4xl"
+                  className="text-5xl"
                   style={{ 
                     fontFamily: 'Georgia, serif',
                     lineHeight: '1.2',
@@ -78,8 +78,8 @@ export default function Home() {
               I enjoy creating things.
             </p>
             
-            {/* Call to Action Button - Mobile only */}
-            <div className="block sm:hidden mt-10">
+            {/* Call to Action Button - Both mobile and desktop */}
+            <div className="mt-12 sm:mt-16">
               <Link
                 href="/projects"
                 className="inline-block px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/30 rounded-full text-white/80 hover:text-white transition-all duration-300 backdrop-blur-sm"
@@ -209,7 +209,7 @@ export default function Home() {
           </div>
 
           {/* Floating Moon Dot - positioned to fit on screen */}
-          <div className="flex justify-center mt-12 sm:mt-32">
+          <div className="flex justify-center mt-16 sm:mt-32">
             <div 
               className="w-2 h-2 bg-white/60 rounded-full"
               style={{ 
