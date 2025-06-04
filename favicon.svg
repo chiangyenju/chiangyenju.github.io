@@ -1,0 +1,27 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#757575;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#bdbdbd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="32" height="32" fill="#000000"/>
+  <text 
+    x="16" 
+    y="24" 
+    font-family="Zhi Mang Xing, cursive, sans-serif" 
+    font-size="20" 
+    text-anchor="middle" 
+    fill="url(#gradient)"
+    filter="url(#glow)"
+    transform="rotate(-5 16 16) scale(1.05,1.1)"
+  >江</text>
+</svg> 
