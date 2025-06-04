@@ -61,9 +61,9 @@ export default function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
-        <div className="flex flex-col items-center space-y-4">
-          {/* Logo/Brand - Center aligned */}
+      <div className="max-w-6xl mx-auto px-8 sm:px-12 py-4 sm:py-6">
+        <div className="flex items-center justify-between">
+          {/* Logo/Brand - Left side */}
           <Link href="/" className="flex items-center">
             <span
               style={{
@@ -102,8 +102,8 @@ export default function Navigation() {
             </span>
           </Link>
 
-          {/* Desktop Navigation Links - Center aligned below logo */}
-          <div ref={navRef} className="hidden md:flex items-center space-x-8 relative">
+          {/* Navigation Links - Right side for all screen sizes */}
+          <div ref={navRef} className="flex items-center space-x-6 sm:space-x-8 relative">
             {/* Single unified dot that moves and bounces */}
             <div 
               className="absolute -bottom-3 w-1.5 h-1.5 bg-white/80 rounded-full transition-all duration-500 ease-out shadow-lg"
@@ -119,7 +119,7 @@ export default function Navigation() {
             <Link 
               ref={(el) => { itemRefs.current['projects'] = el; }}
               href="/projects" 
-              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
+              className={`text-xs sm:text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/projects') 
                   ? 'text-white' 
                   : 'text-white/50 hover:text-white/80'
@@ -133,7 +133,7 @@ export default function Navigation() {
             <Link 
               ref={(el) => { itemRefs.current['music'] = el; }}
               href="/music" 
-              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
+              className={`text-xs sm:text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/music') 
                   ? 'text-white' 
                   : 'text-white/50 hover:text-white/80'
@@ -147,7 +147,7 @@ export default function Navigation() {
             <Link 
               ref={(el) => { itemRefs.current['sandbox'] = el; }}
               href="/sandbox" 
-              className={`text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
+              className={`text-xs sm:text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/sandbox') 
                   ? 'text-white' 
                   : 'text-white/50 hover:text-white/80'
@@ -158,66 +158,7 @@ export default function Navigation() {
               Sandbox
             </Link>
           </div>
-
-          {/* Mobile menu button - below logo on mobile */}
-          <div className="md:hidden">
-            <button 
-              className="p-2 text-white/50 hover:text-white/80 transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          </div>
         </div>
-
-        {/* Mobile Menu - Center aligned */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-white/10">
-            <div className="flex flex-col items-center space-y-4 pt-4">
-              <Link 
-                href="/projects" 
-                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none text-center ${
-                  isActive('/projects') 
-                    ? 'text-white' 
-                    : 'text-white/70 hover:text-white'
-                }`}
-                onClick={closeMobileMenu}
-              >
-                Projects
-              </Link>
-              
-              <Link 
-                href="/music" 
-                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none text-center ${
-                  isActive('/music') 
-                    ? 'text-white' 
-                    : 'text-white/70 hover:text-white'
-                }`}
-                onClick={closeMobileMenu}
-              >
-                Music
-              </Link>
-              
-              <Link 
-                href="/sandbox" 
-                className={`text-base font-light font-sans tracking-wide transition-all duration-300 py-2 focus:outline-none text-center ${
-                  isActive('/sandbox') 
-                    ? 'text-white' 
-                    : 'text-white/70 hover:text-white'
-                }`}
-                onClick={closeMobileMenu}
-              >
-                Sandbox
-              </Link>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* CSS for bouncing animation */}

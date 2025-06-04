@@ -579,13 +579,13 @@ export default function Projects() {
           <div className="mt-16 space-y-8">
             {/* Enhanced color dots container */}
             <div className="max-w-md mx-auto">
-              <div className="flex flex-wrap gap-8 sm:gap-10 md:gap-12 items-center justify-center">
-                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-slate-900 rounded-full shadow-lg"></div>
-                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-stone-100 rounded-full shadow-lg"></div>
-                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-amber-600 rounded-full shadow-lg"></div>
-                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-slate-600 rounded-full shadow-lg"></div>
-                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-red-600 rounded-full shadow-lg"></div>
-                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-indigo-400 rounded-full shadow-lg"></div>
+              <div className="flex flex-wrap gap-4 sm:gap-8 md:gap-10 lg:gap-12 items-center justify-center">
+                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-slate-900 rounded-full shadow-lg"></div>
+                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-stone-100 rounded-full shadow-lg"></div>
+                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-amber-600 rounded-full shadow-lg"></div>
+                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-slate-600 rounded-full shadow-lg"></div>
+                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-red-600 rounded-full shadow-lg"></div>
+                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-indigo-400 rounded-full shadow-lg"></div>
               </div>
             </div>
           </div>
