@@ -427,7 +427,7 @@ export default function Projects() {
             <div className="flex flex-col items-center relative">
               {/* Initial Room with Tag */}
               <div className="flex flex-col items-center mb-12 sm:mb-24">
-                <div className="relative w-40 sm:w-48 md:w-64 aspect-[4/3] rounded-lg overflow-hidden mb-8">
+                <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 aspect-[4/3] rounded-lg overflow-hidden mb-8">
                   <Image
                     src="/projects/figma-projects/philo-homes/empty-room.png"
                     alt="Empty Room"
@@ -634,273 +634,104 @@ export default function Projects() {
         <div className="max-w-xl mx-auto space-y-6 px-4 sm:px-0">
           {/* Step 1 */}
           <div className="relative group">
-            {/* Desktop layout - hidden on mobile */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-6 h-6 flex items-center justify-center shrink-0">
-                <span className="text-white/40 text-xs font-light tracking-wider">01</span>
+            {/* Unified centered layout for both mobile and desktop */}
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                <span className="text-white/70 text-xs font-light">01</span>
               </div>
-              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar1_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
-                  </div>
-                </div>
-                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light1_20s_ease-in-out_infinite] blur-[2px]"></div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                      Photo Upload
-                    </h3>
-                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Upload room photos through drag-and-drop or camera capture
-                    </p>
-                  </div>
-                </div>
+              <div className="text-center">
+                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  Photo Upload
+                </h3>
+                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <span className="block sm:hidden">Upload room photos</span>
+                  <span className="hidden sm:block">Upload room photos through drag-and-drop or camera capture</span>
+                </p>
               </div>
             </div>
-
-            {/* Mobile layout - simple line and dot */}
-            <div className="block sm:hidden">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                    <span className="text-white/70 text-xs font-light">01</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Photo Upload
-                    </h3>
-                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Upload room photos
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* Connecting line */}
-              <div className="ml-3 w-px h-8 bg-white/20"></div>
+            {/* Horizontal connecting line */}
+            <div className="flex justify-center mt-4">
+              <div className="w-16 h-px bg-white/20"></div>
             </div>
           </div>
 
           {/* Step 2 */}
           <div className="relative group">
-            {/* Desktop layout - hidden on mobile */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-6 h-6 flex items-center justify-center shrink-0">
-                <span className="text-white/40 text-xs font-light tracking-wider">02</span>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                <span className="text-white/70 text-xs font-light">02</span>
               </div>
-              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar2_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
-                  </div>
-                </div>
-                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light2_20s_ease-in-out_infinite] blur-[2px]"></div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                      AI Analysis
-                    </h3>
-                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Analyze room dimensions, lighting, and furniture layout
-                    </p>
-                  </div>
-                </div>
+              <div className="text-center">
+                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  AI Analysis
+                </h3>
+                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <span className="block sm:hidden">Analyze room dimensions</span>
+                  <span className="hidden sm:block">Analyze room dimensions, lighting, and furniture layout</span>
+                </p>
               </div>
             </div>
-
-            {/* Mobile layout - simple line and dot */}
-            <div className="block sm:hidden">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                    <span className="text-white/70 text-xs font-light">02</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      AI Analysis
-                    </h3>
-                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Analyze room dimensions
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* Connecting line */}
-              <div className="ml-3 w-px h-8 bg-white/20"></div>
+            <div className="flex justify-center mt-4">
+              <div className="w-16 h-px bg-white/20"></div>
             </div>
           </div>
 
           {/* Step 3 */}
           <div className="relative group">
-            {/* Desktop layout - hidden on mobile */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-6 h-6 flex items-center justify-center shrink-0">
-                <span className="text-white/40 text-xs font-light tracking-wider">03</span>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                <span className="text-white/70 text-xs font-light">03</span>
               </div>
-              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar3_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
-                  </div>
-                </div>
-                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light3_20s_ease-in-out_infinite] blur-[2px]"></div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                      Style Selection
-                    </h3>
-                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Browse curated design styles or create custom preferences
-                    </p>
-                  </div>
-                </div>
+              <div className="text-center">
+                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  Style Selection
+                </h3>
+                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <span className="block sm:hidden">Browse design styles</span>
+                  <span className="hidden sm:block">Browse curated design styles or create custom preferences</span>
+                </p>
               </div>
             </div>
-
-            {/* Mobile layout - simple line and dot */}
-            <div className="block sm:hidden">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                    <span className="text-white/70 text-xs font-light">03</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Style Selection
-                    </h3>
-                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Browse design styles
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* Connecting line */}
-              <div className="ml-3 w-px h-8 bg-white/20"></div>
+            <div className="flex justify-center mt-4">
+              <div className="w-16 h-px bg-white/20"></div>
             </div>
           </div>
 
           {/* Step 4 */}
           <div className="relative group">
-            {/* Desktop layout - hidden on mobile */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-6 h-6 flex items-center justify-center shrink-0">
-                <span className="text-white/40 text-xs font-light tracking-wider">04</span>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                <span className="text-white/70 text-xs font-light">04</span>
               </div>
-              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar4_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
-                  </div>
-                </div>
-                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light4_20s_ease-in-out_infinite] blur-[2px]"></div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                      Design Generation
-                    </h3>
-                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Generate multiple design options with realistic visualizations
-                    </p>
-                  </div>
-                </div>
+              <div className="text-center">
+                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  Design Generation
+                </h3>
+                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <span className="block sm:hidden">Generate design options</span>
+                  <span className="hidden sm:block">Generate multiple design options with realistic visualizations</span>
+                </p>
               </div>
             </div>
-
-            {/* Mobile layout - simple line and dot */}
-            <div className="block sm:hidden">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                    <span className="text-white/70 text-xs font-light">04</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Design Generation
-                    </h3>
-                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Generate design options
-                    </p>
-                  </div>
-                </div>
-              </div>
-              {/* Connecting line */}
-              <div className="ml-3 w-px h-8 bg-white/20"></div>
+            <div className="flex justify-center mt-4">
+              <div className="w-16 h-px bg-white/20"></div>
             </div>
           </div>
 
           {/* Step 5 */}
           <div className="relative group">
-            {/* Desktop layout - hidden on mobile */}
-            <div className="hidden sm:flex items-center gap-2">
-              <div className="w-6 h-6 flex items-center justify-center shrink-0">
-                <span className="text-white/40 text-xs font-light tracking-wider">05</span>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                <span className="text-white/70 text-xs font-light">05</span>
               </div>
-              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar5_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
-                  </div>
-                </div>
-                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light5_20s_ease-in-out_infinite] blur-[2px]"></div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                      Direct Purchase
-                    </h3>
-                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      One-click purchase from curated partner stores
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile layout - simple line and dot (no connecting line for last step) */}
-            <div className="block sm:hidden">
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                    <span className="text-white/70 text-xs font-light">05</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      Direct Purchase
-                    </h3>
-                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                      One-click purchase
-                    </p>
-                  </div>
-                </div>
+              <div className="text-center">
+                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  Direct Purchase
+                </h3>
+                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <span className="block sm:hidden">One-click purchase</span>
+                  <span className="hidden sm:block">One-click purchase from curated partner stores</span>
+                </p>
               </div>
             </div>
           </div>
@@ -975,18 +806,40 @@ export default function Projects() {
           </div>
 
           {/* Mobile Large Images - Mobile only */}
-          <div className="block sm:hidden space-y-8 px-4">
-            {project.screens.map((image, index) => (
-              <div key={index} className="relative aspect-[4/3] rounded-xl overflow-hidden">
-                <Image
-                  src={image}
-                  alt={`Interface Mockup ${index + 1}`}
-                  fill
-                  className="object-contain bg-black/20 backdrop-blur-sm"
-                  onClick={() => setSelectedImage(image)}
-                />
-              </div>
-            ))}
+          <div className="block sm:hidden space-y-16 px-6">
+            {project.screens.map((image, index) => {
+              // Make later 3 images smaller, especially horizontal ones
+              const isLaterImage = index >= 1; // Images 2, 3, 4 (0-indexed: 1, 2, 3)
+              const isHorizontal = index === 1 || index === 2; // Middle two are horizontal
+              
+              return (
+                <div 
+                  key={index} 
+                  className={`relative rounded-xl overflow-hidden mx-auto ${
+                    isLaterImage 
+                      ? isHorizontal 
+                        ? 'aspect-[16/9] max-w-80' // Horizontal images: much wider
+                        : 'aspect-[9/16] max-w-52'  // Later vertical images: smaller
+                      : 'aspect-[9/16] max-w-64'    // First image: original size
+                  }`}
+                >
+                  <Image
+                    src={image}
+                    alt={`Interface Mockup ${index + 1}`}
+                    fill
+                    className={`object-cover ${
+                      isLaterImage 
+                        ? isHorizontal 
+                          ? 'scale-110'  // Less scaling for horizontal images
+                          : 'scale-115'  // Slightly less scaling for later vertical
+                        : 'scale-125'    // Original scaling for first image
+                    }`}
+                    style={{ objectPosition: 'center center' }}
+                    onClick={() => setSelectedImage(image)}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
@@ -1163,7 +1016,7 @@ export default function Projects() {
                 </button>
 
                 {/* Coverflow Container - Mobile-First Responsive */}
-                <div className="h-40 sm:h-56 lg:h-80 flex items-center justify-center overflow-hidden max-w-sm sm:max-w-xl lg:max-w-5xl">
+                <div className="h-48 sm:h-64 lg:h-96 flex items-center justify-center overflow-hidden max-w-sm sm:max-w-xl lg:max-w-5xl">
                   <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-6" style={{ perspective: '1000px' }}>
                     {getVisibleImages().map(({ image, originalIndex, isBlank }, displayIndex) => {
                       const centerIndex = Math.floor(7 / 2);
@@ -1343,7 +1196,7 @@ export default function Projects() {
     <section className="min-h-screen w-full bg-black overflow-x-hidden">
       <div className="flex flex-col lg:flex-row">
         {/* Main Content */}
-        <div className="flex-1 lg:mr-80 w-full mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-16 lg:py-24">
+        <div className="flex-1 lg:mr-80 w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-16 lg:py-24">
           {/* All Projects in Continuous Scroll */}
           {filteredProjects.map((project) => (
             project.id === 'ecommerce-web' ? 
