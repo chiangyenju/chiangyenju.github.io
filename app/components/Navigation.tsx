@@ -8,7 +8,6 @@ export default function Navigation() {
   const pathname = usePathname();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [dotPosition, setDotPosition] = useState<number>(0);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const navRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
@@ -53,10 +52,6 @@ export default function Navigation() {
     if (activeItem) {
       updateDotPosition(activeItem);
     }
-  };
-
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
   };
 
   return (
