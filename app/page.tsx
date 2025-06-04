@@ -8,7 +8,7 @@ export default function Home() {
       <div className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-16">
         
         {/* Hero Section - Personal Introduction */}
-        <div className="text-center mt-8 sm:mt-16 mb-16 sm:mb-20">
+        <div className="text-center mt-4 sm:mt-8 mb-16 sm:mb-20">
           
           {/* Personal Introduction */}
           <div className="max-w-3xl mx-auto space-y-12 sm:space-y-16">

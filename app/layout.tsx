@@ -56,7 +56,7 @@ export default function RootLayout({
         <Navigation />
         
         {/* Main Content */}
-        <main className="relative bg-black min-h-screen pt-32 md:pt-24">
+        <main className="relative bg-black min-h-screen pt-32 md:pt-32">
           {children}
         </main>
       </body>
