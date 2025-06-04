@@ -5,15 +5,15 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <section className="min-h-screen w-full bg-black">
-      <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-16">
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 py-8 sm:py-16">
         
         {/* Hero Section - Personal Introduction */}
-        <div className="text-center mt-16 sm:mt-32 mb-12 sm:mb-20">
+        <div className="text-center mt-20 sm:mt-32 mb-16 sm:mb-20">
           
           {/* Personal Introduction */}
-          <div className="max-w-3xl mx-auto space-y-8 sm:space-y-16">
+          <div className="max-w-3xl mx-auto space-y-12 sm:space-y-16">
             <p 
-              className="text-base sm:text-lg text-white/70" 
+              className="text-lg sm:text-xl lg:text-2xl text-white/70" 
               style={{ 
                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
                 lineHeight: '1.4',
@@ -34,7 +34,7 @@ export default function Home() {
             </p>
             
             <p 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white/70" 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white/70 px-4 sm:px-0" 
               style={{ 
                 fontFamily: 'Georgia, serif',
                 lineHeight: '1.2',
@@ -46,7 +46,7 @@ export default function Home() {
             </p>
             
             <div 
-              className="text-base sm:text-lg text-white/70" 
+              className="text-lg sm:text-xl lg:text-2xl text-white/70 px-4 sm:px-0" 
               style={{ 
                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
                 lineHeight: '1.4',
@@ -54,54 +54,49 @@ export default function Home() {
                 fontWeight: '200'
               }}
             >
-              {/* Mobile: Stack tags vertically, Desktop: Inline */}
-              <div className="flex flex-wrap justify-center gap-x-2 gap-y-3 sm:gap-x-6">
+              {/* Mobile: Better spacing and larger text, Desktop: Inline */}
+              <div className="flex flex-wrap justify-center gap-x-3 gap-y-4 sm:gap-x-6 sm:gap-y-3">
                 <Link
                   href="/projects"
-                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                   style={{
-                    fontWeight: '300',
-                    fontSize: '0.875rem'
+                    fontWeight: '300'
                   }}
                 >
                   mobile application
                 </Link>
                 <Link
                   href="/projects"
-                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                   style={{
-                    fontWeight: '300',
-                    fontSize: '0.875rem'
+                    fontWeight: '300'
                   }}
                 >
                   web interface
                 </Link>
                 <Link
                   href="/projects"
-                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                   style={{
-                    fontWeight: '300',
-                    fontSize: '0.875rem'
+                    fontWeight: '300'
                   }}
                 >
                   physical product
                 </Link>
                 <Link
                   href="/music"
-                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                   style={{
-                    fontWeight: '300',
-                    fontSize: '0.875rem'
+                    fontWeight: '300'
                   }}
                 >
                   EDM music
                 </Link>
                 <Link
                   href="/sandbox"
-                  className="text-white/70 hover:text-white transition-colors duration-300"
+                  className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                   style={{
-                    fontWeight: '300',
-                    fontSize: '0.875rem'
+                    fontWeight: '300'
                   }}
                 >
                   visual design
@@ -111,7 +106,7 @@ export default function Home() {
           </div>
 
           {/* Floating Moon Dot - moved outside space-y container */}
-          <div className="flex justify-center mt-16 sm:mt-32">
+          <div className="flex justify-center mt-20 sm:mt-32">
             <div 
               className="w-2 h-2 bg-white/60 rounded-full"
               style={{ 

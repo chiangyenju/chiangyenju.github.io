@@ -322,18 +322,17 @@ export default function Projects() {
         id={`project-${project.id}`} 
         className="mb-20"
       >
-        <div className="mb-8">
-          <h1 className="text-2xl text-white mb-2 leading-tight" 
+        <div className="mb-8 px-4 sm:px-0">
+          <h1 className="text-xl sm:text-2xl text-white mb-2 leading-tight" 
                style={{ 
                  fontFamily: 'Georgia, serif',
                  fontWeight: '300',
                  letterSpacing: '0.01em',
-                 color: 'white',
-                 fontSize: '2rem'
+                 color: 'white'
                }}>
             {project.title}
           </h1>
-          <p className="text-lg text-white/70 leading-relaxed"
+          <p className="text-base sm:text-lg text-white/70 leading-relaxed"
              style={{ 
                fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '200',
@@ -344,7 +343,7 @@ export default function Projects() {
         </div>
         
         {/* Hero Image */}
-        <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 to-black relative mb-12">
+        <div className="rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 to-black relative mb-12 mx-4 sm:mx-0">
           {project.hero && (
                 <Image
               src={project.hero}
@@ -365,10 +364,10 @@ export default function Projects() {
       <div 
         ref={(el) => { sectionRefs.current[`${project.id}-case-study`] = el; }}
         id={`${project.id}-case-study`} 
-        className="mb-24"
+        className="mb-24 px-4 sm:px-0"
       >
         {/* Overview Title */}
-        <h2 className="text-white/60 mb-12 leading-tight text-sm tracking-widest"
+        <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest"
            style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
              fontWeight: '300',
@@ -387,7 +386,7 @@ export default function Projects() {
                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
                    fontWeight: '300',
                    letterSpacing: '0.01em',
-                   fontSize: '15px',
+                   fontSize: '14px',
                    lineHeight: '1.5'
                  }}>
                 <span className="italic text-white/70 mr-2" style={{ fontWeight: '300' }}>Problem:</span>
@@ -402,7 +401,7 @@ export default function Projects() {
                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
                    fontWeight: '300',
                    letterSpacing: '0.01em',
-                   fontSize: '15px',
+                   fontSize: '14px',
                    lineHeight: '1.5'
                  }}>
                 <span className="italic text-white/70 mr-2" style={{ fontWeight: '300' }}>Solution:</span>
@@ -413,23 +412,22 @@ export default function Projects() {
 
           {/* Outcome with subtle divider */}
           <div className="mt-10 pt-6 border-t border-white/8">
-            <p className="text-white/50 text-sm leading-relaxed"
+            <p className="text-white/50 text-xs sm:text-sm leading-relaxed"
                style={{ 
                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
                  fontWeight: '300',
-                 letterSpacing: '0.02em',
-                 fontSize: '13px'
+                 letterSpacing: '0.02em'
                }}>
               {project.outcome}
             </p>
           </div>
 
           {/* Room Transformation Flow */}
-          <div className="mt-16 relative max-w-4xl mx-auto">
+          <div className="mt-16 relative max-w-4xl mx-auto px-4 sm:px-0">
             <div className="flex flex-col items-center relative">
               {/* Initial Room with Tag */}
               <div className="flex flex-col items-center mb-12 sm:mb-24">
-                <div className="relative w-48 sm:w-64 aspect-[4/3] rounded-lg overflow-hidden mb-8">
+                <div className="relative w-40 sm:w-48 md:w-64 aspect-[4/3] rounded-lg overflow-hidden mb-8">
                   <Image
                     src="/projects/figma-projects/philo-homes/empty-room.png"
                     alt="Empty Room"
@@ -446,7 +444,7 @@ export default function Projects() {
       </div>
 
               {/* Style Options and Results */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 lg:gap-32 w-full relative">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 lg:gap-32 w-full relative px-4 sm:px-0">
                 {/* Simple Dot Divider */}
                 <div className="absolute -top-6 left-1/2 -translate-x-1/2">
                   <div className="w-1.5 h-1.5 bg-white/40 rounded-full" style={{ animation: 'bounceHorizontal 3s infinite' }}></div>
@@ -461,7 +459,7 @@ export default function Projects() {
                     {/* Connecting line from Style to Image */}
                     <div className="absolute left-1/2 -translate-x-1/2 h-8 sm:h-16 w-px bg-white/20 -bottom-8 sm:-bottom-16"></div>
         </div>
-                  <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+                  <div className="relative w-full max-w-xs sm:max-w-none aspect-[4/3] rounded-lg overflow-hidden">
                     <Image
                       src="/projects/figma-projects/philo-homes/results-1.png"
                       alt="Transitional Style Result"
@@ -480,7 +478,7 @@ export default function Projects() {
                     {/* Connecting line from Style to Image */}
                     <div className="absolute left-1/2 -translate-x-1/2 h-8 sm:h-16 w-px bg-white/20 -bottom-8 sm:-bottom-16"></div>
                   </div>
-                  <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+                  <div className="relative w-full max-w-xs sm:max-w-none aspect-[4/3] rounded-lg overflow-hidden">
                     <Image
                       src="/projects/figma-projects/philo-homes/results-2.png"
                       alt="Modern Farmhouse Result"
@@ -504,9 +502,9 @@ export default function Projects() {
       <div 
         ref={(el) => { sectionRefs.current[`${project.id}-design-systems`] = el; }}
         id={`${project.id}-design-systems`} 
-        className="mb-24"
+        className="mb-24 px-4 sm:px-0"
       >
-        <h2 className="text-white/60 mb-16 leading-tight text-sm tracking-widest"
+        <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest"
            style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
              fontWeight: '300',
@@ -516,7 +514,7 @@ export default function Projects() {
         </h2>
         
         {/* Single Column Layout with increased spacing */}
-        <div className="max-w-2xl mx-auto space-y-32">
+        <div className="max-w-2xl mx-auto space-y-32 px-4 sm:px-0">
           
           {/* Typography Section */}
           <div className="relative w-fit mx-auto space-y-12">
@@ -527,12 +525,12 @@ export default function Projects() {
                 alt="Philo Logo"
                 width={160}
                 height={80}
-                className="h-10 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                className="h-8 sm:h-10 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => setSelectedImage("/projects/figma-projects/philo-homes/philo-logo.png")}
               />
               
-              {/* Line indicators with adjusted positioning */}
-              <div className="absolute top-0 -left-32 transform">
+              {/* Line indicators with adjusted positioning - hidden on mobile */}
+              <div className="absolute top-0 -left-32 transform hidden sm:block">
                 <div className="flex items-center">
                   <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     headings
@@ -542,7 +540,7 @@ export default function Projects() {
                 </div>
               </div>
               
-              <div className="absolute bottom-0 -right-32 transform">
+              <div className="absolute bottom-0 -right-32 transform hidden sm:block">
                 <div className="flex items-center">
                   <div className="w-1 h-1 bg-white/60 rounded-full mr-1"></div>
                   <div className="w-6 h-px bg-white/60 mr-2"></div>
@@ -558,32 +556,32 @@ export default function Projects() {
           <div className="mt-16 space-y-8">
             {/* Simplified color dots container without button styling */}
             <div className="max-w-md mx-auto">
-              <div className="flex flex-wrap gap-8 items-center justify-center">
-                <div className="w-4 h-4 bg-slate-900 rounded-full"></div>
-                <div className="w-4 h-4 bg-stone-100 rounded-full"></div>
-                <div className="w-4 h-4 bg-amber-600 rounded-full"></div>
-                <div className="w-4 h-4 bg-slate-600 rounded-full"></div>
-                <div className="w-4 h-4 bg-red-600 rounded-full"></div>
-                <div className="w-4 h-4 bg-indigo-400 rounded-full"></div>
+              <div className="flex flex-wrap gap-6 sm:gap-8 items-center justify-center">
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-slate-900 rounded-full"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-stone-100 rounded-full"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-amber-600 rounded-full"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-slate-600 rounded-full"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-600 rounded-full"></div>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 bg-indigo-400 rounded-full"></div>
               </div>
             </div>
           </div>
 
           {/* Button Components */}
-          <div className="flex gap-8 items-center justify-center">
+          <div className="flex gap-6 sm:gap-8 items-center justify-center">
             <Image
               src="/projects/figma-projects/philo-homes/back-button.png"
               alt="Back Button Component"
               width={120}
               height={40}
-              className="h-8 w-auto object-contain"
+              className="h-6 sm:h-8 w-auto object-contain"
             />
             <Image
               src="/projects/figma-projects/philo-homes/next-button.png"
               alt="Next Button Component"
               width={120}
               height={40}
-              className="h-8 w-auto object-contain"
+              className="h-6 sm:h-8 w-auto object-contain"
             />
           </div>
         </div>
@@ -598,9 +596,9 @@ export default function Projects() {
         <div 
           ref={(el) => { sectionRefs.current[`${project.id}-user-flow`] = el; }}
           id={`${project.id}-user-flow`} 
-          className="mb-24"
+          className="mb-24 px-4 sm:px-0"
         >
-        <h2 className="text-white/60 mb-16 leading-tight text-sm tracking-widest"
+        <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest"
              style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
@@ -610,13 +608,13 @@ export default function Projects() {
           </h2>
 
         {/* User Flow Section */}
-        <div className="max-w-xl mx-auto space-y-6">
+        <div className="max-w-xl mx-auto space-y-6 px-4 sm:px-0">
           {/* Step 1 */}
           <div className="relative flex items-center gap-2 group">
             <div className="w-6 h-6 flex items-center justify-center shrink-0">
               <span className="text-white/40 text-xs font-light tracking-wider">01</span>
             </div>
-            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
               <div className="absolute inset-0 backdrop-blur-[3px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar1_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
                   <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
@@ -628,13 +626,13 @@ export default function Projects() {
                   }}></div>
                 </div>
               </div>
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light1_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light1_20s_ease-in-out_infinite] blur-[2px]"></div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
                     Photo Upload
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     Upload room photos through drag-and-drop or camera capture
           </p>
         </div>
@@ -647,7 +645,7 @@ export default function Projects() {
             <div className="w-6 h-6 flex items-center justify-center shrink-0">
               <span className="text-white/40 text-xs font-light tracking-wider">02</span>
             </div>
-            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
               <div className="absolute inset-0 backdrop-blur-[3px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar2_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
                   <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
@@ -659,13 +657,13 @@ export default function Projects() {
                   }}></div>
                 </div>
               </div>
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light2_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light2_20s_ease-in-out_infinite] blur-[2px]"></div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
                     AI Analysis
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     Analyze room dimensions, lighting, and furniture layout
                   </p>
                 </div>
@@ -678,7 +676,7 @@ export default function Projects() {
             <div className="w-6 h-6 flex items-center justify-center shrink-0">
               <span className="text-white/40 text-xs font-light tracking-wider">03</span>
             </div>
-            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
               <div className="absolute inset-0 backdrop-blur-[3px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar3_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
                   <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
@@ -690,13 +688,13 @@ export default function Projects() {
                   }}></div>
                 </div>
               </div>
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light3_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light3_20s_ease-in-out_infinite] blur-[2px]"></div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
                     Style Selection
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     Browse curated design styles or create custom preferences
                   </p>
                 </div>
@@ -709,7 +707,7 @@ export default function Projects() {
             <div className="w-6 h-6 flex items-center justify-center shrink-0">
               <span className="text-white/40 text-xs font-light tracking-wider">04</span>
             </div>
-            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
               <div className="absolute inset-0 backdrop-blur-[3px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar4_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
                   <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
@@ -721,13 +719,13 @@ export default function Projects() {
                   }}></div>
                 </div>
               </div>
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light4_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light4_20s_ease-in-out_infinite] blur-[2px]"></div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
                     Design Generation
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     Generate multiple design options with realistic visualizations
                   </p>
                 </div>
@@ -740,7 +738,7 @@ export default function Projects() {
             <div className="w-6 h-6 flex items-center justify-center shrink-0">
               <span className="text-white/40 text-xs font-light tracking-wider">05</span>
             </div>
-            <div className="flex-1 py-1.5 px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
               <div className="absolute inset-0 backdrop-blur-[3px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar5_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
                   <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
@@ -752,13 +750,13 @@ export default function Projects() {
                   }}></div>
                 </div>
               </div>
-              <div className="absolute right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light5_20s_ease-in-out_infinite] blur-[2px]"></div>
+              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light5_20s_ease-in-out_infinite] blur-[2px]"></div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-white/90 text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
                     Direct Purchase
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     One-click purchase from curated partner stores
                   </p>
                 </div>
@@ -778,9 +776,9 @@ export default function Projects() {
         <div 
           ref={(el) => { sectionRefs.current[`${project.id}-interface`] = el; }}
           id={`${project.id}-interface`} 
-          className="mb-24"
+          className="mb-24 px-4 sm:px-0"
         >
-          <h2 className="text-white/60 mb-16 leading-tight text-sm tracking-widest"
+          <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest"
              style={{ 
                fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
@@ -790,7 +788,7 @@ export default function Projects() {
           </h2>
 
           {/* Large Preview Area */}
-          <div className="mb-8">
+          <div className="mb-8 px-4 sm:px-0">
             <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
               {(selectedMockup || project.screens[0]) && (
                 <Image
@@ -805,12 +803,12 @@ export default function Projects() {
           </div>
 
           {/* Mockup Thumbnails */}
-          <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory">
+          <div className="flex gap-2 sm:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory px-2 sm:px-0">
             {project.screens.map((image, index) => (
               <div 
                 key={index} 
                 className="group relative shrink-0 snap-center cursor-pointer"
-                style={{ width: 'calc(25% - 12px)' }}
+                style={{ width: 'calc(22% - 6px)' }}
                 onClick={() => setSelectedMockup(image)}
               >
                 <div className="relative overflow-hidden rounded-xl transition-transform">
@@ -952,18 +950,17 @@ export default function Projects() {
         id={`project-${project.id}`} 
         className="mb-20"
       >
-        <div className="mb-8">
-          <h1 className="text-2xl text-white mb-2 leading-tight" 
+        <div className="mb-8 px-4 sm:px-0">
+          <h1 className="text-xl sm:text-2xl text-white mb-2 leading-tight" 
                style={{ 
                  fontFamily: 'Georgia, serif',
                  fontWeight: '300',
                  letterSpacing: '0.01em',
-                 color: 'white',
-                 fontSize: '2rem'
+                 color: 'white'
                }}>
             {project.title}
           </h1>
-          <p className="text-lg text-white/70 leading-relaxed"
+          <p className="text-base sm:text-lg text-white/70 leading-relaxed"
              style={{ 
                fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '200',
@@ -971,8 +968,8 @@ export default function Projects() {
              }}>
             {project.subtitle}
           </p>
-                    </div>
-                  </div>
+        </div>
+      </div>
 
       {/* Physical Products */}
       {project.physicalProducts && (
@@ -981,9 +978,9 @@ export default function Projects() {
           <div 
             ref={(el) => { sectionRefs.current[`${project.id}-elastic-book-cover`] = el; }}
             id={`${project.id}-elastic-book-cover`} 
-            className="mb-40"
+            className="mb-40 px-4 sm:px-0"
           >
-            <h2 className="text-white/60 mb-12 leading-tight text-sm tracking-widest"
+            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest"
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
@@ -993,23 +990,23 @@ export default function Projects() {
             </h2>
 
             {/* Coverflow Gallery */}
-            <div className="w-full max-w-6xl mx-auto px-4 sm:px-8 mb-16">
+            <div className="w-full mx-auto px-4 sm:px-8 mb-16 overflow-hidden">
               <div className="relative flex items-center justify-center">
                 
                 {/* Left Arrow - Responsive */}
                 <button
                   onClick={() => handleCoverflowScroll('left')}
                   disabled={coverflowIndex === 0}
-                  className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 mr-4 sm:mr-8 lg:mr-12"
+                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 mr-2 sm:mr-4 lg:mr-8"
                 >
-                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
 
-                {/* Coverflow Container - Responsive */}
-                <div className="h-48 sm:h-64 lg:h-80 flex items-center justify-center overflow-hidden">
-                  <div className="flex items-center space-x-2 sm:space-x-4" style={{ perspective: '1000px' }}>
+                {/* Coverflow Container - Mobile-First Responsive */}
+                <div className="h-32 sm:h-48 lg:h-64 flex items-center justify-center overflow-hidden max-w-xs sm:max-w-lg lg:max-w-4xl">
+                  <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-4" style={{ perspective: '1000px' }}>
                     {getVisibleImages().map(({ image, originalIndex, isBlank }, displayIndex) => {
                       const centerIndex = Math.floor(7 / 2);
                       const isCenter = displayIndex === centerIndex;
@@ -1022,20 +1019,20 @@ export default function Projects() {
                             key={`blank-${displayIndex}`}
                             className={`relative transition-all duration-700 ease-out ${
                               isCenter 
-                                ? 'w-48 h-32 sm:w-64 sm:h-40 lg:w-72 lg:h-48 z-30 scale-110' 
-                                : 'w-36 h-24 sm:w-48 sm:h-32 lg:w-56 lg:h-36 z-20 scale-90 opacity-70'
+                                ? 'w-24 h-16 sm:w-40 sm:h-28 lg:w-56 lg:h-36 z-30 scale-110' 
+                                : 'w-16 h-12 sm:w-32 sm:h-20 lg:w-40 lg:h-24 z-20 scale-90 opacity-70'
                             }`}
                             style={{
                               transform: isCenter 
                                 ? 'rotateY(0deg) translateZ(0px)' 
                                 : isLeft 
-                                  ? `rotateY(45deg) translateZ(-${distance * 30}px) translateX(${distance * 10}px)` 
-                                  : `rotateY(-45deg) translateZ(-${distance * 30}px) translateX(-${distance * 10}px)`,
+                                  ? `rotateY(30deg) translateZ(-${distance * 15}px) translateX(${distance * 5}px)` 
+                                  : `rotateY(-30deg) translateZ(-${distance * 15}px) translateX(-${distance * 5}px)`,
                               transformStyle: 'preserve-3d'
                             }}
                           >
                             {/* Blank space */}
-                      </div>
+                          </div>
                         );
                       }
                       
@@ -1044,27 +1041,28 @@ export default function Projects() {
                           key={originalIndex}
                           className={`relative cursor-pointer transition-all duration-700 ease-out ${
                             isCenter 
-                              ? 'w-48 h-32 sm:w-64 sm:h-40 lg:w-72 lg:h-48 z-30 scale-110' 
-                              : 'w-36 h-24 sm:w-48 sm:h-32 lg:w-56 lg:h-36 z-20 scale-90 opacity-70'
+                              ? 'w-24 h-16 sm:w-40 sm:h-28 lg:w-56 lg:h-36 z-30 scale-110' 
+                              : 'w-16 h-12 sm:w-32 sm:h-20 lg:w-40 lg:h-24 z-20 scale-90 opacity-70'
                           }`}
                           style={{
                             transform: isCenter 
                               ? 'rotateY(0deg) translateZ(0px)' 
                               : isLeft 
-                                ? `rotateY(45deg) translateZ(-${distance * 30}px) translateX(${distance * 10}px)` 
-                                : `rotateY(-45deg) translateZ(-${distance * 30}px) translateX(-${distance * 10}px)`,
+                                ? `rotateY(30deg) translateZ(-${distance * 15}px) translateX(${distance * 5}px)` 
+                                : `rotateY(-30deg) translateZ(-${distance * 15}px) translateX(-${distance * 5}px)`,
                             transformStyle: 'preserve-3d'
                           }}
                           onClick={() => setSelectedImage(selectedImage === image ? null : image)}
                         >
                           <div className="w-full h-full rounded-lg overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
                             {image && (
-                          <Image
-                            src={image}
+                              <Image
+                                src={image}
                                 alt={`Book Cover ${originalIndex + 1}`}
-                            fill
+                                fill
                                 className="object-cover"
-                          />
+                                sizes="(max-width: 640px) 96px, (max-width: 1024px) 160px, 224px"
+                              />
                             )}
                           </div>
                           {isCenter && (
@@ -1080,9 +1078,9 @@ export default function Projects() {
                 <button
                   onClick={() => handleCoverflowScroll('right')}
                   disabled={coverflowIndex === bookCoverImages.length - 1}
-                  className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 ml-4 sm:ml-8 lg:ml-12"
+                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 ml-2 sm:ml-4 lg:ml-8"
                 >
-                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -1090,19 +1088,19 @@ export default function Projects() {
             </div>
 
             {/* Description */}
-            <p className="text-white/90 mb-8 leading-relaxed text-center"
+            <p className="text-white/90 mb-8 leading-relaxed text-center px-4 sm:px-0"
                  style={{ 
                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
                    fontWeight: '300',
                    letterSpacing: '0.01em',
-                   fontSize: '15px',
+                   fontSize: '14px',
                    lineHeight: '1.5'
                  }}>
                 Flexible book cover with a refined nature-inspired design, offering stylish protection for your favorite reads.
               </p>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 justify-center">
+            <div className="flex flex-wrap gap-2 justify-center px-4 sm:px-0">
               {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
               {project.physicalProducts.elasticBookCover.tags.map((tag, _) => (
                 <span 
@@ -1125,9 +1123,9 @@ export default function Projects() {
           <div 
             ref={(el) => { sectionRefs.current[`${project.id}-premium-fruit`] = el; }}
             id={`${project.id}-premium-fruit`} 
-            className="mb-40"
+            className="mb-40 px-4 sm:px-0"
           >
-            <h2 className="text-white/60 mb-12 leading-tight text-sm tracking-widest"
+            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest"
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
@@ -1137,9 +1135,9 @@ export default function Projects() {
             </h2>
 
             {/* Single Fruit Image */}
-            <div className="flex justify-center mb-12">
+            <div className="flex justify-center mb-12 px-4 sm:px-0">
               <div 
-                className="relative w-72 sm:w-80 md:w-96 h-48 sm:h-56 md:h-64 cursor-pointer group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-700"
+                className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-40 sm:h-48 md:h-56 lg:h-64 cursor-pointer group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-700"
                 onClick={() => setSelectedImage(selectedImage === "/projects/fruit/optimized_giftbox.jpg" ? null : "/projects/fruit/optimized_giftbox.jpg")}
               >
                 <Image
@@ -1153,19 +1151,19 @@ export default function Projects() {
             </div>
 
             {/* Description */}
-            <p className="text-white/90 mb-8 leading-relaxed text-center"
+            <p className="text-white/90 mb-8 leading-relaxed text-center px-4 sm:px-0"
                style={{ 
                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
                  fontWeight: '300',
                  letterSpacing: '0.01em',
-                 fontSize: '15px',
+                 fontSize: '14px',
                  lineHeight: '1.5'
                }}>
               {project.physicalProducts.premiumFruit.description}
             </p>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 justify-center">
+            <div className="flex flex-wrap gap-2 justify-center px-4 sm:px-0">
               {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
               {project.physicalProducts.premiumFruit.tags.map((tag, _) => (
                 <span 
@@ -1184,10 +1182,10 @@ export default function Projects() {
   );
 
   return (
-    <section className="min-h-screen w-full bg-black">
+    <section className="min-h-screen w-full bg-black overflow-x-hidden">
       <div className="flex flex-col lg:flex-row">
         {/* Main Content */}
-        <div className="flex-1 lg:mr-80 max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-32">
+        <div className="flex-1 lg:mr-80 w-full mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-16 lg:py-24">
           {/* All Projects in Continuous Scroll */}
           {filteredProjects.map((project) => (
             project.id === 'ecommerce-web' ? 
@@ -1251,16 +1249,16 @@ export default function Projects() {
       {/* Lightbox */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-8 bg-black/95 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-sm"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-7xl max-h-full">
+          <div className="relative max-w-7xl max-h-full w-full">
             <Image
               src={selectedImage}
               alt="Expanded view"
               width={1600}
               height={1200}
-              className="object-contain max-h-[90vh] max-w-full"
+              className="object-contain max-h-[90vh] w-full h-auto"
             />
             <button
               className="absolute -top-4 -right-4 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white/90 text-2xl transition-colors"
