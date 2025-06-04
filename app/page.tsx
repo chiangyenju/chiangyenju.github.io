@@ -1,32 +1,17 @@
 "use client";
 
 import Link from 'next/link';
-import { useEffect } from 'react';
 
 export default function Home() {
-  // Ensure page starts at top and prevent scrolling
-  useEffect(() => {
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0);
-    
-    // Prevent scrolling
-    document.body.style.overflow = 'hidden';
-    
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, []);
-
   return (
-    <section className="h-screen w-full bg-black overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6 sm:px-8 py-6 sm:py-12 h-full flex flex-col justify-center">
+    <section className="min-h-screen w-full bg-black flex items-center">
+      <div className="w-full max-w-4xl mx-auto px-6 sm:px-8">
         
         {/* Hero Section - Personal Introduction */}
         <div className="text-center">
           
           {/* Personal Introduction */}
-          <div className="max-w-3xl mx-auto space-y-8 sm:space-y-12">
+          <div className="max-w-3xl mx-auto space-y-6 sm:space-y-12">
             <p 
               className="text-sm sm:text-xl lg:text-2xl text-white/70" 
               style={{ 
@@ -80,44 +65,42 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Desktop: Centered layout with gradient */}
-            <div className="hidden sm:block">
-              <p 
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl px-4 sm:px-0" 
-                style={{ 
-                  fontFamily: 'Georgia, serif',
-                  lineHeight: '1.2',
-                  letterSpacing: '0.01em',
-                  fontWeight: '300'
+            {/* Desktop: Gradient applied to full text */}
+            <p 
+              className="hidden sm:block text-4xl sm:text-5xl md:text-6xl lg:text-7xl px-4 sm:px-0" 
+              style={{ 
+                fontFamily: 'Georgia, serif',
+                lineHeight: '1.2',
+                letterSpacing: '0.01em',
+                fontWeight: '300'
+              }}
+            >
+              I enjoy{' '}
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #ffffff 0%, #ffffff80 50%, #ffffff40 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
                 }}
               >
-                <span className="text-white/70">I enjoy </span>
-                <span
-                  style={{
-                    background: 'linear-gradient(135deg, #ffffff 0%, #ffffff80 50%, #ffffff40 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
-                  }}
-                >
-                  creating things.
-                </span>
-              </p>
-            </div>
+                creating things.
+              </span>
+            </p>
             
-            {/* Call to Action Button - Minimal and elegant style */}
+            {/* Call to Action Button - Both mobile and desktop */}
             <div className="mt-8 sm:mt-12">
               <Link
                 href="/projects"
-                className="inline-block px-6 py-2 rounded-full text-white/90 hover:text-white border border-white/20 hover:border-white/40 transition-all duration-300"
+                className="inline-block px-12 py-4 bg-white/5 hover:bg-white/10 border border-white/20 hover:border-white/30 rounded-full text-white/80 hover:text-white transition-all duration-300 backdrop-blur-sm"
                 style={{
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
-                  fontSize: '14px',
+                  fontSize: '16px',
                   letterSpacing: '0.02em'
                 }}
               >
-                Projects
+                View Projects
               </Link>
             </div>
             
@@ -182,50 +165,50 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Desktop: Smaller, thinner tags */}
-              <div className="hidden sm:block">
-                <div className="flex flex-wrap justify-center gap-x-3 gap-y-2">
+              {/* Desktop: Original layout */}
+              <div className="hidden sm:block text-lg sm:text-xl lg:text-2xl">
+                <div className="flex flex-wrap justify-center gap-x-3 gap-y-4 sm:gap-x-6 sm:gap-y-3">
                   <Link
                     href="/projects"
-                    className="text-white/60 hover:text-white/80 transition-colors duration-300 text-sm"
+                    className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                     style={{
-                      fontWeight: '200'
+                      fontWeight: '300'
                     }}
                   >
                     mobile application
                   </Link>
                   <Link
                     href="/projects"
-                    className="text-white/60 hover:text-white/80 transition-colors duration-300 text-sm"
+                    className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                     style={{
-                      fontWeight: '200'
+                      fontWeight: '300'
                     }}
                   >
                     web interface
                   </Link>
                   <Link
                     href="/projects"
-                    className="text-white/60 hover:text-white/80 transition-colors duration-300 text-sm"
+                    className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                     style={{
-                      fontWeight: '200'
+                      fontWeight: '300'
                     }}
                   >
                     physical product
                   </Link>
                   <Link
                     href="/music"
-                    className="text-white/60 hover:text-white/80 transition-colors duration-300 text-sm"
+                    className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                     style={{
-                      fontWeight: '200'
+                      fontWeight: '300'
                     }}
                   >
                     EDM music
                   </Link>
                   <Link
                     href="/sandbox"
-                    className="text-white/60 hover:text-white/80 transition-colors duration-300 text-sm"
+                    className="text-white/70 hover:text-white transition-colors duration-300 text-base sm:text-lg"
                     style={{
-                      fontWeight: '200'
+                      fontWeight: '300'
                     }}
                   >
                     visual design
@@ -248,7 +231,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* CSS for animations */}
+      {/* CSS for moon floating animation */}
       <style jsx>{`
         @keyframes moonFloat {
           0%, 100% {
