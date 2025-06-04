@@ -445,8 +445,8 @@ export default function Projects() {
 
               {/* Style Options and Results */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 lg:gap-32 w-full relative px-4 sm:px-0">
-                {/* Simple Dot Divider */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2">
+                {/* Simple Dot Divider - hidden on mobile */}
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 hidden sm:block">
                   <div className="w-1.5 h-1.5 bg-white/40 rounded-full" style={{ animation: 'bounceHorizontal 3s infinite' }}></div>
             </div>
 
@@ -549,6 +549,22 @@ export default function Projects() {
                   </span>
                 </div>
               </div>
+
+              {/* Mobile indicators - visible only on mobile */}
+              <div className="block sm:hidden mt-4 space-y-2">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                    headings
+                  </span>
+                  <div className="w-4 h-px bg-white/60"></div>
+                </div>
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                    body
+                  </span>
+                  <div className="w-4 h-px bg-white/60"></div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -610,156 +626,316 @@ export default function Projects() {
         {/* User Flow Section */}
         <div className="max-w-xl mx-auto space-y-6 px-4 sm:px-0">
           {/* Step 1 */}
-          <div className="relative flex items-center gap-2 group">
-            <div className="w-6 h-6 flex items-center justify-center shrink-0">
-              <span className="text-white/40 text-xs font-light tracking-wider">01</span>
-            </div>
-            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-              <div className="absolute inset-0 backdrop-blur-[3px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar1_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'repeat',
-                    width: '200%',
-                    height: '200%',
-                    transform: 'translate(-25%, -25%) scale(0.5)'
-                  }}></div>
+          <div className="relative group">
+            {/* Desktop layout - hidden on mobile */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-6 h-6 flex items-center justify-center shrink-0">
+                <span className="text-white/40 text-xs font-light tracking-wider">01</span>
+              </div>
+              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar1_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light1_20s_ease-in-out_infinite] blur-[2px]"></div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                      Photo Upload
+                    </h3>
+                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Upload room photos through drag-and-drop or camera capture
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light1_20s_ease-in-out_infinite] blur-[2px]"></div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                    Photo Upload
-                  </h3>
-                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    Upload room photos through drag-and-drop or camera capture
-          </p>
-        </div>
+            </div>
+
+            {/* Mobile layout - visible only on mobile */}
+            <div className="block sm:hidden">
+              <div className="text-center mb-3">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-white/40 text-xs font-light tracking-wider">01</span>
+                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light1_20s_ease-in-out_infinite] blur-[1px]"></div>
+                </div>
+              </div>
+              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar1_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  Photo Upload
+                </h3>
+                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  Upload room photos through drag-and-drop or camera capture
+                </p>
               </div>
             </div>
           </div>
 
           {/* Step 2 */}
-          <div className="relative flex items-center gap-2 group">
-            <div className="w-6 h-6 flex items-center justify-center shrink-0">
-              <span className="text-white/40 text-xs font-light tracking-wider">02</span>
-            </div>
-            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-              <div className="absolute inset-0 backdrop-blur-[3px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar2_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'repeat',
-                    width: '200%',
-                    height: '200%',
-                    transform: 'translate(-25%, -25%) scale(0.5)'
-                  }}></div>
+          <div className="relative group">
+            {/* Desktop layout - hidden on mobile */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-6 h-6 flex items-center justify-center shrink-0">
+                <span className="text-white/40 text-xs font-light tracking-wider">02</span>
+              </div>
+              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar2_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light2_20s_ease-in-out_infinite] blur-[2px]"></div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                      AI Analysis
+                    </h3>
+                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Analyze room dimensions, lighting, and furniture layout
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light2_20s_ease-in-out_infinite] blur-[2px]"></div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                    AI Analysis
-                  </h3>
-                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    Analyze room dimensions, lighting, and furniture layout
-                  </p>
+            </div>
+
+            {/* Mobile layout - visible only on mobile */}
+            <div className="block sm:hidden">
+              <div className="text-center mb-3">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-white/40 text-xs font-light tracking-wider">02</span>
+                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light2_20s_ease-in-out_infinite] blur-[1px]"></div>
                 </div>
+              </div>
+              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar2_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  AI Analysis
+                </h3>
+                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  Analyze room dimensions, lighting, and furniture layout
+                </p>
               </div>
             </div>
           </div>
 
           {/* Step 3 */}
-          <div className="relative flex items-center gap-2 group">
-            <div className="w-6 h-6 flex items-center justify-center shrink-0">
-              <span className="text-white/40 text-xs font-light tracking-wider">03</span>
-            </div>
-            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-              <div className="absolute inset-0 backdrop-blur-[3px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar3_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'repeat',
-                    width: '200%',
-                    height: '200%',
-                    transform: 'translate(-25%, -25%) scale(0.5)'
-                  }}></div>
+          <div className="relative group">
+            {/* Desktop layout - hidden on mobile */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-6 h-6 flex items-center justify-center shrink-0">
+                <span className="text-white/40 text-xs font-light tracking-wider">03</span>
+              </div>
+              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar3_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light3_20s_ease-in-out_infinite] blur-[2px]"></div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                      Style Selection
+                    </h3>
+                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Browse curated design styles or create custom preferences
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light3_20s_ease-in-out_infinite] blur-[2px]"></div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                    Style Selection
-                  </h3>
-                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    Browse curated design styles or create custom preferences
-                  </p>
+            </div>
+
+            {/* Mobile layout - visible only on mobile */}
+            <div className="block sm:hidden">
+              <div className="text-center mb-3">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-white/40 text-xs font-light tracking-wider">03</span>
+                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light3_20s_ease-in-out_infinite] blur-[1px]"></div>
                 </div>
+              </div>
+              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar3_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  Style Selection
+                </h3>
+                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  Browse curated design styles or create custom preferences
+                </p>
               </div>
             </div>
           </div>
 
           {/* Step 4 */}
-          <div className="relative flex items-center gap-2 group">
-            <div className="w-6 h-6 flex items-center justify-center shrink-0">
-              <span className="text-white/40 text-xs font-light tracking-wider">04</span>
-            </div>
-            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-              <div className="absolute inset-0 backdrop-blur-[3px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar4_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'repeat',
-                    width: '200%',
-                    height: '200%',
-                    transform: 'translate(-25%, -25%) scale(0.5)'
-                  }}></div>
+          <div className="relative group">
+            {/* Desktop layout - hidden on mobile */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-6 h-6 flex items-center justify-center shrink-0">
+                <span className="text-white/40 text-xs font-light tracking-wider">04</span>
+              </div>
+              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar4_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light4_20s_ease-in-out_infinite] blur-[2px]"></div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                      Design Generation
+                    </h3>
+                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Generate multiple design options with realistic visualizations
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light4_20s_ease-in-out_infinite] blur-[2px]"></div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                    Design Generation
-                  </h3>
-                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    Generate multiple design options with realistic visualizations
-                  </p>
+            </div>
+
+            {/* Mobile layout - visible only on mobile */}
+            <div className="block sm:hidden">
+              <div className="text-center mb-3">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-white/40 text-xs font-light tracking-wider">04</span>
+                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light4_20s_ease-in-out_infinite] blur-[1px]"></div>
                 </div>
+              </div>
+              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar4_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  Design Generation
+                </h3>
+                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  Generate multiple design options with realistic visualizations
+                </p>
               </div>
             </div>
           </div>
 
           {/* Step 5 */}
-          <div className="relative flex items-center gap-2 group">
-            <div className="w-6 h-6 flex items-center justify-center shrink-0">
-              <span className="text-white/40 text-xs font-light tracking-wider">05</span>
-            </div>
-            <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
-              <div className="absolute inset-0 backdrop-blur-[3px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar5_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                  <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'repeat',
-                    width: '200%',
-                    height: '200%',
-                    transform: 'translate(-25%, -25%) scale(0.5)'
-                  }}></div>
+          <div className="relative group">
+            {/* Desktop layout - hidden on mobile */}
+            <div className="hidden sm:flex items-center gap-2">
+              <div className="w-6 h-6 flex items-center justify-center shrink-0">
+                <span className="text-white/40 text-xs font-light tracking-wider">05</span>
+              </div>
+              <div className="flex-1 py-1.5 px-3 sm:px-4 rounded-lg bg-white/5 border border-white/10 transition-all duration-300 hover:border-white/30 relative overflow-hidden group">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar5_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light5_20s_ease-in-out_infinite] blur-[2px]"></div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                      Direct Purchase
+                    </h3>
+                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      One-click purchase from curated partner stores
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-green-400/60 rounded-full opacity-0 animate-[light5_20s_ease-in-out_infinite] blur-[2px]"></div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-white/90 text-sm sm:text-base relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                    Direct Purchase
-                  </h3>
-                  <p className="text-white/50 text-xs sm:text-sm leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    One-click purchase from curated partner stores
-                  </p>
+            </div>
+
+            {/* Mobile layout - visible only on mobile */}
+            <div className="block sm:hidden">
+              <div className="text-center mb-3">
+                <div className="flex items-center justify-center gap-2">
+                  <span className="text-white/40 text-xs font-light tracking-wider">05</span>
+                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light5_20s_ease-in-out_infinite] blur-[1px]"></div>
                 </div>
+              </div>
+              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
+                <div className="absolute inset-0 backdrop-blur-[3px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar5_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
+                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      width: '200%',
+                      height: '200%',
+                      transform: 'translate(-25%, -25%) scale(0.5)'
+                    }}></div>
+                  </div>
+                </div>
+                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
+                  Direct Purchase
+                </h3>
+                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                  One-click purchase from curated partner stores
+                </p>
               </div>
             </div>
           </div>
@@ -787,8 +963,8 @@ export default function Projects() {
             INTERFACE
           </h2>
 
-          {/* Large Preview Area */}
-          <div className="mb-8 px-4 sm:px-0">
+          {/* Large Preview Area - Desktop only */}
+          <div className="mb-8 px-4 sm:px-0 hidden sm:block">
             <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
               {(selectedMockup || project.screens[0]) && (
                 <Image
@@ -802,8 +978,8 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Mockup Thumbnails */}
-          <div className="flex gap-2 sm:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory px-2 sm:px-0">
+          {/* Mockup Thumbnails - Desktop only */}
+          <div className="hidden sm:flex gap-2 sm:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory px-2 sm:px-0">
             {project.screens.map((image, index) => (
               <div 
                 key={index} 
@@ -829,6 +1005,21 @@ export default function Projects() {
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Large Images - Mobile only */}
+          <div className="block sm:hidden space-y-6 px-4">
+            {project.screens.map((image, index) => (
+              <div key={index} className="relative aspect-[16/9] rounded-xl overflow-hidden">
+                <Image
+                  src={image}
+                  alt={`Interface Mockup ${index + 1}`}
+                  fill
+                  className="object-contain bg-black/20 backdrop-blur-sm"
+                  onClick={() => setSelectedImage(image)}
+                />
               </div>
             ))}
           </div>
