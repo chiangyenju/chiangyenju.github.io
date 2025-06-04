@@ -551,18 +551,23 @@ export default function Projects() {
               </div>
 
               {/* Mobile indicators - visible only on mobile */}
-              <div className="block sm:hidden mt-4 space-y-2">
-                <div className="flex items-center justify-center gap-2">
+              <div className="block sm:hidden relative">
+                {/* Headings indicator - points to upper part */}
+                <div className="absolute -left-8 top-2 flex items-center gap-2">
                   <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     headings
                   </span>
                   <div className="w-4 h-px bg-white/60"></div>
+                  <div className="w-1 h-1 bg-white/60 rounded-full"></div>
                 </div>
-                <div className="flex items-center justify-center gap-2">
+                
+                {/* Body indicator - points to lower part */}
+                <div className="absolute -right-8 bottom-2 flex items-center gap-2">
+                  <div className="w-1 h-1 bg-white/60 rounded-full"></div>
+                  <div className="w-4 h-px bg-white/60"></div>
                   <span className="text-white/70 text-xs italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
                     body
                   </span>
-                  <div className="w-4 h-px bg-white/60"></div>
                 </div>
               </div>
             </div>
