@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 export default function MusicError({
   error,
   reset,
@@ -38,7 +40,7 @@ export default function MusicError({
             Try again
           </button>
           <div>
-            <a 
+            <Link 
               href="/"
               className="text-white/60 hover:text-white/80 transition-colors text-sm underline"
               style={{ 
@@ -47,7 +49,7 @@ export default function MusicError({
               }}
             >
               Return to home
-            </a>
+            </Link>
           </div>
         </div>
       </div>
