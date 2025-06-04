@@ -371,7 +371,7 @@ export default function Projects() {
            style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
              fontWeight: '300',
-             letterSpacing: '0.15em'
+             letterSpacing: '0.12em'
            }}>
           OVERVIEW
         </h2>
@@ -508,7 +508,7 @@ export default function Projects() {
            style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
              fontWeight: '300',
-             letterSpacing: '0.15em'
+             letterSpacing: '0.12em'
            }}>
           DESIGN SYSTEMS
         </h2>
@@ -625,7 +625,7 @@ export default function Projects() {
              style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
-             letterSpacing: '0.15em'
+             letterSpacing: '0.12em'
              }}>
           USER FLOW
           </h2>
@@ -665,33 +665,25 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Mobile layout - visible only on mobile */}
+            {/* Mobile layout - simple line and dot */}
             <div className="block sm:hidden">
-              <div className="text-center mb-3">
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-white/40 text-xs font-light tracking-wider">01</span>
-                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light1_20s_ease-in-out_infinite] blur-[1px]"></div>
-                </div>
-              </div>
-              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar1_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                    <span className="text-white/70 text-xs font-light">01</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Photo Upload
+                    </h3>
+                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Upload room photos
+                    </p>
                   </div>
                 </div>
-                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                  Photo Upload
-                </h3>
-                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  Upload room photos through drag-and-drop or camera capture
-                </p>
               </div>
+              {/* Connecting line */}
+              <div className="ml-3 w-px h-8 bg-white/20"></div>
             </div>
           </div>
 
@@ -728,33 +720,25 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Mobile layout - visible only on mobile */}
+            {/* Mobile layout - simple line and dot */}
             <div className="block sm:hidden">
-              <div className="text-center mb-3">
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-white/40 text-xs font-light tracking-wider">02</span>
-                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light2_20s_ease-in-out_infinite] blur-[1px]"></div>
-                </div>
-              </div>
-              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar2_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                    <span className="text-white/70 text-xs font-light">02</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      AI Analysis
+                    </h3>
+                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Analyze room dimensions
+                    </p>
                   </div>
                 </div>
-                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                  AI Analysis
-                </h3>
-                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  Analyze room dimensions, lighting, and furniture layout
-                </p>
               </div>
+              {/* Connecting line */}
+              <div className="ml-3 w-px h-8 bg-white/20"></div>
             </div>
           </div>
 
@@ -791,33 +775,25 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Mobile layout - visible only on mobile */}
+            {/* Mobile layout - simple line and dot */}
             <div className="block sm:hidden">
-              <div className="text-center mb-3">
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-white/40 text-xs font-light tracking-wider">03</span>
-                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light3_20s_ease-in-out_infinite] blur-[1px]"></div>
-                </div>
-              </div>
-              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar3_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                    <span className="text-white/70 text-xs font-light">03</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Style Selection
+                    </h3>
+                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Browse design styles
+                    </p>
                   </div>
                 </div>
-                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                  Style Selection
-                </h3>
-                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  Browse curated design styles or create custom preferences
-                </p>
               </div>
+              {/* Connecting line */}
+              <div className="ml-3 w-px h-8 bg-white/20"></div>
             </div>
           </div>
 
@@ -854,33 +830,25 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Mobile layout - visible only on mobile */}
+            {/* Mobile layout - simple line and dot */}
             <div className="block sm:hidden">
-              <div className="text-center mb-3">
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-white/40 text-xs font-light tracking-wider">04</span>
-                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light4_20s_ease-in-out_infinite] blur-[1px]"></div>
-                </div>
-              </div>
-              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar4_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                    <span className="text-white/70 text-xs font-light">04</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Design Generation
+                    </h3>
+                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Generate design options
+                    </p>
                   </div>
                 </div>
-                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                  Design Generation
-                </h3>
-                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  Generate multiple design options with realistic visualizations
-                </p>
               </div>
+              {/* Connecting line */}
+              <div className="ml-3 w-px h-8 bg-white/20"></div>
             </div>
           </div>
 
@@ -917,32 +885,22 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Mobile layout - visible only on mobile */}
+            {/* Mobile layout - simple line and dot (no connecting line for last step) */}
             <div className="block sm:hidden">
-              <div className="text-center mb-3">
-                <div className="flex items-center justify-center gap-2">
-                  <span className="text-white/40 text-xs font-light tracking-wider">05</span>
-                  <div className="w-1.5 h-1.5 bg-green-400/60 rounded-full animate-[light5_20s_ease-in-out_infinite] blur-[1px]"></div>
-                </div>
-              </div>
-              <div className="py-3 px-4 rounded-lg bg-white/5 border border-white/10 text-center relative overflow-hidden">
-                <div className="absolute inset-0 backdrop-blur-[3px]">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-white/[0.04] -skew-y-12 translate-x-[-100%] animate-[progressBar5_20s_linear_infinite] transition-opacity duration-500 blur-[2px]">
-                    <div className="absolute inset-0 mix-blend-soft-light opacity-20" style={{ 
-                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-                      backgroundRepeat: 'repeat',
-                      width: '200%',
-                      height: '200%',
-                      transform: 'translate(-25%, -25%) scale(0.5)'
-                    }}></div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+                    <span className="text-white/70 text-xs font-light">05</span>
+                  </div>
+                  <div className="flex flex-col">
+                    <h3 className="text-white/90 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      Direct Purchase
+                    </h3>
+                    <p className="text-white/50 text-xs" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                      One-click purchase
+                    </p>
                   </div>
                 </div>
-                <h3 className="text-white/90 text-sm relative mb-2" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300', letterSpacing: '0.02em' }}>
-                  Direct Purchase
-                </h3>
-                <p className="text-white/50 text-xs leading-relaxed relative" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  One-click purchase from curated partner stores
-                </p>
               </div>
             </div>
           </div>
@@ -965,7 +923,7 @@ export default function Projects() {
              style={{ 
                fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
-               letterSpacing: '0.15em'
+               letterSpacing: '0.12em'
              }}>
             INTERFACE
           </h2>
@@ -1017,9 +975,9 @@ export default function Projects() {
           </div>
 
           {/* Mobile Large Images - Mobile only */}
-          <div className="block sm:hidden space-y-6 px-4">
+          <div className="block sm:hidden space-y-8 px-4">
             {project.screens.map((image, index) => (
-              <div key={index} className="relative aspect-[16/9] rounded-xl overflow-hidden">
+              <div key={index} className="relative aspect-[4/3] rounded-xl overflow-hidden">
                 <Image
                   src={image}
                   alt={`Interface Mockup ${index + 1}`}
@@ -1103,7 +1061,7 @@ export default function Projects() {
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
-                  letterSpacing: '0.15em'
+                  letterSpacing: '0.10em'
                 }}>
               PREMIUM FRUIT GIFTBOX
             </h2>
@@ -1184,7 +1142,7 @@ export default function Projects() {
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
-                  letterSpacing: '0.15em'
+                  letterSpacing: '0.10em'
                 }}>
               ELASTIC BOOK COVER
             </h2>
@@ -1205,8 +1163,8 @@ export default function Projects() {
                 </button>
 
                 {/* Coverflow Container - Mobile-First Responsive */}
-                <div className="h-32 sm:h-48 lg:h-64 flex items-center justify-center overflow-hidden max-w-xs sm:max-w-lg lg:max-w-4xl">
-                  <div className="flex items-center space-x-1 sm:space-x-2 lg:space-x-4" style={{ perspective: '1000px' }}>
+                <div className="h-40 sm:h-56 lg:h-80 flex items-center justify-center overflow-hidden max-w-sm sm:max-w-xl lg:max-w-5xl">
+                  <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-6" style={{ perspective: '1000px' }}>
                     {getVisibleImages().map(({ image, originalIndex, isBlank }, displayIndex) => {
                       const centerIndex = Math.floor(7 / 2);
                       const isCenter = displayIndex === centerIndex;
@@ -1219,8 +1177,8 @@ export default function Projects() {
                             key={`blank-${displayIndex}`}
                             className={`relative transition-all duration-700 ease-out ${
                               isCenter 
-                                ? 'w-24 h-16 sm:w-40 sm:h-28 lg:w-56 lg:h-36 z-30 scale-110' 
-                                : 'w-16 h-12 sm:w-32 sm:h-20 lg:w-40 lg:h-24 z-20 scale-90 opacity-70'
+                                ? 'w-32 h-20 sm:w-48 sm:h-32 lg:w-72 lg:h-48 z-30 scale-110' 
+                                : 'w-20 h-14 sm:w-36 sm:h-24 lg:w-48 lg:h-32 z-20 scale-90 opacity-70'
                             }`}
                             style={{
                               transform: isCenter 
@@ -1241,8 +1199,8 @@ export default function Projects() {
                           key={originalIndex}
                           className={`relative cursor-pointer transition-all duration-700 ease-out ${
                             isCenter 
-                              ? 'w-24 h-16 sm:w-40 sm:h-28 lg:w-56 lg:h-36 z-30 scale-110' 
-                              : 'w-16 h-12 sm:w-32 sm:h-20 lg:w-40 lg:h-24 z-20 scale-90 opacity-70'
+                              ? 'w-32 h-20 sm:w-48 sm:h-32 lg:w-72 lg:h-48 z-30 scale-110' 
+                              : 'w-20 h-14 sm:w-36 sm:h-24 lg:w-48 lg:h-32 z-20 scale-90 opacity-70'
                           }`}
                           style={{
                             transform: isCenter 
@@ -1261,7 +1219,7 @@ export default function Projects() {
                                 alt={`Book Cover ${originalIndex + 1}`}
                                 fill
                                 className="object-cover"
-                                sizes="(max-width: 640px) 96px, (max-width: 1024px) 160px, 224px"
+                                sizes="(max-width: 640px) 128px, (max-width: 1024px) 192px, 288px"
                               />
                             )}
                           </div>
@@ -1329,7 +1287,7 @@ export default function Projects() {
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
-                  letterSpacing: '0.15em'
+                  letterSpacing: '0.10em'
                 }}>
               PREMIUM FRUIT GIFTBOX
             </h2>
