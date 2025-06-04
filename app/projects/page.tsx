@@ -1196,7 +1196,7 @@ export default function Projects() {
     <section className="min-h-screen w-full bg-black overflow-x-hidden">
       <div className="flex flex-col lg:flex-row">
         {/* Main Content */}
-        <div className="flex-1 lg:mr-80 w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-20 sm:py-16 lg:py-24">
+        <div className="flex-1 lg:mr-80 w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-12 sm:py-8 lg:py-16">
           {/* All Projects in Continuous Scroll */}
           {filteredProjects.map((project) => (
             project.id === 'ecommerce-web' ? 
