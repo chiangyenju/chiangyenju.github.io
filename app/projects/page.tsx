@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 
 interface FigmaProject {
   id: string;
@@ -144,7 +143,6 @@ const figmaProjects: FigmaProject[] = [
 ];
 
 export default function Projects() {
-  const [selectedMockup, setSelectedMockup] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>('');
   const [coverflowIndex, setCoverflowIndex] = useState<number>(0);
   const [selectedStyle, setSelectedStyle] = useState<string>('transitional'); // Add state for selected style
@@ -153,7 +151,6 @@ export default function Projects() {
   const itemRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [dotPosition, setDotPosition] = useState(0);
-  const [activeProject, setActiveProject] = useState(0);
 
   // Touch gesture handling for coverflow
   const touchStartRef = useRef<number>(0);
@@ -795,7 +792,7 @@ export default function Projects() {
                  letterSpacing: '0.01em',
                  lineHeight: '1.6'
                }}>
-              Most existing solutions leverage computer vision to create "before and after" images of room designs. However, these tools often overlook critical constraints like physical layout, lighting, and existing furniture. Additionally, they rarely connect users to actual products for purchase, creating a gap between concept and execution.
+              Most existing solutions leverage computer vision to create &ldquo;before and after&rdquo; images of room designs. However, these tools often overlook critical constraints like physical layout, lighting, and existing furniture. Additionally, they rarely connect users to actual products for purchase, creating a gap between concept and execution.
             </p>
 
             {/* Differentiators Grid */}
@@ -976,7 +973,7 @@ export default function Projects() {
                  letterSpacing: '0.01em',
                  lineHeight: '1.6'
                }}>
-              The project's design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
+              The project&apos;s design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
             </p>
 
             {/* Visual Elements Grid */}
@@ -1159,7 +1156,7 @@ export default function Projects() {
                  letterSpacing: '0.01em',
                  lineHeight: '1.6'
                }}>
-              While I was not responsible for creating the system, I applied it rigorously in my design work—especially when adapting the desktop-first system for mobile platforms. The system exists primarily in Figma and is documented with high-level visual and written guidelines to ensure consistency across screens and use cases.
+              While I was not responsible for creating the system, I applied it rigorously in my design work&mdash;especially when adapting the desktop-first system for mobile platforms. The system exists primarily in Figma and is documented with high-level visual and written guidelines to ensure consistency across screens and use cases.
             </p>
 
           </div>
