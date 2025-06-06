@@ -1,27 +1,23 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from './components/Navigation'
 
+const inter = Inter({ subsets: ['latin'] })
+
 export const metadata: Metadata = {
-  title: 'chiangyenju | 江',
-  description: 'new tech • games • music • design',
-  keywords: [
-    'web3',
-    'blockchain',
-    'artificial intelligence',
-    'games',
-    'music',
-  ],
-  authors: [{ name: 'chiangyenju' }],
-  openGraph: {
-    title: 'chiangyenju | 江',
-    description: 'new tech • games • music • design',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'chiangyenju | 江',
-    description: 'new tech • games • music • design',
+  title: 'Chiang Yen Ju',
+  description: 'Chiang Yen Ju - UX Designer & Researcher Portfolio',
+  themeColor: '#1c1917',
+  viewport: 'width=device-width, initial-scale=1',
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 }
 
@@ -31,34 +27,28 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="bg-black">
-      <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link href="https://fonts.googleapis.com/css2?family=Long+Cang&display=swap" rel="stylesheet" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap" rel="stylesheet" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <meta name="theme-color" content="#000000" />
-      </head>
-      <body className="antialiased bg-black min-h-screen">
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} bg-ds-primary text-ds-primary antialiased`}>
+        
+        {/* Light Animation Background */}
+        <div className="light-container">
+          <div className="tunnel-light"></div>
+          <div className="light-beam light-beam-1"></div>
+          <div className="light-beam light-beam-2"></div>
+          <div className="light-beam light-beam-3"></div>
+          <div className="light-beam light-beam-4"></div>
+          <div className="light-beam light-beam-5"></div>
+          <div className="light-beam light-beam-6"></div>
+        </div>
+        
+        {/* Navigation */}
         <Navigation />
         
         {/* Main Content */}
-        <main className="relative bg-black min-h-screen pt-24 md:pt-20">
+        <main className="relative z-10 min-h-screen">
           {children}
         </main>
+        
       </body>
     </html>
   )

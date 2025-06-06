@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 interface FigmaProject {
   id: string;
@@ -37,9 +38,9 @@ interface FigmaProject {
     };
     premiumFruit: {
       title: string;
-  description: string;
-  images: string[];
-  tags: string[];
+      description: string;
+      images: string[];
+      tags: string[];
     };
   };
 }
@@ -47,9 +48,12 @@ interface FigmaProject {
 // Table of Contents structure for each project
 const projectSections = [
   { id: 'case-study', title: 'Overview' },
+  { id: 'problem-insights', title: 'Problem Statement' },
+  { id: 'market-research', title: 'Market Research' },
   { id: 'design-systems', title: 'Design Systems' },
-  { id: 'user-flow', title: 'User Flow' },
-  { id: 'interface', title: 'Interface' },
+  { id: 'user-experience-interface', title: 'User Experience & Interface' },
+  { id: 'ai-integration-technical', title: 'AI Integration' },
+  { id: 'challenges-learnings', title: 'Challenges & Learnings' },
   { id: 'components', title: 'Components' },
 ];
 
@@ -62,9 +66,9 @@ const figmaProjects: FigmaProject[] = [
     category: "web",
     tags: ["UI/UX", "Web App", "Mobile App", "AI/ML", "Interior Design"],
     hero: "/projects/figma-projects/philo-homes/hero-image.png",
-    problem: "Traditional interior design services are expensive and time-consuming. Homeowners struggled to visualize design changes.",
-    solution: "AI-powered platform that analyzes room photos and generates realistic visualizations with instant design recommendations, and purchase source!",
-    outcome: "Admitted to accelerator, concept to be testified.",
+    problem: "This project is an AI-powered interior design tool aimed at helping new homeowners visualize and furnish their living spaces. The platform allows users to upload a photo or layout of their home and receive fully furnished design recommendations, complete with purchasable furniture items.",
+    solution: "I collaborated closely with an experienced team that included an award-winning interior designer, engineers focused on AI and computer vision, and fellow designers. My work primarily focused on user experience design across platforms, including creating mockups for both the mobile app and the web application.",
+    outcome: "The project was developed over a six-month period and is currently under an accelerator program. While not yet launched, a working prototype with interactive flows and high-fidelity visuals has been developed to communicate the concept.",
     typography: {
       title: "Typography System",
       images: []
@@ -114,41 +118,42 @@ const figmaProjects: FigmaProject[] = [
       elasticBookCover: {
         title: "Elastic Book Cover",
         description: "Flexible book cover with a refined nature-inspired design, offering stylish protection for your favorite reads.",
-    images: [
-      "/projects/the-one-prime/optimized_1BookCover.jpg",
-      "/projects/the-one-prime/optimized_1OUTER-05.jpg", 
-      "/projects/the-one-prime/optimized_bookcover-package-mockup.jpg",
-      "/projects/the-one-prime/optimized_2BookCover.jpg",
-      "/projects/the-one-prime/optimized_2OUTER-05.jpg",
-      "/projects/the-one-prime/optimized_3BookCover.jpg",
-      "/projects/the-one-prime/optimized_3OUTER-05.jpg",
-      "/projects/the-one-prime/optimized_4BookCover.jpg",
-      "/projects/the-one-prime/optimized_4OUTER-05.jpg",
-      "/projects/the-one-prime/optimized_5BookCover.jpg",
+        images: [
+          "/projects/the-one-prime/optimized_1BookCover.jpg",
+          "/projects/the-one-prime/optimized_1OUTER-05.jpg", 
+          "/projects/the-one-prime/optimized_bookcover-package-mockup.jpg",
+          "/projects/the-one-prime/optimized_2BookCover.jpg",
+          "/projects/the-one-prime/optimized_2OUTER-05.jpg",
+          "/projects/the-one-prime/optimized_3BookCover.jpg",
+          "/projects/the-one-prime/optimized_3OUTER-05.jpg",
+          "/projects/the-one-prime/optimized_4BookCover.jpg",
+          "/projects/the-one-prime/optimized_4OUTER-05.jpg",
+          "/projects/the-one-prime/optimized_5BookCover.jpg",
           "/projects/the-one-prime/optimized_5OUTER-05.jpg"
-    ],
-    tags: ["stretchable", "washable", "non-adhesive"]
-  },
+        ],
+        tags: ["stretchable", "washable", "non-adhesive"]
+      },
       premiumFruit: {
         title: "Premium Fruit Giftbox",
         description: "Rare, premium fruits—perfect for elegant festival gifting and farm-fresh experiences.",
         images: ["/projects/fruit/optimized_giftbox.jpg"],
-    tags: ["premium-graded", "farm-fresh", "gift-ready"]
+        tags: ["premium-graded", "farm-fresh", "gift-ready"]
       }
     }
   }
 ];
 
 export default function Projects() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedMockup, setSelectedMockup] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>('');
   const [coverflowIndex, setCoverflowIndex] = useState<number>(0);
+  const [selectedStyle, setSelectedStyle] = useState<string>('transitional'); // Add state for selected style
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
   const navRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [dotPosition, setDotPosition] = useState(0);
+  const [activeProject, setActiveProject] = useState(0);
 
   // Touch gesture handling for coverflow
   const touchStartRef = useRef<number>(0);
@@ -291,17 +296,37 @@ export default function Projects() {
           }
         }
       });
-      
+
       if (currentSection !== activeSection) {
-        setActiveSection(currentSection);
+      setActiveSection(currentSection);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Initial call
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [activeSection]);
+
+  // Update dot position when active section changes (scrolling)
+  useEffect(() => {
+    if (activeSection && !hoveredItem) {
+      updateDotPosition(activeSection);
+    }
+  }, [activeSection, hoveredItem]);
+
+  // Set initial highlighting state
+  useEffect(() => {
+    const results1 = document.querySelector('.results-1-image');
+    const results2 = document.querySelector('.results-2-image');
+    if (selectedStyle === 'transitional') {
+      if (results1) results1.classList.add('highlighted');
+      if (results2) results2.classList.remove('highlighted');
+    } else {
+      if (results1) results1.classList.remove('highlighted');
+      if (results2) results2.classList.add('highlighted');
+    }
+  }, [selectedStyle]);
 
   const updateDotPosition = (itemId: string) => {
     const itemElement = itemRefs.current[itemId];
@@ -330,7 +355,7 @@ export default function Projects() {
   const scrollToSection = (sectionId: string) => {
     const element = sectionRefs.current[sectionId];
     if (element) {
-      const offsetTop = element.offsetTop - 100;
+      const offsetTop = element.offsetTop - 120; // Increased offset to account for navigation
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -344,44 +369,40 @@ export default function Projects() {
       <div 
         ref={(el) => { sectionRefs.current[`project-${project.id}`] = el; }}
         id={`project-${project.id}`} 
-        className="mb-20"
+        className="mb-20 pt-24" // Added top padding to prevent navigation blocking
       >
         <div className="mb-8 px-4 sm:px-0 text-center">
-          <h1 className="text-xl sm:text-2xl text-white mb-2 leading-tight" 
-               style={{ 
-                 fontFamily: 'Georgia, serif',
-                 fontWeight: '300',
-                 letterSpacing: '0.01em',
-                 color: 'white'
-               }}>
+          <h1 className="text-xl sm:text-2xl text-ds-primary mb-2 leading-tight" 
+                style={{ 
+                  fontFamily: 'Georgia, serif',
+                  fontWeight: '300',
+                  letterSpacing: '0.01em',
+                  color: 'var(--text-primary)'
+                }}>
             {project.title}
           </h1>
-          <p className="text-sm sm:text-lg text-white/70 leading-relaxed"
-             style={{ 
-               fontFamily: 'Helvetica Neue, Arial, sans-serif',
-               fontWeight: '200',
-               letterSpacing: '0.01em'
-             }}>
+          <p className="text-sm sm:text-lg text-ds-tertiary leading-relaxed"
+              style={{ 
+                fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                fontWeight: '300',
+                letterSpacing: '0.005em'
+              }}>
             {project.subtitle}
           </p>
         </div>
 
         {/* Hero Image */}
         {project.hero && (
-          <div className="flex justify-center mb-12 px-4 sm:px-0">
-            <div 
-              className="relative w-full max-w-4xl h-64 sm:h-80 md:h-96 lg:h-[500px] cursor-pointer group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-700"
-              onClick={() => setSelectedImage(selectedImage === project.hero ? null : project.hero)}
-            >
-              <Image
-                src={project.hero}
+          <div className="w-full mb-12 px-0">
+            <div className="relative w-full h-48 sm:h-56 md:h-64 lg:h-80 overflow-hidden rounded-lg shadow-lg">
+                <Image
+              src={project.hero}
                 alt={`${project.title} Hero`}
                 fill
-                className="object-cover transition-all duration-700 group-hover:scale-105"
+                className="object-cover"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
-            </div>
-          </div>
+              </div>
+        </div>
         )}
       </div>
 
@@ -392,7 +413,7 @@ export default function Projects() {
         className="mb-24 px-4 sm:px-0"
       >
         {/* Overview Title */}
-        <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
+        <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
            style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
              fontWeight: '300',
@@ -401,116 +422,178 @@ export default function Projects() {
           OVERVIEW
         </h2>
         
-        {/* Compact Layout */}
-        <div className="max-w-3xl mx-auto relative">
-          <div className="space-y-8">
-            {/* Problem */}
-            <div className="text-left relative">
-              <p className="text-white/90 leading-relaxed"
-                 style={{ 
-                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                   fontWeight: '300',
-                   letterSpacing: '0.01em',
-                   fontSize: '14px',
-                   lineHeight: '1.5'
-                 }}>
-                <span className="italic text-white/70 mr-2" style={{ fontWeight: '300' }}>Problem:</span>
-                {project.problem}
-              </p>
-            </div>
-
-            {/* Solution */}
-            <div className="text-left relative">
-              <p className="text-white/90 leading-relaxed"
-                 style={{ 
-                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                   fontWeight: '300',
-                   letterSpacing: '0.01em',
-                   fontSize: '14px',
-                   lineHeight: '1.5'
-                 }}>
-                <span className="italic text-white/70 mr-2" style={{ fontWeight: '300' }}>Solution:</span>
-                {project.solution}
-              </p>
-            </div>
-          </div>
-
-          {/* Outcome with subtle divider */}
-          <div className="mt-10 pt-6 border-t border-white/8">
-            <p className="text-white/50 text-xs sm:text-sm leading-relaxed"
+        {/* Project Description */}
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-6 sm:space-y-8">
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
                style={{ 
                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
                  fontWeight: '300',
-                 letterSpacing: '0.02em'
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
                }}>
-              {project.outcome}
+              This project is an AI-powered interior design tool aimed at helping new homeowners visualize and furnish their living spaces. The platform allows users to upload a photo or layout of their home and receive fully furnished design recommendations, complete with purchasable furniture items. The goal was to make the interior design process more efficient, intuitive, and directly actionable by integrating both AI-driven recommendations and a commerce flow for purchasing items.
             </p>
+
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              I collaborated closely with an experienced team that included an award-winning interior designer, engineers focused on AI and computer vision, and fellow designers. My work primarily focused on user experience design across platforms, including creating mockups for both the mobile app and the web application. I also contributed to implementing and adapting the design system across responsive breakpoints.
+            </p>
+
+            <p className="text-stone-300 leading-relaxed text-sm sm:text-base"
+                 style={{ 
+                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                   fontWeight: '300',
+                   letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+                 }}>
+              The project was developed over a six-month period and is currently under an accelerator program. While not yet launched, a working prototype with interactive flows and high-fidelity visuals has been developed to communicate the concept.
+              </p>
+            </div>
+
+          {/* Infographic Blocks - Prominent Container */}
+          <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+            <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
+              <div className="max-w-6xl mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                  
+                  {/* UI/UX Block */}
+                  <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                    <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                      {/* Subtle geometric accent */}
+                      <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-white/[0.08] to-transparent rounded-full blur-sm opacity-60"></div>
+                      <div className="absolute bottom-4 left-4 w-12 h-0.5 bg-gradient-to-r from-white/[0.15] to-transparent rounded-full"></div>
+                      
+                      <div className="relative text-center" style={{ transform: 'skewY(1deg)' }}>
+                        <div className="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-2xl flex items-center justify-center relative group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                          <svg className="w-7 h-7 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+                          </svg>
+                        </div>
+                        <h3 className="text-stone-300 text-lg mb-4 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                            style={{ 
+                              fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                              letterSpacing: '0.02em'
+                            }}>
+                          UI/UX Design
+                        </h3>
+                        <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                 style={{ 
+                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                   fontWeight: '300',
+                   letterSpacing: '0.01em',
+                             lineHeight: '1.6'
+                 }}>
+                          Crafting intuitive digital experiences through user-centered design methodologies and systematic design thinking.
+              </p>
+                      </div>
+            </div>
           </div>
 
-          {/* Room Transformation Flow */}
-          <div className="mt-16 relative max-w-4xl mx-auto px-4 sm:px-0">
-            <div className="flex flex-col items-center relative">
-              {/* Initial Room with Tag */}
-              <div className="flex flex-col items-center mb-12 sm:mb-24">
-                <div className="relative w-64 sm:w-72 md:w-80 lg:w-96 aspect-[4/3] rounded-lg overflow-hidden mb-8">
-                  <Image
-                    src="/projects/figma-projects/philo-homes/empty-room.png"
-                    alt="Empty Room"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="relative">
-                  <div className="absolute left-1/2 -top-8 w-px h-8 bg-white/20"></div>
-                  <div className="relative px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/80">
-                    Living Room
-                  </div>
+                  {/* Mobile & Web Apps Block */}
+                  <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                    <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                      {/* Subtle geometric accent */}
+                      <div className="absolute top-4 right-4 w-6 h-6 bg-gradient-to-br from-stone-500/[0.12] to-transparent rounded-lg blur-sm opacity-60"></div>
+                      <div className="absolute bottom-4 left-4 w-10 h-0.5 bg-gradient-to-r from-white/[0.12] to-transparent rounded-full"></div>
+                      
+                      <div className="relative text-center" style={{ transform: 'skewY(1deg)' }}>
+                        <div className="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-2xl flex items-center justify-center relative group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                          <svg className="w-7 h-7 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                          </svg>
+                        </div>
+                        <h3 className="text-stone-300 text-lg mb-4 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                            style={{ 
+                              fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                              letterSpacing: '0.02em'
+                            }}>
+                          Mobile & Web
+                        </h3>
+                        <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                             letterSpacing: '0.01em',
+                             lineHeight: '1.6'
+               }}>
+                          Building responsive, cross-platform applications with seamless user experiences across devices.
+            </p>
+          </div>
         </div>
       </div>
 
-              {/* Style Options and Results */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16 lg:gap-32 w-full relative px-4 sm:px-0">
-                {/* Simple Dot Divider - hidden on mobile */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 hidden sm:block">
-                  <div className="w-1.5 h-1.5 bg-white/40 rounded-full" style={{ animation: 'bounceHorizontal 3s infinite' }}></div>
+                  {/* Design Systems Block */}
+                  <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                    <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                      {/* Subtle geometric accent */}
+                      <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-br from-white/[0.05] to-transparent rounded-full blur-sm opacity-60"></div>
+                      <div className="absolute bottom-4 left-4 w-8 h-0.5 bg-gradient-to-r from-white/[0.1] to-transparent rounded-full"></div>
+                      
+                      <div className="relative text-center" style={{ transform: 'skewY(1deg)' }}>
+                        <div className="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-2xl flex items-center justify-center relative group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                          <svg className="w-7 h-7 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+                          </svg>
             </div>
-
-                {/* Left Path - Transitional */}
-                <div className="relative flex flex-col items-center">
-                  <div className="relative mb-8 sm:mb-16">
-                    <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/80">
-                      Transitional Style
+                        <h3 className="text-stone-300 text-lg mb-4 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                            style={{ 
+                              fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                              letterSpacing: '0.02em'
+                            }}>
+                          Design Systems
+                        </h3>
+                        <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                           style={{ 
+                             fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                             fontWeight: '300',
+                             letterSpacing: '0.01em',
+                             lineHeight: '1.6'
+                           }}>
+                          Creating scalable component libraries and design foundations that ensure consistency across platforms.
+                        </p>
           </div>
-                    {/* Connecting line from Style to Image */}
-                    <div className="absolute left-1/2 -translate-x-1/2 h-8 sm:h-16 w-px bg-white/20 -bottom-8 sm:-bottom-16"></div>
         </div>
-                  <div className="relative w-full max-w-xs sm:max-w-none aspect-[4/3] rounded-lg overflow-hidden">
-                    <Image
-                      src="/projects/figma-projects/philo-homes/results-1.png"
-                      alt="Transitional Style Result"
-                      fill
-                      className="object-cover"
-                    />
                   </div>
-                </div>
 
-                {/* Right Path - Modern Farmhouse */}
-                <div className="relative flex flex-col items-center">
-                  <div className="relative mb-8 sm:mb-16">
-                    <div className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white/80">
-                      Modern Farmhouse
+                  {/* User Flow Block */}
+                  <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                    <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                      {/* Subtle geometric accent */}
+                      <div className="absolute top-4 right-4 w-5 h-5 bg-gradient-to-br from-white/[0.04] to-transparent rounded-md blur-sm opacity-60"></div>
+                      <div className="absolute bottom-4 left-4 w-9 h-0.5 bg-gradient-to-r from-white/[0.08] to-transparent rounded-full"></div>
+                      
+                      <div className="relative text-center" style={{ transform: 'skewY(1deg)' }}>
+                        <div className="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-2xl flex items-center justify-center relative group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                          <svg className="w-7 h-7 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5" />
+                          </svg>
+                        </div>
+                        <h3 className="text-stone-300 text-lg mb-4 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                            style={{ 
+                              fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                              letterSpacing: '0.02em'
+                            }}>
+                          User Flow
+                        </h3>
+                        <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                           style={{ 
+                             fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                             fontWeight: '300',
+                             letterSpacing: '0.01em',
+                             lineHeight: '1.6'
+                           }}>
+                          Mapping user journeys and optimizing pathways to create seamless, conversion-focused experiences.
+                        </p>
+                      </div>
                     </div>
-                    {/* Connecting line from Style to Image */}
-                    <div className="absolute left-1/2 -translate-x-1/2 h-8 sm:h-16 w-px bg-white/20 -bottom-8 sm:-bottom-16"></div>
                   </div>
-                  <div className="relative w-full max-w-xs sm:max-w-none aspect-[4/3] rounded-lg overflow-hidden">
-                    <Image
-                      src="/projects/figma-projects/philo-homes/results-2.png"
-                      alt="Modern Farmhouse Result"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -520,7 +603,351 @@ export default function Projects() {
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+      </div>
+
+      {/* Problem Statement & Insights */}
+      <div 
+        ref={(el) => { sectionRefs.current[`${project.id}-problem-insights`] = el; }}
+        id={`${project.id}-problem-insights`} 
+        className="mb-24 px-4 sm:px-0"
+      >
+        <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
+           style={{ 
+             fontFamily: 'Helvetica Neue, Arial, sans-serif',
+             fontWeight: '300',
+             letterSpacing: '0.12em'
+           }}>
+          PROBLEM STATEMENT
+        </h2>
+        
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-8 sm:space-y-10">
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              New homeowners often struggle to furnish and design their spaces in a cohesive, functional, and aesthetically aligned manner. Working with professional interior designers can be time-consuming, expensive, and inefficient, particularly when communication breaks down during iterative design phases. This project aimed to replace that slow, linear process with a more flexible, guided, and tech-assisted experience.
+            </p>
+
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              Through user interviews and mentor feedback, we identified several key insights:
+            </p>
+
+            {/* Research Insights Grid */}
+            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+              <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
+                <div className="max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                    
+                    {/* User Behavior Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-white/[0.08] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-12 h-0.5 bg-gradient-to-r from-white/[0.15] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] flex items-center justify-center group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                              <svg className="w-6 h-6 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              Computer Vision
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Reads room images to infer layout, lighting, and design opportunities
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 3D Modeling Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-6 h-6 bg-gradient-to-br from-stone-500/[0.12] to-transparent rounded-lg blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-10 h-0.5 bg-gradient-to-r from-white/[0.12] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] flex items-center justify-center group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                              <svg className="w-6 h-6 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                              </svg>
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              3D Modeling
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Used to simulate realistic spatial arrangements and ensure item dimensions are consistent with physical constraints
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Generative Design Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-br from-white/[0.05] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-8 h-0.5 bg-gradient-to-r from-white/[0.1] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] flex items-center justify-center group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                              <svg className="w-6 h-6 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423L16.5 15.75l.394 1.183a2.25 2.25 0 001.423 1.423L19.5 18.75l-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                              </svg>
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              Generative Design
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Provides furnishing recommendations based on design styles, layout rules, and product databases
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              We also consulted mentors who emphasized the importance of visual clarity, clean user flows, and age-appropriate interaction design. This shifted our direction toward larger content blocks, simplified instructions, and visually rich interfaces.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+      </div>
+
+      {/* Market Research & Positioning */}
+      <div 
+        ref={(el) => { sectionRefs.current[`${project.id}-market-research`] = el; }}
+        id={`${project.id}-market-research`} 
+        className="mb-24 px-4 sm:px-0"
+      >
+        <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+             letterSpacing: '0.12em'
+           }}>
+          MARKET RESEARCH
+        </h2>
+        
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-8 sm:space-y-10">
+            
+            {/* Market Gap Overview */}
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              Most existing solutions leverage computer vision to create "before and after" images of room designs. However, these tools often overlook critical constraints like physical layout, lighting, and existing furniture. Additionally, they rarely connect users to actual products for purchase, creating a gap between concept and execution.
+            </p>
+
+            {/* Differentiators Grid */}
+            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+              <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
+                <div className="max-w-5xl mx-auto">
+                  
+                  <p className="text-stone-300 leading-relaxed text-sm sm:text-base mb-12 text-center"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    This project stands apart by:
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    
+                    {/* Real Photo Analysis Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-white/[0.08] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-12 h-0.5 bg-gradient-to-r from-white/[0.15] to-transparent rounded-full"></div>
+                        
+                        <div className="relative text-center" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-2xl flex items-center justify-center relative group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                            <svg className="w-7 h-7 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                          <h3 className="text-stone-300 text-lg mb-4 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                              style={{ 
+                                fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                                letterSpacing: '0.02em'
+                              }}>
+                            Real Photo Analysis
+                          </h3>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Creating practical, personalized room designs based on actual room photos with attention to physical constraints.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Direct Commerce Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-6 h-6 bg-gradient-to-br from-stone-500/[0.12] to-transparent rounded-lg blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-10 h-0.5 bg-gradient-to-r from-white/[0.12] to-transparent rounded-full"></div>
+                        
+                        <div className="relative text-center" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-2xl flex items-center justify-center relative group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                            <svg className="w-7 h-7 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                          </div>
+                          <h3 className="text-stone-300 text-lg mb-4 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                              style={{ 
+                                fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                                letterSpacing: '0.02em'
+                              }}>
+                            Direct Commerce
+                          </h3>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Offering purchasable items directly linked to the generated designs, bridging concept to execution.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 3D Modeling Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-br from-white/[0.05] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-8 h-0.5 bg-gradient-to-r from-white/[0.1] to-transparent rounded-full"></div>
+                        
+                        <div className="relative text-center" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-2xl flex items-center justify-center relative group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                            <svg className="w-7 h-7 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                            </svg>
+                          </div>
+                          <h3 className="text-stone-300 text-lg mb-4 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                              style={{ 
+                                fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                                letterSpacing: '0.02em'
+                              }}>
+                            3D Modeling
+                          </h3>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Exploring both 2D image-based AI and full 3D modeling to improve design accuracy and visualization.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Competitive Context */}
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              While some companies have AR tools and generative AI, they focus more on item-level previews than full-space furnishing. Moreover, many existing solutions fail to provide an end-to-end experience from design to shopping.
+            </p>
+
+            {/* Validation Summary */}
+            <p className="text-stone-300 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              We also validated demand through local interviews, focus groups, and the experience of the interior designer on the team, who had firsthand insights from working with real clients.
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
       </div>
 
       {/* Design Systems */}
@@ -529,7 +956,7 @@ export default function Projects() {
         id={`${project.id}-design-systems`} 
         className="mb-24 px-4 sm:px-0"
       >
-        <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest text-center"
+        <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
            style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
              fontWeight: '300',
@@ -538,442 +965,1286 @@ export default function Projects() {
           DESIGN SYSTEMS
         </h2>
         
-        {/* Single Column Layout with increased spacing */}
-        <div className="max-w-2xl mx-auto space-y-32 px-4 sm:px-0">
-          
-          {/* Typography Section */}
-          <div className="relative w-fit mx-auto space-y-12">
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-8 sm:space-y-10">
             
-            {/* Mobile indicators above image - visible only on mobile */}
-            <div className="block sm:hidden text-center mb-4">
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-white/70 text-sm italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  headings
-                </span>
-                <div className="w-6 h-px bg-white/60"></div>
-                <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
-              </div>
-            </div>
+            {/* Introduction */}
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              The project's design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
+            </p>
 
-            {/* Logo */}
-            <div className="relative w-fit mx-auto mb-16">
-              <Image
-                src="/projects/figma-projects/philo-homes/philo-logo.png"
-                alt="Philo Logo"
-                width={200}
-                height={100}
-                className="h-12 sm:h-14 md:h-16 w-auto object-contain cursor-pointer hover:opacity-80 transition-opacity"
-                onClick={() => setSelectedImage("/projects/figma-projects/philo-homes/philo-logo.png")}
-              />
-              
-              {/* Desktop line indicators - hidden on mobile */}
-              <div className="absolute top-0 -left-32 transform hidden sm:block">
-                <div className="flex items-center">
-                  <span className="text-white/70 text-sm italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    headings
-                  </span>
-                  <div className="w-8 h-px bg-white/60 ml-2"></div>
-                  <div className="w-1.5 h-1.5 bg-white/60 rounded-full ml-1"></div>
+            {/* Visual Elements Grid */}
+            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+              <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
+                <div className="max-w-6xl mx-auto">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
+                    
+                    {/* Typography Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-8 sm:p-10 lg:p-12 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08] min-h-[320px] sm:min-h-[360px]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-6 right-6 w-8 h-8 bg-gradient-to-br from-white/[0.08] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-6 left-6 w-12 h-0.5 bg-gradient-to-r from-white/[0.15] to-transparent rounded-full"></div>
+                        
+                        <div className="relative text-center h-full flex flex-col" style={{ transform: 'skewY(1deg)' }}>
+                          <h3 className="text-stone-300 text-xl mb-8 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                              style={{ 
+                                fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                                letterSpacing: '0.02em'
+                              }}>
+                            Typography
+                          </h3>
+                          
+                          <div className="flex-1 flex flex-col justify-center">
+                            {/* Logo with responsive indicators */}
+                            <div className="relative w-fit mx-auto mb-8">
+                              
+                              {/* Typography indicator above - desktop */}
+                              <div className="hidden lg:block text-center mb-3">
+                                <div className="flex items-center justify-center text-sm">
+                                  <span className="text-stone-400 italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                                    headings
+                                  </span>
+                                  <div className="w-6 h-px bg-stone-400/60 ml-2"></div>
+                                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full ml-1"></div>
+                                </div>
+                              </div>
+                              
+                              <Image
+                                src="/projects/figma-projects/philo-homes/philo-logo.png"
+                                alt="Philo Logo"
+                                width={200}
+                                height={100}
+                                className="h-12 sm:h-14 lg:h-16 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                              />
+                              
+                              {/* Typography indicator below - desktop */}
+                              <div className="hidden lg:block text-center mt-3">
+                                <div className="flex items-center justify-center text-sm">
+                                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mr-1"></div>
+                                  <div className="w-6 h-px bg-stone-400/60 mr-2"></div>
+                                  <span className="text-stone-400 italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
+                                    body
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            {/* Mobile indicators */}
+                            <div className="block lg:hidden space-y-3 text-sm">
+                              <div className="flex items-center justify-center gap-3">
+                                <span className="text-stone-400 italic">headings</span>
+                                <div className="w-4 h-px bg-stone-400/60"></div>
+                                <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full"></div>
+                              </div>
+                              <div className="flex items-center justify-center gap-3">
+                                <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full"></div>
+                                <div className="w-4 h-px bg-stone-400/60"></div>
+                                <span className="text-stone-400 italic">body</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Color Palette Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-8 sm:p-10 lg:p-12 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08] min-h-[320px] sm:min-h-[360px]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-6 right-6 w-6 h-6 bg-gradient-to-br from-stone-500/[0.12] to-transparent rounded-lg blur-sm opacity-60"></div>
+                        <div className="absolute bottom-6 left-6 w-10 h-0.5 bg-gradient-to-r from-white/[0.12] to-transparent rounded-full"></div>
+                        
+                        <div className="relative text-center h-full flex flex-col" style={{ transform: 'skewY(1deg)' }}>
+                          <h3 className="text-stone-300 text-xl mb-8 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                              style={{ 
+                                fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                                letterSpacing: '0.02em'
+                              }}>
+                            Color Palette
+                          </h3>
+                          
+                          <div className="flex-1 flex flex-col justify-center">
+                            {/* Color dots with enhanced spacing */}
+                            <div className="mb-6">
+                              <div className="grid grid-cols-3 gap-4 sm:gap-5 lg:gap-6 max-w-48 mx-auto">
+                                <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-slate-900 rounded-full shadow-lg group-hover:scale-110 transition-transform duration-500 mx-auto"></div>
+                                <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-stone-100 rounded-full shadow-lg group-hover:scale-110 transition-transform duration-500 mx-auto"></div>
+                                <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-amber-600 rounded-full shadow-lg group-hover:scale-110 transition-transform duration-500 mx-auto"></div>
+                                <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-slate-600 rounded-full shadow-lg group-hover:scale-110 transition-transform duration-500 mx-auto"></div>
+                                <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-red-600 rounded-full shadow-lg group-hover:scale-110 transition-transform duration-500 mx-auto"></div>
+                                <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-indigo-400 rounded-full shadow-lg group-hover:scale-110 transition-transform duration-500 mx-auto"></div>
+                              </div>
+                            </div>
+                            
+                            <p className="text-stone-400 text-sm group-hover:text-stone-300 transition-colors duration-500"
+                               style={{ 
+                                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                                 fontWeight: '300',
+                                 letterSpacing: '0.01em'
+                               }}>
+                              Six core colors with usage guidelines
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Components Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-8 sm:p-10 lg:p-12 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08] min-h-[320px] sm:min-h-[360px]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-6 right-6 w-7 h-7 bg-gradient-to-br from-white/[0.05] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-6 left-6 w-8 h-0.5 bg-gradient-to-r from-white/[0.1] to-transparent rounded-full"></div>
+                        
+                        <div className="relative text-center h-full flex flex-col" style={{ transform: 'skewY(1deg)' }}>
+                          <h3 className="text-stone-300 text-xl mb-8 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                              style={{ 
+                                fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                                letterSpacing: '0.02em'
+                              }}>
+                            Components
+                          </h3>
+                          
+                          <div className="flex-1 flex flex-col justify-center">
+                            {/* Button Components */}
+                            <div className="mb-6">
+                              <div className="flex flex-col gap-4 sm:gap-5 items-center justify-center">
+                                <Image
+                                  src="/projects/figma-projects/philo-homes/back-button.png"
+                                  alt="Back Button Component"
+                                  width={120}
+                                  height={45}
+                                  className="h-8 sm:h-10 lg:h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                                />
+                                <Image
+                                  src="/projects/figma-projects/philo-homes/next-button.png"
+                                  alt="Next Button Component"
+                                  width={120}
+                                  height={45}
+                                  className="h-8 sm:h-10 lg:h-12 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                                />
+                              </div>
+                            </div>
+                            
+                            <p className="text-stone-400 text-sm group-hover:text-stone-300 transition-colors duration-500"
+                               style={{ 
+                                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                                 fontWeight: '300',
+                                 letterSpacing: '0.01em'
+                               }}>
+                              Reusable button library & grid structures
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
               </div>
-              
-              <div className="absolute bottom-0 -right-32 transform hidden sm:block">
-                <div className="flex items-center">
-                  <div className="w-1.5 h-1.5 bg-white/60 rounded-full mr-1"></div>
-                  <div className="w-8 h-px bg-white/60 mr-2"></div>
-                  <span className="text-white/70 text-sm italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                    body
-                  </span>
-                </div>
-              </div>
             </div>
 
-            {/* Mobile indicators below image - visible only on mobile */}
-            <div className="block sm:hidden text-center mt-4">
-              <div className="flex items-center justify-center gap-2">
-                <div className="w-1.5 h-1.5 bg-white/60 rounded-full"></div>
-                <div className="w-6 h-px bg-white/60"></div>
-                <span className="text-white/70 text-sm italic" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  body
-                </span>
-              </div>
-            </div>
-          </div>
+            {/* Application Context */}
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              While I was not responsible for creating the system, I applied it rigorously in my design work—especially when adapting the desktop-first system for mobile platforms. The system exists primarily in Figma and is documented with high-level visual and written guidelines to ensure consistency across screens and use cases.
+            </p>
 
-          {/* Color Palette Section */}
-          <div className="mt-16 space-y-8">
-            {/* Enhanced color dots container */}
-            <div className="max-w-md mx-auto">
-              <div className="flex flex-wrap gap-4 sm:gap-8 md:gap-10 lg:gap-12 items-center justify-center">
-                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-slate-900 rounded-full shadow-lg"></div>
-                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-stone-100 rounded-full shadow-lg"></div>
-                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-amber-600 rounded-full shadow-lg"></div>
-                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-slate-600 rounded-full shadow-lg"></div>
-                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-red-600 rounded-full shadow-lg"></div>
-                <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 bg-indigo-400 rounded-full shadow-lg"></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Button Components */}
-          <div className="flex gap-8 sm:gap-10 md:gap-12 items-center justify-center">
-            <Image
-              src="/projects/figma-projects/philo-homes/back-button.png"
-              alt="Back Button Component"
-              width={150}
-              height={50}
-              className="h-8 sm:h-10 md:h-12 w-auto object-contain"
-            />
-            <Image
-              src="/projects/figma-projects/philo-homes/next-button.png"
-              alt="Next Button Component"
-              width={150}
-              height={50}
-              className="h-8 sm:h-10 md:h-12 w-auto object-contain"
-            />
           </div>
         </div>
       </div>
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
       </div>
 
-      {/* User Flow */}
+      {/* User Experience & Interface */}
         <div 
-          ref={(el) => { sectionRefs.current[`${project.id}-user-flow`] = el; }}
-          id={`${project.id}-user-flow`} 
+          ref={(el) => { sectionRefs.current[`${project.id}-user-experience-interface`] = el; }}
+          id={`${project.id}-user-experience-interface`} 
           className="mb-24 px-4 sm:px-0"
         >
-        <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest text-center"
+        <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
              style={{ 
              fontFamily: 'Helvetica Neue, Arial, sans-serif',
                fontWeight: '300',
              letterSpacing: '0.12em'
              }}>
-          USER FLOW
+          USER EXPERIENCE & INTERFACE
           </h2>
 
-        {/* User Flow Section */}
-        <div className="max-w-xl mx-auto space-y-6 px-4 sm:px-0">
-          {/* Step 1 */}
-          <div className="relative group">
-            {/* Unified centered layout for both mobile and desktop */}
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <span className="text-white/70 text-xs font-light">01</span>
-              </div>
-              <div className="text-center">
-                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  Photo Upload
-                </h3>
-                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  <span className="block sm:hidden">Upload room photos</span>
-                  <span className="hidden sm:block">Upload room photos through drag-and-drop or camera capture</span>
-                </p>
-              </div>
-            </div>
-            {/* Horizontal connecting line */}
-            <div className="flex justify-center mt-4">
-              <div className="w-16 h-px bg-white/20"></div>
-            </div>
-          </div>
-
-          {/* Step 2 */}
-          <div className="relative group">
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <span className="text-white/70 text-xs font-light">02</span>
-              </div>
-              <div className="text-center">
-                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  AI Analysis
-                </h3>
-                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  <span className="block sm:hidden">Analyze room dimensions</span>
-                  <span className="hidden sm:block">Analyze room dimensions, lighting, and furniture layout</span>
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center mt-4">
-              <div className="w-16 h-px bg-white/20"></div>
-            </div>
-          </div>
-
-          {/* Step 3 */}
-          <div className="relative group">
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <span className="text-white/70 text-xs font-light">03</span>
-              </div>
-              <div className="text-center">
-                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  Style Selection
-                </h3>
-                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  <span className="block sm:hidden">Browse design styles</span>
-                  <span className="hidden sm:block">Browse curated design styles or create custom preferences</span>
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center mt-4">
-              <div className="w-16 h-px bg-white/20"></div>
-            </div>
-          </div>
-
-          {/* Step 4 */}
-          <div className="relative group">
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <span className="text-white/70 text-xs font-light">04</span>
-              </div>
-              <div className="text-center">
-                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  Design Generation
-                </h3>
-                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  <span className="block sm:hidden">Generate design options</span>
-                  <span className="hidden sm:block">Generate multiple design options with realistic visualizations</span>
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center mt-4">
-              <div className="w-16 h-px bg-white/20"></div>
-            </div>
-          </div>
-
-          {/* Step 5 */}
-          <div className="relative group">
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-                <span className="text-white/70 text-xs font-light">05</span>
-              </div>
-              <div className="text-center">
-                <h3 className="text-white/90 text-sm sm:text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  Direct Purchase
-                </h3>
-                <p className="text-white/50 text-xs sm:text-sm leading-relaxed" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}>
-                  <span className="block sm:hidden">One-click purchase</span>
-                  <span className="hidden sm:block">One-click purchase from curated partner stores</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Animated Dot Divider */}
-      <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
-      </div>
-
-      {/* Interface Designs */}
-      {project.screens && project.screens.length > 0 && (
-        <div 
-          ref={(el) => { sectionRefs.current[`${project.id}-interface`] = el; }}
-          id={`${project.id}-interface`} 
-          className="mb-24 px-4 sm:px-0"
-        >
-          <h2 className="text-white/60 mb-16 leading-tight text-xs sm:text-sm tracking-widest text-center"
-             style={{ 
-               fontFamily: 'Helvetica Neue, Arial, sans-serif',
-               fontWeight: '300',
-               letterSpacing: '0.12em'
-             }}>
-            INTERFACE
-          </h2>
-
-          {/* Large Preview Area - Desktop only */}
-          <div className="mb-8 px-4 sm:px-0 hidden sm:block">
-            <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
-              {(selectedMockup || project.screens[0]) && (
-                <Image
-                  src={selectedMockup || project.screens[0]}
-                  alt="Selected Interface Mockup"
-                  fill
-                  className="object-contain bg-black/20 backdrop-blur-sm"
-                  priority
-                />
-              )}
-            </div>
-          </div>
-
-          {/* Mockup Thumbnails - Desktop only */}
-          <div className="hidden sm:flex gap-2 sm:gap-4 overflow-x-auto pb-4 snap-x snap-mandatory px-2 sm:px-0">
-            {project.screens.map((image, index) => (
-              <div 
-                key={index} 
-                className="group relative shrink-0 snap-center cursor-pointer"
-                style={{ width: 'calc(22% - 6px)' }}
-                onClick={() => setSelectedMockup(image)}
-              >
-                <div className="relative overflow-hidden rounded-xl transition-transform">
-                  {selectedMockup === image && (
-                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white/90 z-10"></div>
-                  )}
-                  <div className="aspect-[4/3]">
-                    <Image
-                      src={image}
-                      alt={`Interface Mockup ${index + 1}`}
-                      fill
-                      className={`object-cover transform transition-all duration-500 ${
-                        selectedMockup === image 
-                          ? 'brightness-100' 
-                          : 'brightness-75 hover:brightness-100'
-                      }`}
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile Large Images - Mobile only */}
-          <div className="block sm:hidden space-y-16 px-6">
-            {project.screens.map((image, index) => {
-              // Make later 3 images smaller, especially horizontal ones
-              const isLaterImage = index >= 1; // Images 2, 3, 4 (0-indexed: 1, 2, 3)
-              const isHorizontal = index === 1 || index === 2; // Middle two are horizontal
-              
-              return (
-                <div 
-                  key={index} 
-                  className={`relative rounded-xl overflow-hidden mx-auto ${
-                    isLaterImage 
-                      ? isHorizontal 
-                        ? 'aspect-[16/9] max-w-80' // Horizontal images: much wider
-                        : 'aspect-[9/16] max-w-52'  // Later vertical images: smaller
-                      : 'aspect-[9/16] max-w-64'    // First image: original size
-                  }`}
-                >
-                  <Image
-                    src={image}
-                    alt={`Interface Mockup ${index + 1}`}
-                    fill
-                    className={`object-cover ${
-                      isLaterImage 
-                        ? isHorizontal 
-                          ? 'scale-110'  // Less scaling for horizontal images
-                          : 'scale-115'  // Slightly less scaling for later vertical
-                        : 'scale-125'    // Original scaling for first image
-                    }`}
-                    style={{ objectPosition: 'center center' }}
-                    onClick={() => setSelectedImage(image)}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* Animated Dot Divider */}
-      <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
-      </div>
-
-      {/* Components */}
-      {project.components && project.components.length > 0 && (
-        <div 
-          ref={(el) => { sectionRefs.current[`${project.id}-components`] = el; }}
-          id={`${project.id}-components`} 
-          className="mb-24"
-        >
-          <h2 className="text-3xl text-white mb-12 leading-tight text-center"
-             style={{ 
-               fontFamily: 'Georgia, serif',
-               fontWeight: '300',
-               letterSpacing: '0.01em'
-             }}>
-            Design Components
-          </h2>
-        </div>
-      )}
-
-      {/* Physical Products */}
-      {project.physicalProducts && (
-        <div className="mb-24">
-          {/* Elastic Book Cover */}
-          <div className="mb-20">
-            <h2 className="text-3xl text-white mb-6 leading-tight text-center"
-               style={{ 
-                 fontFamily: 'Georgia, serif',
-                 fontWeight: '300',
-                 letterSpacing: '0.01em'
-               }}>
-              {project.physicalProducts.elasticBookCover.title}
-            </h2>
-            <p className="text-white/70 mb-12 leading-loose text-lg text-center"
-               style={{ 
-                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                 fontWeight: '200',
-                 letterSpacing: '0.01em'
-               }}>
-              {project.physicalProducts.elasticBookCover.description}
-            </p>
-            <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-              {project.physicalProducts.elasticBookCover.images.map((image, index) => (
-                <div key={index} className="break-inside-avoid">
-                  <div className="bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-colors cursor-pointer">
-                    {image && (
-                      <Image
-                        src={image}
-                        alt={`Book Cover ${index + 1}`}
-                        width={400}
-                        height={600}
-                        className="w-full h-auto rounded-xl"
-                        onClick={() => setSelectedImage(image)}
-                      />
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Premium Fruit Giftbox */}
-          <div>
-            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
-                style={{ 
-                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                  fontWeight: '300',
-                  letterSpacing: '0.10em'
-                }}>
-              PREMIUM FRUIT GIFTBOX
-            </h2>
-            <p className="text-white/90 mb-8 leading-relaxed text-center px-4 sm:px-0"
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-8 sm:space-y-10">
+            
+            {/* Introduction */}
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
                style={{ 
                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
                  fontWeight: '300',
                  letterSpacing: '0.01em',
-                 fontSize: '14px',
-                 lineHeight: '1.5'
+                 lineHeight: '1.6'
                }}>
-              {project.physicalProducts.premiumFruit.description}
+              The primary user journey was carefully structured to be intuitive and accessible, particularly for users who may not be tech-savvy. The goal was to make the interface feel like a guided, step-by-step walkthrough rather than an overwhelming dashboard. Instead of large tutorial videos or dense blocks of text, micro-guidance is built into each step.
             </p>
-            <div className="grid gap-8">
-              {project.physicalProducts.premiumFruit.images.map((image, index) => (
-                <div key={index} className="max-w-2xl mx-auto">
-                  <div className="bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-colors cursor-pointer">
-                    {image && (
-                      <Image
-                        src={image}
-                        alt={`Premium Fruit ${index + 1}`}
-                        width={800}
-                        height={600}
-                        className="w-full h-auto rounded-xl"
-                        onClick={() => setSelectedImage(image)}
-                      />
-                    )}
-                  </div>
+
+            {/* User Journey Steps */}
+            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+              <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
+                <div className="max-w-5xl mx-auto">
+                  
+                  <p className="text-stone-300 leading-relaxed text-sm sm:text-base mb-12 text-center"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    The flow is as follows:
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    
+                    {/* Step 1: Layout Specification */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-white/[0.08] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-12 h-0.5 bg-gradient-to-r from-white/[0.15] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/[0.15] to-white/[0.08] flex items-center justify-center text-stone-300 text-sm font-light group-hover:from-white/[0.2] group-hover:to-white/[0.12] transition-all duration-500">
+                              1
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              Layout Specification
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Users specify the layout of their home (e.g., number and types of rooms)
+                          </p>
+                        </div>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Step 2: Photo Upload */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-6 h-6 bg-gradient-to-br from-stone-500/[0.12] to-transparent rounded-lg blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-10 h-0.5 bg-gradient-to-r from-white/[0.12] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/[0.15] to-white/[0.08] flex items-center justify-center text-stone-300 text-sm font-light group-hover:from-white/[0.2] group-hover:to-white/[0.12] transition-all duration-500">
+                              2
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              Photo Upload
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            For each room, they upload a photo—either empty or already furnished
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Step 3: Style Selection */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-br from-white/[0.05] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-8 h-0.5 bg-gradient-to-r from-white/[0.1] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/[0.15] to-white/[0.08] flex items-center justify-center text-stone-300 text-sm font-light group-hover:from-white/[0.2] group-hover:to-white/[0.12] transition-all duration-500">
+                              3
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              Style Selection
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            They select a preferred style and room type
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Step 4: AI Generation */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-5 h-5 bg-gradient-to-br from-white/[0.04] to-transparent rounded-md blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-9 h-0.5 bg-gradient-to-r from-white/[0.08] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/[0.15] to-white/[0.08] flex items-center justify-center text-stone-300 text-sm font-light group-hover:from-white/[0.2] group-hover:to-white/[0.12] transition-all duration-500">
+                              4
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              AI Generation
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            The AI generates a fully furnished version of each room, with styled images and itemized lists (including product names, prices, and quantities)
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Step 5: Shopping & Purchase */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out md:col-span-2 lg:col-span-2" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-9 h-9 bg-gradient-to-br from-white/[0.09] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-14 h-0.5 bg-gradient-to-r from-white/[0.18] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-white/[0.15] to-white/[0.08] flex items-center justify-center text-stone-300 text-sm font-light group-hover:from-white/[0.2] group-hover:to-white/[0.12] transition-all duration-500">
+                              5
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              Shopping & Purchase
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Users can add items to their cart, swap them out for alternatives, and proceed to purchase with built-in checkout, payment, and delivery functionality
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Challenges */}
+            <div className="space-y-6">
+              <h3 className="text-stone-300 text-lg font-light tracking-wide" 
+                  style={{ 
+                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                    letterSpacing: '0.02em'
+                  }}>
+                Challenges included:
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Visualizing a high-impact design experience without having a fully trained AI model
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Balancing the fixed recommendations of AI-generated results with the exploratory nature of e-commerce browsing
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Differentiating flows between mobile (optimized for scanning and on-the-go interaction) and web (optimized for in-depth browsing and purchase decisions)
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Interface Mockups */}
+            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+              <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
+                <div className="max-w-6xl mx-auto">
+                  
+                  <p className="text-stone-300 leading-relaxed text-sm sm:text-base mb-12 text-center"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Interface Designs
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    {/* Login Mockup - Vertical */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-80 overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-6 h-6 bg-gradient-to-br from-stone-500/[0.12] to-transparent rounded-full blur-sm opacity-60"></div>
+                        
+                        <div className="relative flex flex-col h-full" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex-1 flex items-center justify-center mb-6">
+                            <div className="h-56 w-32 rounded-xl overflow-hidden shadow-lg">
+                              <Image
+                                src="/projects/figma-projects/philo-homes/login-mockup.png"
+                                alt="Login Interface"
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                            </div>
+                          </div>
+                          <h4 className="text-stone-300 text-sm font-light text-center group-hover:text-stone-100 transition-colors duration-500 mt-auto" 
+                              style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                            Login
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Homepage Mockup - Horizontal */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-80 overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-5 h-5 bg-gradient-to-br from-white/[0.04] to-transparent rounded-md blur-sm opacity-60"></div>
+                        
+                        <div className="relative flex flex-col h-full" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex-1 flex items-center justify-center mb-6">
+                            <div className="h-40 w-72 rounded-xl overflow-hidden shadow-lg">
+                              <Image
+                                src="/projects/figma-projects/philo-homes/homepage-mockup.png"
+                                alt="Homepage Interface"
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                            </div>
+                          </div>
+                          <h4 className="text-stone-300 text-sm font-light text-center group-hover:text-stone-100 transition-colors duration-500 mt-auto" 
+                              style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                            Homepage
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Capture Mockup - Horizontal */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-80 overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-br from-white/[0.05] to-transparent rounded-full blur-sm opacity-60"></div>
+                        
+                        <div className="relative flex flex-col h-full" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex-1 flex items-center justify-center mb-6">
+                            <div className="h-40 w-72 rounded-xl overflow-hidden shadow-lg">
+                              <Image
+                                src="/projects/figma-projects/philo-homes/capture-mockup.png"
+                                alt="Photo Capture Interface"
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                            </div>
+                          </div>
+                          <h4 className="text-stone-300 text-sm font-light text-center group-hover:text-stone-100 transition-colors duration-500 mt-auto" 
+                              style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                            Photo Capture
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Results Mockup - Vertical */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-80 overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-4 h-4 bg-gradient-to-br from-stone-500/[0.08] to-transparent rounded-sm blur-sm opacity-60"></div>
+                        
+                        <div className="relative flex flex-col h-full" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex-1 flex items-center justify-center mb-6">
+                            <div className="h-56 w-32 rounded-xl overflow-hidden shadow-lg">
+                              <Image
+                                src="/projects/figma-projects/philo-homes/results-mockup.png"
+                                alt="Results Interface"
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                            </div>
+                          </div>
+                          <h4 className="text-stone-300 text-sm font-light text-center group-hover:text-stone-100 transition-colors duration-500 mt-auto" 
+                              style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                            Results
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Challenges */}
+            <div className="space-y-6">
+              <h3 className="text-stone-300 text-lg font-light tracking-wide" 
+                  style={{ 
+                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                    letterSpacing: '0.02em'
+                  }}>
+                Challenges included:
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Visualizing a high-impact design experience without having a fully trained AI model
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Balancing the fixed recommendations of AI-generated results with the exploratory nature of e-commerce browsing
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Differentiating flows between mobile (optimized for scanning and on-the-go interaction) and web (optimized for in-depth browsing and purchase decisions)
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* AI Generation Results */}
+            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+              <div className="py-8 sm:py-10 px-4 sm:px-8 lg:px-12 xl:px-16">
+                <div className="max-w-7xl mx-auto">
+                  
+                  {/* Main Process Flow */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                    
+                    {/* Left Column: Input Process */}
+                    <div className="space-y-6">
+                      
+                      {/* Step 1: Photo Upload */}
+                      <div className="group transform hover:scale-[1.01] transition-all duration-700 ease-out" style={{ transform: 'skewY(-0.5deg)' }}>
+                        <div className="relative bg-gradient-to-br from-stone-500/[0.12] to-stone-600/[0.06] backdrop-blur-xl rounded-2xl p-5 sm:p-6 border border-stone-500/[0.2] hover:border-stone-400/[0.35] transition-all duration-700 overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                          {/* Step indicator */}
+                          <div className="absolute top-4 left-4 w-7 h-7 bg-stone-500/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                            <span className="text-stone-200 text-sm font-semibold">1</span>
+                          </div>
+                          
+                          {/* Geometric accent */}
+                          <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-white/[0.15] to-transparent rounded-full blur-sm opacity-40"></div>
+                          <div className="absolute bottom-4 left-4 w-12 h-0.5 bg-gradient-to-r from-white/[0.25] to-transparent rounded-full"></div>
+                          
+                          <div className="relative mt-6" style={{ transform: 'skewY(0.5deg)' }}>
+                            <h4 className="text-stone-200 text-lg font-light mb-2 tracking-wide" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                              Original Room Photo
+                            </h4>
+                            <p className="text-stone-400 text-sm mb-4 leading-relaxed"
+                               style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                              Start with an empty or existing room layout
+                            </p>
+                            
+                            <div className="aspect-[16/9] rounded-xl overflow-hidden mb-3 relative group-hover:scale-[1.02] transition-transform duration-700">
+                              <Image
+                                src="/projects/figma-projects/philo-homes/empty-room.png"
+                                alt="Original Empty Room"
+                                fill
+                                className="object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                            </div>
+
+                            {/* Room Type Tag */}
+                            <div className="flex justify-center">
+                              <div className="px-4 py-2 bg-stone-500/12 rounded-full border border-white/20 backdrop-blur-sm">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-2 h-2 bg-white/70 rounded-full"></div>
+                                  <span className="text-stone-300 text-sm font-medium" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                    Living Room
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Step 2: Style Selection */}
+                      <div className="group transform hover:scale-[1.01] transition-all duration-700 ease-out" style={{ transform: 'skewY(-0.5deg)' }}>
+                        <div className="relative bg-gradient-to-br from-stone-500/[0.12] to-stone-600/[0.06] backdrop-blur-xl rounded-2xl p-5 sm:p-6 border border-stone-500/[0.2] hover:border-stone-400/[0.35] transition-all duration-700 overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                          {/* Step indicator */}
+                          <div className="absolute top-4 left-4 w-7 h-7 bg-stone-500/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                            <span className="text-stone-200 text-sm font-semibold">2</span>
+                          </div>
+                          
+                          {/* Geometric accent */}
+                          <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-br from-white/[0.12] to-transparent rounded-lg blur-sm opacity-40"></div>
+                          <div className="absolute bottom-4 left-4 w-10 h-0.5 bg-gradient-to-r from-white/[0.2] to-transparent rounded-full"></div>
+                          
+                          <div className="relative mt-6" style={{ transform: 'skewY(0.5deg)' }}>
+                            <h4 className="text-stone-200 text-lg font-light mb-2 tracking-wide" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                              Design Style Selection
+                            </h4>
+                            <p className="text-stone-400 text-sm mb-4 leading-relaxed"
+                               style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                              Choose your preferred interior design aesthetic
+                            </p>
+
+                            <div className="space-y-3">
+                              {/* Transitional Option */}
+                              <div 
+                                className={`transitional-option group/style relative p-4 rounded-xl border-2 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-white/[0.1] ${
+                                  selectedStyle === 'transitional' 
+                                    ? 'bg-gradient-to-r from-white/[0.12] to-white/[0.08] border-white/[0.25] hover:border-white/[0.4]' 
+                                    : 'bg-gradient-to-r from-stone-500/[0.12] to-white/[0.03] border-white/[0.15] hover:border-white/[0.3] opacity-70 hover:opacity-100'
+                                }`}
+                                onMouseEnter={() => {
+                                  const results1 = document.querySelector('.results-1-image');
+                                  const results2 = document.querySelector('.results-2-image');
+                                  if (results1) results1.classList.add('highlighted');
+                                  if (results2) results2.classList.remove('highlighted');
+                                }}
+                                onMouseLeave={() => {
+                                  // Reset to selected state when not hovering
+                                  const results1 = document.querySelector('.results-1-image');
+                                  const results2 = document.querySelector('.results-2-image');
+                                  if (selectedStyle === 'transitional') {
+                                    if (results1) results1.classList.add('highlighted');
+                                    if (results2) results2.classList.remove('highlighted');
+                                  } else {
+                                    if (results1) results1.classList.remove('highlighted');
+                                    if (results2) results2.classList.add('highlighted');
+                                  }
+                                }}
+                                onClick={() => {
+                                  setSelectedStyle('transitional');
+                                  const results1 = document.querySelector('.results-1-image');
+                                  const results2 = document.querySelector('.results-2-image');
+                                  if (results1) results1.classList.add('highlighted');
+                                  if (results2) results2.classList.remove('highlighted');
+                                }}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-3">
+                                    <div className={`w-4 h-4 rounded-full shadow-lg ${
+                                      selectedStyle === 'transitional' 
+                                        ? 'bg-gradient-to-br from-white/[0.8] to-white/[0.6]' 
+                                        : 'border-2 border-white/[0.5]'
+                                    }`}></div>
+                                    <span className={`text-base font-medium ${
+                                      selectedStyle === 'transitional' ? 'text-stone-100' : 'text-stone-300'
+                                    }`} style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                      Transitional
+                                    </span>
+                                  </div>
+                                  {selectedStyle === 'transitional' && (
+                                    <div className="w-5 h-5 bg-white/90 rounded-full flex items-center justify-center">
+                                      <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                      </svg>
+                                    </div>
+                                  )}
+                                </div>
+                                <p className={`text-sm mt-2 ${
+                                  selectedStyle === 'transitional' ? 'text-stone-400' : 'text-stone-400'
+                                }`} style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                  Classic meets contemporary design
+                                </p>
+                              </div>
+
+                              {/* Modern Farmhouse Option */}
+                              <div 
+                                className={`farmhouse-option group/style relative p-4 rounded-xl border transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-white/[0.1] ${
+                                  selectedStyle === 'farmhouse' 
+                                    ? 'bg-gradient-to-r from-white/[0.12] to-white/[0.08] border-white/[0.25] hover:border-white/[0.4]' 
+                                    : 'bg-gradient-to-r from-stone-500/[0.12] to-white/[0.03] border-white/[0.15] hover:border-white/[0.3] opacity-70 hover:opacity-100'
+                                }`}
+                                onMouseEnter={() => {
+                                  const results1 = document.querySelector('.results-1-image');
+                                  const results2 = document.querySelector('.results-2-image');
+                                  if (results1) results1.classList.remove('highlighted');
+                                  if (results2) results2.classList.add('highlighted');
+                                }}
+                                onMouseLeave={() => {
+                                  // Reset to selected state when not hovering
+                                  const results1 = document.querySelector('.results-1-image');
+                                  const results2 = document.querySelector('.results-2-image');
+                                  if (selectedStyle === 'transitional') {
+                                    if (results1) results1.classList.add('highlighted');
+                                    if (results2) results2.classList.remove('highlighted');
+                                  } else {
+                                    if (results1) results1.classList.remove('highlighted');
+                                    if (results2) results2.classList.add('highlighted');
+                                  }
+                                }}
+                                onClick={() => {
+                                  setSelectedStyle('farmhouse');
+                                  const results1 = document.querySelector('.results-1-image');
+                                  const results2 = document.querySelector('.results-2-image');
+                                  if (results1) results1.classList.remove('highlighted');
+                                  if (results2) results2.classList.add('highlighted');
+                                }}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-3">
+                                    <div className={`w-4 h-4 rounded-full shadow-lg ${
+                                      selectedStyle === 'farmhouse' 
+                                        ? 'bg-gradient-to-br from-white/[0.8] to-white/[0.6]' 
+                                        : 'border-2 border-white/[0.5]'
+                                    }`}></div>
+                                    <span className={`text-base ${
+                                      selectedStyle === 'farmhouse' ? 'text-stone-100 font-medium' : 'text-stone-300'
+                                    }`} style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                      Modern Farmhouse
+                                    </span>
+                                  </div>
+                                  {selectedStyle === 'farmhouse' && (
+                                    <div className="w-5 h-5 bg-white/90 rounded-full flex items-center justify-center">
+                                      <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                      </svg>
+                                    </div>
+                                  )}
+                                </div>
+                                <p className={`text-sm mt-2 ${
+                                  selectedStyle === 'farmhouse' ? 'text-stone-400' : 'text-stone-400'
+                                }`} style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                  Rustic charm with clean lines
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Column: AI Results */}
+                    <div className="space-y-6">
+                      <div className="text-center mb-4">
+                        <h4 className="text-stone-200 text-lg font-light mb-2 tracking-wide" 
+                            style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                          Design Results
+                        </h4>
+                        <p className="text-stone-400 text-sm"
+                           style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                          Hover over style options to preview results
+                        </p>
+                      </div>
+
+                      {/* Results 1 - Transitional */}
+                      <div className="results-1-image group transform hover:scale-[1.02] transition-all duration-700 ease-out highlighted" style={{ transform: 'skewY(-0.5deg)' }}>
+                        <div className="relative bg-gradient-to-br from-stone-500/[0.12] to-stone-600/[0.06] backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-stone-500/[0.2] hover:border-stone-400/[0.35] transition-all duration-700 overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                          <div className="relative" style={{ transform: 'skewY(0.5deg)' }}>
+                            <div className="aspect-[16/9] rounded-xl overflow-hidden mb-3 relative group-hover:scale-[1.01] transition-transform duration-700">
+                              <Image
+                                src="/projects/figma-projects/philo-homes/results-1.png"
+                                alt="Design Result - Transitional Style"
+                                fill
+                                className="object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                            </div>
+
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 bg-white/70 rounded-full"></div>
+                                <span className="text-stone-200 text-base font-medium" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                  Transitional Style
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex gap-2">
+                              <div className="flex-1 px-3 py-2 bg-stone-500/12 hover:bg-stone-500/20 rounded-lg border border-white/20 text-center transition-all duration-300 cursor-pointer">
+                                <span className="text-stone-300 text-sm font-medium" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                  View Items
+                                </span>
+                              </div>
+                              <div className="flex-1 px-3 py-2 bg-stone-500/15 hover:bg-stone-400/30 rounded-lg border border-white/25 text-center transition-all duration-300 cursor-pointer">
+                                <span className="text-stone-200 text-sm font-medium" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                  Shop Now
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Results 2 - Modern Farmhouse */}
+                      <div className="results-2-image group transform hover:scale-[1.02] transition-all duration-700 ease-out opacity-60" style={{ transform: 'skewY(-0.5deg)' }}>
+                        <div className="relative bg-gradient-to-br from-white/[0.04] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-4 sm:p-5 border border-white/[0.08] hover:border-white/[0.15] transition-all duration-700 overflow-hidden group-hover:shadow-xl group-hover:shadow-white/[0.03]">
+                          <div className="relative" style={{ transform: 'skewY(0.5deg)' }}>
+                            <div className="aspect-[16/9] rounded-xl overflow-hidden mb-3 relative group-hover:scale-[1.01] transition-transform duration-700">
+                              <Image
+                                src="/projects/figma-projects/philo-homes/results-2.png"
+                                alt="Design Result - Modern Farmhouse Style"
+                                fill
+                                className="object-cover"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                            </div>
+
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 bg-stone-500/120 rounded-full"></div>
+                                <span className="text-stone-300 text-base" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                  Modern Farmhouse
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex gap-2">
+                              <div className="flex-1 px-3 py-2 bg-stone-500/12 hover:bg-stone-500/15 rounded-lg border border-white/15 text-center transition-all duration-300 cursor-pointer">
+                                <span className="text-stone-400 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                  View Items
+                                </span>
+                              </div>
+                              <div className="flex-1 px-3 py-2 bg-white/8 hover:bg-stone-500/20 rounded-lg border border-white/20 text-center transition-all duration-300 cursor-pointer">
+                                <span className="text-stone-300 text-sm" style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif' }}>
+                                  Shop Now
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <style jsx>{`
+              .results-1-image.highlighted {
+                opacity: 1;
+                transform: skewY(-0.5deg) scale(1.02);
+              }
+              .results-2-image.highlighted {
+                opacity: 1;
+                transform: skewY(-0.5deg) scale(1.02);
+              }
+              .results-1-image.highlighted .relative {
+                border-color: rgba(255, 255, 255, 0.3);
+                box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.1);
+              }
+              .results-2-image.highlighted .relative {
+                border-color: rgba(255, 255, 255, 0.3);
+                box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.1);
+              }
+            `}</style>
           </div>
         </div>
-      )}
+      </div>
+
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+      </div>
+
+      {/* AI Integration & Technical Considerations */}
+      <div 
+        ref={(el) => { sectionRefs.current[`${project.id}-ai-integration-technical`] = el; }}
+        id={`${project.id}-ai-integration-technical`} 
+        className="mb-24 px-4 sm:px-0"
+      >
+        <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
+           style={{ 
+             fontFamily: 'Helvetica Neue, Arial, sans-serif',
+             fontWeight: '300',
+             letterSpacing: '0.12em'
+           }}>
+          AI INTEGRATION & TECHNICAL CONSIDERATIONS
+        </h2>
+        
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-8 sm:space-y-10">
+            
+            {/* Introduction */}
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              The project leverages multiple AI technologies:
+            </p>
+
+            {/* AI Technologies Grid */}
+            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+              <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
+                <div className="max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    
+                    {/* Computer Vision Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-white/[0.08] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-12 h-0.5 bg-gradient-to-r from-white/[0.15] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] flex items-center justify-center group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                              <svg className="w-6 h-6 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                              </svg>
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              Computer Vision
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Reads room images to infer layout, lighting, and design opportunities
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 3D Modeling Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-6 h-6 bg-gradient-to-br from-stone-500/[0.12] to-transparent rounded-lg blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-10 h-0.5 bg-gradient-to-r from-white/[0.12] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] flex items-center justify-center group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                              <svg className="w-6 h-6 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                              </svg>
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              3D Modeling
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Used to simulate realistic spatial arrangements and ensure item dimensions are consistent with physical constraints
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Generative Design Card */}
+                    <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
+                      <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
+                        {/* Subtle geometric accent */}
+                        <div className="absolute top-4 right-4 w-7 h-7 bg-gradient-to-br from-white/[0.05] to-transparent rounded-full blur-sm opacity-60"></div>
+                        <div className="absolute bottom-4 left-4 w-8 h-0.5 bg-gradient-to-r from-white/[0.1] to-transparent rounded-full"></div>
+                        
+                        <div className="relative" style={{ transform: 'skewY(1deg)' }}>
+                          <div className="flex items-start gap-4 mb-4">
+                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-white/[0.08] to-white/[0.03] flex items-center justify-center group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
+                              <svg className="w-6 h-6 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423L16.5 15.75l.394 1.183a2.25 2.25 0 001.423 1.423L19.5 18.75l-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                              </svg>
+                            </div>
+                            <h4 className="text-stone-300 text-lg font-light group-hover:text-stone-100 transition-colors duration-500" 
+                                style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', letterSpacing: '0.01em' }}>
+                              Generative Design
+                            </h4>
+                          </div>
+                          <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                             style={{ 
+                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                               fontWeight: '300',
+                               letterSpacing: '0.01em',
+                               lineHeight: '1.6'
+                             }}>
+                            Provides furnishing recommendations based on design styles, layout rules, and product databases
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Trade-offs & Approach */}
+            <div className="space-y-6">
+              <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+                 style={{ 
+                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                   fontWeight: '300',
+                   letterSpacing: '0.01em',
+                   lineHeight: '1.6'
+                 }}>
+                Each of these approaches presents trade-offs. Computer vision is faster and simpler but less precise. 3D modeling provides a more realistic experience but requires more advanced technology, including accurate 3D models of real furniture.
+              </p>
+
+              <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+                 style={{ 
+                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                   fontWeight: '300',
+                   letterSpacing: '0.01em',
+                   lineHeight: '1.6'
+                 }}>
+                We are currently evaluating a hybrid model that blends realism with ease-of-use, while continuing to consult domain experts to determine the best path forward. Accurate 3D data remains a bottleneck, especially when relying on product images from suppliers.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+      </div>
+
+      {/* Challenges & Learnings */}
+      <div 
+        ref={(el) => { sectionRefs.current[`${project.id}-challenges-learnings`] = el; }}
+        id={`${project.id}-challenges-learnings`} 
+        className="mb-24 px-4 sm:px-0"
+      >
+        <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
+           style={{ 
+             fontFamily: 'Helvetica Neue, Arial, sans-serif',
+             fontWeight: '300',
+             letterSpacing: '0.12em'
+           }}>
+          CHALLENGES & LEARNINGS
+        </h2>
+        
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-8 sm:space-y-10">
+            
+            {/* Introduction */}
+            <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              This project presented several interconnected challenges:
+            </p>
+
+            {/* Challenges List */}
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                <p className="text-stone-300 text-sm leading-relaxed"
+                   style={{ 
+                     fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                     fontWeight: '300',
+                     letterSpacing: '0.01em',
+                     lineHeight: '1.6'
+                   }}>
+                  Defining where and how AI fits into the user journey in a meaningful, outcome-oriented way
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                <p className="text-stone-300 text-sm leading-relaxed"
+                   style={{ 
+                     fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                     fontWeight: '300',
+                     letterSpacing: '0.01em',
+                     lineHeight: '1.6'
+                   }}>
+                  Navigating fast-moving technology trends that could outdate features in a matter of months
+                </p>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                <p className="text-stone-300 text-sm leading-relaxed"
+                   style={{ 
+                     fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                     fontWeight: '300',
+                     letterSpacing: '0.01em',
+                     lineHeight: '1.6'
+                   }}>
+                  Managing the complexity of combining AI generation, user interaction, and e-commerce in a single, cohesive experience
+                </p>
+              </div>
+            </div>
+
+            {/* Strategic Pivots */}
+            <div className="space-y-6">
+              <p className="text-stone-200 leading-relaxed text-sm sm:text-base"
+                 style={{ 
+                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                   fontWeight: '300',
+                   letterSpacing: '0.01em',
+                   lineHeight: '1.6'
+                 }}>
+                We made several strategic pivots during the process:
+              </p>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Transitioning from web-first to mobile-first due to the camera-focused nature of user interaction
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Refining the user flow based on mentor and user feedback
+                  </p>
+                </div>
+                
+                <div className="flex items-start gap-4">
+                  <div className="w-1.5 h-1.5 bg-stone-400/60 rounded-full mt-2 shrink-0"></div>
+                  <p className="text-stone-300 text-sm leading-relaxed"
+                     style={{ 
+                       fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                       fontWeight: '300',
+                       letterSpacing: '0.01em',
+                       lineHeight: '1.6'
+                     }}>
+                    Reworking visual and content design to suit older users with moderate styling preferences
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Reflection */}
+            <p className="text-stone-300 leading-relaxed text-sm sm:text-base"
+               style={{ 
+                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                 fontWeight: '300',
+                 letterSpacing: '0.01em',
+                 lineHeight: '1.6'
+               }}>
+              Despite the challenges, our team operated with strong communication and high agility. We consistently iterated on designs and priorities to stay aligned with our vision and stakeholder expectations.
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Animated Dot Divider */}
+      <div className="w-full flex justify-center mb-24">
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+      </div>
     </div>
   );
 
@@ -984,27 +2255,41 @@ export default function Projects() {
       <div 
         ref={(el) => { sectionRefs.current[`project-${project.id}`] = el; }}
         id={`project-${project.id}`} 
-        className="mb-20"
+        className="mb-20 pt-24" // Added top padding to prevent navigation blocking
       >
         <div className="mb-8 px-4 sm:px-0 text-center">
-          <h1 className="text-xl sm:text-2xl text-white mb-2 leading-tight" 
-               style={{ 
-                 fontFamily: 'Georgia, serif',
-                 fontWeight: '300',
-                 letterSpacing: '0.01em',
-                 color: 'white'
-               }}>
+          <h1 className="text-xl sm:text-2xl text-ds-primary mb-2 leading-tight" 
+                style={{ 
+                  fontFamily: 'Georgia, serif',
+                  fontWeight: '300',
+                  letterSpacing: '0.01em',
+                  color: 'var(--text-primary)'
+                }}>
             {project.title}
           </h1>
-          <p className="text-sm sm:text-lg text-white/70 leading-relaxed"
-             style={{ 
-               fontFamily: 'Helvetica Neue, Arial, sans-serif',
-               fontWeight: '200',
-               letterSpacing: '0.01em'
-             }}>
+          <p className="text-sm sm:text-lg text-ds-tertiary leading-relaxed"
+              style={{ 
+                fontFamily: 'Helvetica Neue, Arial, sans-serif',
+                fontWeight: '300',
+                letterSpacing: '0.005em'
+              }}>
             {project.subtitle}
           </p>
         </div>
+
+        {/* Hero Image */}
+        {project.hero && (
+          <div className="w-full mb-12 px-0">
+            <div className="relative w-full h-48 sm:h-56 md:h-64 lg:h-80 overflow-hidden rounded-lg shadow-lg">
+                <Image
+              src={project.hero}
+                alt={`${project.title} Hero`}
+                fill
+                className="object-cover"
+              />
+              </div>
+        </div>
+        )}
       </div>
 
       {/* Physical Products */}
@@ -1016,7 +2301,7 @@ export default function Projects() {
             id={`${project.id}-elastic-book-cover`} 
             className="mb-40 px-4 sm:px-0"
           >
-            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
+            <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
@@ -1033,9 +2318,9 @@ export default function Projects() {
                 <button
                   onClick={() => handleCoverflowScroll('left')}
                   disabled={coverflowIndex === 0}
-                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 mr-2 sm:mr-4 lg:mr-8"
+                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-stone-500/12 hover:bg-stone-500/20 disabled:bg-stone-500/12 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 mr-2 sm:mr-4 lg:mr-8 focus:outline-none"
                 >
-                  <svg className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
@@ -1073,7 +2358,7 @@ export default function Projects() {
                             }}
                           >
                             {/* Blank space */}
-                          </div>
+                      </div>
                         );
                       }
                       
@@ -1093,17 +2378,16 @@ export default function Projects() {
                                 : `rotateY(-30deg) translateZ(-${distance * 15}px) translateX(-${distance * 5}px)`,
                             transformStyle: 'preserve-3d'
                           }}
-                          onClick={() => setSelectedImage(selectedImage === image ? null : image)}
                         >
                           <div className="w-full h-full rounded-lg overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
                             {image && (
-                              <Image
-                                src={image}
+                          <Image
+                            src={image}
                                 alt={`Book Cover ${originalIndex + 1}`}
-                                fill
+                            fill
                                 className="object-cover"
                                 sizes="(max-width: 640px) 160px, (max-width: 1024px) 256px, 384px"
-                              />
+                          />
                             )}
                           </div>
                           {isCenter && (
@@ -1119,9 +2403,9 @@ export default function Projects() {
                 <button
                   onClick={() => handleCoverflowScroll('right')}
                   disabled={coverflowIndex === bookCoverImages.length - 1}
-                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-white/10 hover:bg-white/20 disabled:bg-white/5 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 ml-2 sm:ml-4 lg:ml-8"
+                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-stone-500/12 hover:bg-stone-500/20 disabled:bg-stone-500/12 disabled:opacity-30 rounded-full backdrop-blur-sm transition-all duration-300 ml-2 sm:ml-4 lg:ml-8 focus:outline-none"
                 >
-                  <svg className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-stone-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -1129,7 +2413,7 @@ export default function Projects() {
             </div>
 
             {/* Description */}
-            <p className="text-white/90 mb-8 leading-relaxed text-center px-4 sm:px-0"
+            <p className="text-stone-200 mb-8 leading-relaxed text-center px-4 sm:px-0"
                  style={{ 
                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
                    fontWeight: '300',
@@ -1146,7 +2430,7 @@ export default function Projects() {
               {project.physicalProducts.elasticBookCover.tags.map((tag, _) => (
                 <span 
                   key={tag}
-                  className="px-3 py-1 text-xs text-white/60 bg-white/5 rounded-full border border-white/10"
+                  className="px-3 py-1 text-xs text-stone-400 bg-stone-500/12 rounded-full border border-white/10"
                   style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}
                 >
                   {tag}
@@ -1157,7 +2441,7 @@ export default function Projects() {
 
           {/* Divider */}
           <div className="w-full flex justify-center mb-16">
-            <div className="w-1 h-1 bg-white/40 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+            <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
           </div>
 
           {/* Premium Fruit Giftbox Section */}
@@ -1166,7 +2450,7 @@ export default function Projects() {
             id={`${project.id}-premium-fruit`} 
             className="mb-40 px-4 sm:px-0"
           >
-            <h2 className="text-white/60 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
+            <h2 className="text-stone-400 mb-12 leading-tight text-xs sm:text-sm tracking-widest text-center"
                 style={{ 
                   fontFamily: 'Helvetica Neue, Arial, sans-serif',
                   fontWeight: '300',
@@ -1178,21 +2462,19 @@ export default function Projects() {
             {/* Single Fruit Image */}
             <div className="flex justify-center mb-12 px-4 sm:px-0">
               <div 
-                className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-40 sm:h-48 md:h-56 lg:h-64 cursor-pointer group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-700"
-                onClick={() => setSelectedImage(selectedImage === "/projects/fruit/optimized_giftbox.jpg" ? null : "/projects/fruit/optimized_giftbox.jpg")}
+                className="relative w-64 sm:w-72 md:w-80 lg:w-96 h-40 sm:h-48 md:h-56 lg:h-64 overflow-hidden rounded-lg shadow-lg"
               >
                 <Image
                   src="/projects/fruit/optimized_giftbox.jpg"
                   alt="Premium Fruit Gift Collection"
                   fill
-                  className="object-cover transition-all duration-700 group-hover:scale-105"
+                  className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
               </div>
             </div>
 
             {/* Description */}
-            <p className="text-white/90 mb-8 leading-relaxed text-center px-4 sm:px-0"
+            <p className="text-stone-200 mb-8 leading-relaxed text-center px-4 sm:px-0"
                style={{ 
                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
                  fontWeight: '300',
@@ -1209,7 +2491,7 @@ export default function Projects() {
               {project.physicalProducts.premiumFruit.tags.map((tag, _) => (
                 <span 
                   key={tag}
-                  className="px-3 py-1 text-xs text-white/60 bg-white/5 rounded-full border border-white/10"
+                  className="px-3 py-1 text-xs text-stone-400 bg-stone-500/12 rounded-full border border-white/10"
                   style={{ fontFamily: 'Helvetica Neue, Arial, sans-serif', fontWeight: '300' }}
                 >
                   {tag}
@@ -1223,7 +2505,7 @@ export default function Projects() {
   );
 
   return (
-    <section className="min-h-screen w-full bg-black overflow-x-hidden">
+    <section className="min-h-screen w-full bg-neutral-900 overflow-x-hidden">
       <div className="flex flex-col lg:flex-row">
         {/* Main Content */}
         <div className="flex-1 lg:mr-80 w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-8 sm:py-4 lg:py-8">
@@ -1237,7 +2519,7 @@ export default function Projects() {
 
         {/* Table of Contents Sidebar - Right Side - Hidden on mobile/tablet */}
         <div className="hidden xl:block w-64 fixed right-8 top-1/2 transform -translate-y-1/2 h-[70vh] overflow-y-auto scrollbar-hide hover:scrollbar-default">
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+          <div className="bg-stone-500/12 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
             
             <nav className="space-y-1 relative" ref={navRef}>
               {/* Single unified dot that moves and bounces */}
@@ -1262,18 +2544,18 @@ export default function Projects() {
                     onClick={() => scrollToSection(item.id)}
                     onMouseEnter={() => handleMouseEnter(item.id)}
                     onMouseLeave={handleMouseLeave}
-                    className={`w-full text-left transition-all duration-300 ${
+                    className={`w-full text-left transition-all duration-300 focus:outline-none ${
                       isProject 
                         ? 'px-0 py-2 font-medium text-sm' 
                         : 'px-4 py-1 text-xs ml-0'
                     } ${
                       isActive 
                         ? isProject 
-                          ? 'text-white' 
-                          : 'text-white/90'
+                          ? 'text-stone-100' 
+                          : 'text-stone-200'
                         : isProject
-                          ? 'text-white/80 hover:text-white'
-                          : 'text-white/60 hover:text-white/80'
+                          ? 'text-stone-300 hover:text-stone-100'
+                          : 'text-stone-400 hover:text-stone-300'
                     }`}
                   >
                     <span className={`block transition-all duration-300 leading-snug pl-4`}>
@@ -1286,30 +2568,6 @@ export default function Projects() {
           </div>
         </div>
       </div>
-
-      {/* Lightbox */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/95 backdrop-blur-sm"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-7xl max-h-full w-full">
-            <Image
-              src={selectedImage}
-              alt="Expanded view"
-              width={1600}
-              height={1200}
-              className="object-contain max-h-[90vh] w-full h-auto"
-            />
-            <button
-              className="absolute -top-4 -right-4 w-8 h-8 flex items-center justify-center text-white/60 hover:text-white/90 text-2xl transition-colors"
-              onClick={() => setSelectedImage(null)}
-            >
-              ×
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* CSS for bouncing animation */}
       <style jsx>{`

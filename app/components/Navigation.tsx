@@ -55,7 +55,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/5">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-ds-primary/80 backdrop-blur-sm border-b border-stone-500/10">
       <div className="max-w-6xl mx-auto px-8 sm:px-12 py-4 sm:py-6">
         <div className="flex items-center justify-between">
           {/* Logo/Brand - Left side */}
@@ -71,7 +71,7 @@ export default function Navigation() {
                       fontFamily: 'Montserrat, sans-serif',
                       fontWeight: 500,
                       letterSpacing: '0.2em',
-                      background: 'linear-gradient(90deg, #757575 0%, #bdbdbd 50%, #e0e0e0 100%)',
+                      background: 'linear-gradient(90deg, #a8a29e 0%, #d6d3d1 50%, #f5f5f4 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
@@ -86,8 +86,8 @@ export default function Navigation() {
                 display: 'inline-block',
                 filter: 'blur(0.1px) contrast(1.1)',
                 transform: 'rotate(-5deg) scale(1.05,1.1) translateY(1px)',
-                textShadow: '0 0 1px #fff, 0 0 4px #bdbdbd',
-                background: 'linear-gradient(90deg, #757575 0%, #bdbdbd 50%, #e0e0e0 100%)',
+                textShadow: '0 0 1px #f5f5f4, 0 0 4px #d6d3d1',
+                background: 'linear-gradient(90deg, #a8a29e 0%, #d6d3d1 50%, #f5f5f4 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -101,12 +101,12 @@ export default function Navigation() {
           <div ref={navRef} className="flex items-center space-x-6 sm:space-x-8 relative">
             {/* Single unified dot that moves and bounces */}
             <div 
-              className="absolute -bottom-3 w-1.5 h-1.5 bg-white/80 rounded-full transition-all duration-500 ease-out shadow-lg"
+              className="absolute -bottom-3 w-1.5 h-1.5 bg-stone-200/80 rounded-full transition-all duration-500 ease-out shadow-lg"
               style={{
                 left: `${dotPosition}px`,
                 transform: 'translateX(-50%)',
                 opacity: hoveredItem || activeItem ? 1 : 0,
-                boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
+                boxShadow: '0 0 10px rgba(245, 245, 244, 0.5)',
                 animation: activeItem && !hoveredItem ? 'bounce 2s infinite' : 'none'
               }}
             />
@@ -116,8 +116,8 @@ export default function Navigation() {
               href="/projects" 
               className={`text-xs sm:text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/projects') 
-                  ? 'text-white' 
-                  : 'text-white/50 hover:text-white/80'
+                  ? 'text-ds-primary' 
+                  : 'text-ds-quaternary hover:text-ds-secondary'
               }`}
               onMouseEnter={() => handleMouseEnter('projects')}
               onMouseLeave={handleMouseLeave}
@@ -130,8 +130,8 @@ export default function Navigation() {
               href="/music" 
               className={`text-xs sm:text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/music') 
-                  ? 'text-white' 
-                  : 'text-white/50 hover:text-white/80'
+                  ? 'text-ds-primary' 
+                  : 'text-ds-quaternary hover:text-ds-secondary'
               }`}
               onMouseEnter={() => handleMouseEnter('music')}
               onMouseLeave={handleMouseLeave}
@@ -144,8 +144,8 @@ export default function Navigation() {
               href="/sandbox" 
               className={`text-xs sm:text-sm font-light font-sans tracking-wide transition-all duration-300 relative focus:outline-none ${
                 isActive('/sandbox') 
-                  ? 'text-white' 
-                  : 'text-white/50 hover:text-white/80'
+                  ? 'text-ds-primary' 
+                  : 'text-ds-quaternary hover:text-ds-secondary'
               }`}
               onMouseEnter={() => handleMouseEnter('sandbox')}
               onMouseLeave={handleMouseLeave}
