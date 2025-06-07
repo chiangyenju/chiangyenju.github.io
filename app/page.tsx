@@ -32,6 +32,7 @@ export default function Home() {
               </span>
               <span
                 style={{
+                  fontFamily: 'Georgia, serif',
                   fontWeight: '900',
                   fontSize: '1.1em',
                   background: 'linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 30%, #d6d3d1 60%, #a8a29e 100%)',
