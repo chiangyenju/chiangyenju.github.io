@@ -107,7 +107,7 @@ export default function Navigation() {
                 transform: 'translateX(-50%)',
                 opacity: hoveredItem || activeItem ? 1 : 0,
                 boxShadow: '0 0 10px rgba(245, 245, 244, 0.5)',
-                animation: activeItem && !hoveredItem ? 'bounce 2s infinite' : 'none'
+                animation: activeItem && !hoveredItem ? 'bounce 4s infinite' : 'none'
               }}
             />
 

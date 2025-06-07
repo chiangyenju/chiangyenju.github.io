@@ -152,9 +152,36 @@ export default function Projects() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [dotPosition, setDotPosition] = useState(0);
 
+  // State for infographic scroll animations - now using continuous progress values
+  const [infographProgress, setInfographProgress] = useState<{ [key: string]: number }>({});
+  
+  // Random direction assignments for each infographic (set after mounting to avoid hydration mismatch)
+  const [infographDirections, setInfographDirections] = useState<{ [key: string]: 'left' | 'right' }>({});
+
   // Touch gesture handling for coverflow
   const touchStartRef = useRef<number>(0);
   const coverflowRef = useRef<HTMLDivElement>(null);
+
+  // Initialize random directions after component mounts to avoid hydration mismatch
+  useEffect(() => {
+    const directions: { [key: string]: 'left' | 'right' } = {};
+    const infographIds = [
+      'overview-infographs',
+      'problem-insights-infographs', 
+      'market-research-infographs',
+      'design-systems-infographs',
+      'user-journey-infographs',
+      'interface-mockups-infographs',
+      'ai-results-infographs',
+      'ai-tech-infographs'
+    ];
+    
+    infographIds.forEach(id => {
+      directions[id] = Math.random() > 0.5 ? 'left' : 'right';
+    });
+    
+    setInfographDirections(directions);
+  }, []);
 
   // Show all projects without filtering
   const filteredProjects = figmaProjects;
@@ -454,7 +481,14 @@ export default function Projects() {
             </div>
 
           {/* Infographic Blocks - Prominent Container */}
-          <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+          <div 
+            className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+            data-infograph-id="overview-infographs"
+            style={{
+              ...getInfographStyles('overview-infographs'),
+              transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
             <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
               <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -600,7 +634,7 @@ export default function Projects() {
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full"></div>
       </div>
 
       {/* Problem Statement & Insights */}
@@ -641,10 +675,17 @@ export default function Projects() {
             </p>
 
             {/* Research Insights Grid */}
-            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+            <div 
+              className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+              data-infograph-id="problem-insights-infographs"
+              style={{
+                ...getInfographStyles('problem-insights-infographs'),
+                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="max-w-5xl mx-auto">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                     
                     {/* User Behavior Card */}
                     <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
@@ -763,7 +804,7 @@ export default function Projects() {
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full"></div>
       </div>
 
       {/* Market Research & Positioning */}
@@ -796,7 +837,14 @@ export default function Projects() {
             </p>
 
             {/* Differentiators Grid */}
-            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+            <div 
+              className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+              data-infograph-id="market-research-infographs"
+              style={{
+                ...getInfographStyles('market-research-infographs'),
+                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="max-w-5xl mx-auto">
                   
@@ -944,7 +992,7 @@ export default function Projects() {
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full"></div>
       </div>
 
       {/* Design Systems */}
@@ -973,11 +1021,18 @@ export default function Projects() {
                  letterSpacing: '0.01em',
                  lineHeight: '1.6'
                }}>
-              The project&apos;s design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
+              The project&rsquo;s design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
             </p>
 
             {/* Visual Elements Grid */}
-            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+            <div 
+              className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+              data-infograph-id="design-systems-infographs"
+              style={{
+                ...getInfographStyles('design-systems-infographs'),
+                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="max-w-6xl mx-auto">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
@@ -1156,7 +1211,7 @@ export default function Projects() {
                  letterSpacing: '0.01em',
                  lineHeight: '1.6'
                }}>
-              While I was not responsible for creating the system, I applied it rigorously in my design work&mdash;especially when adapting the desktop-first system for mobile platforms. The system exists primarily in Figma and is documented with high-level visual and written guidelines to ensure consistency across screens and use cases.
+              While I was not responsible for creating the system, I applied it rigorously in my design work—especially when adapting the desktop-first system for mobile platforms. The system exists primarily in Figma and is documented with high-level visual and written guidelines to ensure consistency across screens and use cases.
             </p>
 
           </div>
@@ -1165,7 +1220,7 @@ export default function Projects() {
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full"></div>
       </div>
 
       {/* User Experience & Interface */}
@@ -1198,7 +1253,14 @@ export default function Projects() {
             </p>
 
             {/* User Journey Steps */}
-            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+            <div 
+              className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+              data-infograph-id="user-journey-infographs"
+              style={{
+                ...getInfographStyles('user-journey-infographs'),
+                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="max-w-5xl mx-auto">
                   
@@ -1422,7 +1484,14 @@ export default function Projects() {
             </div>
 
             {/* Interface Mockups */}
-            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+            <div 
+              className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+              data-infograph-id="interface-mockups-infographs"
+              style={{
+                ...getInfographStyles('interface-mockups-infographs'),
+                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="max-w-6xl mx-auto">
                   
@@ -1596,7 +1665,14 @@ export default function Projects() {
             </div>
 
             {/* AI Generation Results */}
-            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+            <div 
+              className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+              data-infograph-id="ai-results-infographs"
+              style={{
+                ...getInfographStyles('ai-results-infographs'),
+                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <div className="py-8 sm:py-10 px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="max-w-7xl mx-auto">
                   
@@ -1926,7 +2002,7 @@ export default function Projects() {
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full"></div>
       </div>
 
       {/* AI Integration & Technical Considerations */}
@@ -1959,7 +2035,14 @@ export default function Projects() {
             </p>
 
             {/* AI Technologies Grid */}
-            <div className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8">
+            <div 
+              className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+              data-infograph-id="ai-tech-infographs"
+              style={{
+                ...getInfographStyles('ai-tech-infographs'),
+                transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+            >
               <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
                 <div className="max-w-5xl mx-auto">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
@@ -2095,7 +2178,7 @@ export default function Projects() {
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full"></div>
       </div>
 
       {/* Challenges & Learnings */}
@@ -2240,7 +2323,7 @@ export default function Projects() {
 
       {/* Animated Dot Divider */}
       <div className="w-full flex justify-center mb-24">
-        <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+        <div className="w-1 h-1 bg-stone-400/60 rounded-full"></div>
       </div>
     </div>
   );
@@ -2438,7 +2521,7 @@ export default function Projects() {
 
           {/* Divider */}
           <div className="w-full flex justify-center mb-16">
-            <div className="w-1 h-1 bg-stone-400/60 rounded-full" style={{ animation: 'bounce 3s infinite' }}></div>
+            <div className="w-1 h-1 bg-stone-400/60 rounded-full"></div>
           </div>
 
           {/* Premium Fruit Giftbox Section */}
@@ -2501,6 +2584,126 @@ export default function Projects() {
     </div>
   );
 
+  // Helper function to get animation styles based on scroll progress (0-1)
+  const getInfographStyles = (elementId: string) => {
+    const progress = infographProgress[elementId] || 0;
+    const direction = infographDirections[elementId] || 'left'; // Fallback to 'left' if not set yet
+    
+    // Apply easing function for smoother animations
+    const easeOutQuart = (t: number): number => 1 - Math.pow(1 - t, 4);
+    const easeInOutCubic = (t: number): number => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    
+    const easedProgress = easeInOutCubic(progress);
+    
+    // Enhanced smooth interpolation based on progress
+    const opacity = Math.max(0.15, Math.min(1, 0.15 + (easedProgress * 0.85)));
+    const translateY = (1 - easeOutQuart(progress)) * 40; // Reduced for subtler vertical movement
+    const scale = 0.95 + (easedProgress * 0.05); // Subtle scaling
+    const blur = Math.max(0, (1 - easedProgress) * 2.5); // Blur when out of view
+    
+    // Random left/right sliding animation instead of rotation
+    // Only apply slide effect if directions have been initialized
+    const slideDistance = Object.keys(infographDirections).length > 0 ? (1 - easedProgress) * 80 : 0;
+    const translateX = direction === 'left' ? -slideDistance : slideDistance;
+    
+    // Add subtle wave-like secondary movement
+    const waveOffset = Math.sin(progress * Math.PI) * 3; // Very subtle wave
+    
+    return {
+      transform: `translateY(${translateY}px) translateX(${translateX + waveOffset}px) scale(${scale})`,
+      opacity: opacity,
+      filter: `blur(${blur}px)`,
+      transition: 'none', // Remove transitions for smooth scroll-driven animation
+      willChange: 'transform, opacity, filter' // Optimize for animations
+    };
+  };
+
+  // Scroll-driven animation effect for infographics
+  useEffect(() => {
+    const handleInfographScroll = () => {
+      const infographIds = [
+        'overview-infographs',
+        'problem-insights-infographs', 
+        'market-research-infographs',
+        'design-systems-infographs',
+        'user-journey-infographs',
+        'interface-mockups-infographs',
+        'ai-results-infographs',
+        'ai-tech-infographs'
+      ];
+
+      const newProgress: { [key: string]: number } = {};
+
+      infographIds.forEach(id => {
+        const element = document.querySelector(`[data-infograph-id="${id}"]`);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Improved scroll progress calculation
+          // Animation starts much earlier - when element is 150vh below viewport
+          // Reaches full effect when element is centered in viewport
+          // Maintains effect until element leaves top of viewport
+          
+          const elementTop = rect.top;
+          const elementBottom = rect.bottom;
+          const elementHeight = rect.height;
+          const elementCenter = elementTop + (elementHeight / 2);
+          
+          // Define animation range - start much earlier
+          const animationStart = windowHeight * 1.5; // Start when element is 150vh below (much earlier)
+          const animationPeak = windowHeight / 2; // Peak effect when centered
+          const animationEnd = -elementHeight / 2; // End when element leaves top
+          
+          let progress = 0;
+          
+          if (elementCenter <= animationStart && elementCenter >= animationPeak) {
+            // Entering phase: 0 to 1
+            progress = (animationStart - elementCenter) / (animationStart - animationPeak);
+          } else if (elementCenter < animationPeak && elementCenter > animationEnd) {
+            // Exiting phase: 1 to 0
+            const exitProgress = (elementCenter - animationEnd) / (animationPeak - animationEnd);
+            progress = exitProgress;
+          } else if (elementCenter <= animationEnd) {
+            // Completely out of view (top)
+            progress = 0;
+          } else {
+            // Not yet in animation range (bottom)
+            progress = 0;
+          }
+          
+          // Clamp progress between 0 and 1
+          newProgress[id] = Math.max(0, Math.min(1, progress));
+        } else {
+          newProgress[id] = 0;
+        }
+      });
+
+      setInfographProgress(newProgress);
+    };
+
+    // Add scroll listener with throttling for better performance
+    let ticking = false;
+    const scrollHandler = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleInfographScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+    
+    // Initial call
+    handleInfographScroll();
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+    };
+  }, []);
+
   return (
     <section className="min-h-screen w-full bg-neutral-900 overflow-x-hidden">
       <div className="flex flex-col lg:flex-row">
@@ -2518,17 +2721,8 @@ export default function Projects() {
         <div className="hidden xl:block w-64 fixed right-8 top-1/2 transform -translate-y-1/2 h-[70vh] overflow-y-auto scrollbar-hide hover:scrollbar-default">
           <div className="bg-stone-500/12 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
             
-            <nav className="space-y-1 relative" ref={navRef}>
-              {/* Single unified dot that moves and bounces */}
-              <div 
-                className="absolute left-0 w-1 h-1 bg-white/70 rounded-full transition-all duration-500 ease-out"
-                style={{
-                  top: `${dotPosition}px`,
-                  opacity: hoveredItem || activeSection ? 1 : 0,
-                  animation: activeSection && !hoveredItem ? 'bounce 2s infinite' : 'none'
-                }}
-              />
-
+            <nav className="space-y-2" ref={navRef}>
+              {/* Vertical layout for table of contents items */}
               {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
               {tableOfContents.map((item, index) => {
                 const isActive = activeSection === item.id;
@@ -2541,21 +2735,21 @@ export default function Projects() {
                     onClick={() => scrollToSection(item.id)}
                     onMouseEnter={() => handleMouseEnter(item.id)}
                     onMouseLeave={handleMouseLeave}
-                    className={`w-full text-left transition-all duration-300 focus:outline-none ${
+                    className={`w-full text-left transition-all duration-300 focus:outline-none rounded-lg ${
                       isProject 
-                        ? 'px-0 py-2 font-medium text-sm' 
-                        : 'px-4 py-1 text-xs ml-0'
+                        ? 'px-3 py-2 font-medium text-sm border-l-4' 
+                        : 'px-4 py-1 text-xs ml-2'
                     } ${
                       isActive 
                         ? isProject 
-                          ? 'text-stone-100' 
-                          : 'text-stone-200'
+                          ? 'text-stone-100 border-white/50 bg-stone-600/20' 
+                          : 'text-stone-200 bg-stone-500/20'
                         : isProject
-                          ? 'text-stone-300 hover:text-stone-100'
-                          : 'text-stone-400 hover:text-stone-300'
+                          ? 'text-stone-300 hover:text-stone-100 border-transparent hover:border-white/30 hover:bg-stone-600/10'
+                          : 'text-stone-400 hover:text-stone-300 hover:bg-stone-500/10'
                     }`}
                   >
-                    <span className={`block transition-all duration-300 leading-snug pl-4`}>
+                    <span className="block transition-all duration-300 leading-tight">
                       {item.title}
                     </span>
                   </button>

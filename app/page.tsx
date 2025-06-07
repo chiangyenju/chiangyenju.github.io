@@ -223,7 +223,7 @@ export default function Home() {
             <div 
               className="w-2 h-2 bg-ds-interactive rounded-full"
               style={{ 
-                animation: 'moonFloat 4s ease-in-out infinite',
+                animation: 'moonFloat 6s ease-in-out infinite',
                 boxShadow: '0 0 8px rgba(255, 255, 255, 0.4)'
               }}
             ></div>
