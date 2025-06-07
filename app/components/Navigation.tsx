@@ -80,14 +80,14 @@ export default function Navigation() {
               </span>
               <span style={{
                 fontFamily: 'Zhi Mang Xing, cursive, sans-serif',
-                fontSize: '1.5em',
+                fontSize: '1.8em',
                 lineHeight: 1,
                 marginLeft: '0.2em',
                 display: 'inline-block',
                 filter: 'blur(0.1px) contrast(1.1)',
                 transform: 'rotate(-5deg) scale(1.05,1.1) translateY(1px)',
-                textShadow: '0 0 1px #f5f5f4, 0 0 4px #d6d3d1',
-                background: 'linear-gradient(90deg, #a8a29e 0%, #d6d3d1 50%, #f5f5f4 100%)',
+                textShadow: '0 0 1px #fff, 0 0 4px #bdbdbd',
+                background: 'linear-gradient(90deg, #757575 0%, #bdbdbd 50%, #e0e0e0 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',

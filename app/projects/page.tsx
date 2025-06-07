@@ -158,12 +158,15 @@ export default function Projects() {
   
   // Random direction assignments for each infographic (set after mounting to avoid hydration mismatch)
   const [infographDirections, setInfographDirections] = useState<{ [key: string]: 'left' | 'right' }>({});
+  
+  // Mobile detection state (set after hydration to avoid SSR mismatch)
+  const [isMobile, setIsMobile] = useState(false);
 
   // Touch gesture handling for coverflow
   const touchStartRef = useRef<number>(0);
   const coverflowRef = useRef<HTMLDivElement>(null);
 
-  // Initialize random directions after component mounts to avoid hydration mismatch
+  // Initialize random directions and mobile detection after component mounts to avoid hydration mismatch
   useEffect(() => {
     const directions: { [key: string]: 'left' | 'right' } = {};
     const infographIds = [
@@ -182,6 +185,17 @@ export default function Projects() {
     });
     
     setInfographDirections(directions);
+    
+    // Set mobile detection after hydration
+    setIsMobile(window.innerWidth < 768);
+    
+    // Add resize listener to update mobile detection
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Show all projects without filtering
@@ -2595,28 +2609,32 @@ export default function Projects() {
     
     const easedProgress = easeInOutCubic(progress);
     
-    // Check if mobile for performance optimization
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    // Disable complex animations on mobile to prevent flashing
+    if (isMobile) {
+      return {
+        transform: 'none',
+        opacity: Math.max(0.8, Math.min(1, 0.8 + (easedProgress * 0.2))),
+        filter: 'none',
+        willChange: 'auto',
+      };
+    }
     
-    // Reduced animation intensity for mobile to improve performance
-    const mobileMultiplier = isMobile ? 0.5 : 1;
-    
-    // Enhanced smooth interpolation based on progress
+    // Enhanced smooth interpolation based on progress (desktop only)
     const opacity = Math.max(0.2, Math.min(1, 0.2 + (easedProgress * 0.8)));
-    const translateY = (1 - easeOutQuart(progress)) * 25 * mobileMultiplier; // Reduced for mobile
+    const translateY = (1 - easeOutQuart(progress)) * 25;
     const scale = 0.96 + (easedProgress * 0.04); // Subtle scaling
-    const blur = Math.max(0, (1 - easedProgress) * (isMobile ? 1 : 2)); // Reduced blur on mobile
+    const blur = Math.max(0, (1 - easedProgress) * 2);
     
-    // Random left/right sliding animation - reduced distance for mobile
+    // Random left/right sliding animation
     const slideDistance = Object.keys(infographDirections).length > 0 ? 
-      (1 - easedProgress) * (isMobile ? 25 : 50) : 0;
+      (1 - easedProgress) * 50 : 0;
     const translateX = direction === 'left' ? -slideDistance : slideDistance;
     
     return {
       transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`, // Use translate3d for GPU acceleration
       opacity,
       filter: `blur(${blur}px)`,
-      willChange: isMobile ? 'transform, opacity' : 'transform, opacity, filter', // Reduce willChange on mobile
+      willChange: 'transform, opacity, filter',
     };
   };
 
@@ -2724,9 +2742,9 @@ export default function Projects() {
   return (
     <section className="min-h-screen w-full bg-neutral-900 overflow-x-hidden">
       {/* Mobile Table of Contents - Horizontal scroll at top */}
-      <div className="xl:hidden sticky top-0 z-50 bg-neutral-900/95 backdrop-blur-sm border-b border-white/10">
-        <div className="px-4 py-3">
-          <nav className="flex gap-2 overflow-x-auto scrollbar-hide">
+      <div className="xl:hidden sticky top-16 z-40 bg-neutral-900/98 backdrop-blur-md border-b border-white/20 shadow-lg">
+        <div className="px-4 py-4">
+          <nav className="flex gap-3 overflow-x-auto scrollbar-hide">
             {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
             {tableOfContents.map((item, index) => {
               const isActive = activeSection === item.id;
