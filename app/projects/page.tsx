@@ -2603,11 +2603,13 @@ export default function Projects() {
     
     // Random left/right sliding animation instead of rotation
     // Only apply slide effect if directions have been initialized
-    const slideDistance = Object.keys(infographDirections).length > 0 ? (1 - easedProgress) * 80 : 0;
+    // Reduce slide distance on mobile for better performance and visibility
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const slideDistance = Object.keys(infographDirections).length > 0 ? (1 - easedProgress) * (isMobile ? 40 : 80) : 0;
     const translateX = direction === 'left' ? -slideDistance : slideDistance;
     
-    // Add subtle wave-like secondary movement
-    const waveOffset = Math.sin(progress * Math.PI) * 3; // Very subtle wave
+    // Add subtle wave-like secondary movement (reduced on mobile)
+    const waveOffset = Math.sin(progress * Math.PI) * (isMobile ? 1.5 : 3); // Very subtle wave
     
     return {
       transform: `translateY(${translateY}px) translateX(${translateX + waveOffset}px) scale(${scale})`,
@@ -2640,20 +2642,27 @@ export default function Projects() {
           const rect = element.getBoundingClientRect();
           const windowHeight = window.innerHeight;
           
-          // Improved scroll progress calculation
-          // Animation starts much earlier - when element is 150vh below viewport
-          // Reaches full effect when element is centered in viewport
-          // Maintains effect until element leaves top of viewport
+          // Responsive animation calculation based on screen size
+          const isMobile = window.innerWidth < 768;
+          const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+          
+          // Adjust animation ranges based on device type
+          let animationStartMultiplier = 1.5; // Default for desktop
+          if (isMobile) {
+            animationStartMultiplier = 1.2; // Closer start for mobile
+          } else if (isTablet) {
+            animationStartMultiplier = 1.3; // Medium for tablet
+          }
           
           const elementTop = rect.top;
           const elementBottom = rect.bottom;
           const elementHeight = rect.height;
           const elementCenter = elementTop + (elementHeight / 2);
           
-          // Define animation range - start much earlier
-          const animationStart = windowHeight * 1.5; // Start when element is 150vh below (much earlier)
-          const animationPeak = windowHeight / 2; // Peak effect when centered
-          const animationEnd = -elementHeight / 2; // End when element leaves top
+          // Define responsive animation range
+          const animationStart = windowHeight * animationStartMultiplier;
+          const animationPeak = windowHeight / 2;
+          const animationEnd = -elementHeight / 2;
           
           let progress = 0;
           
@@ -2694,21 +2703,63 @@ export default function Projects() {
       }
     };
 
+    // Add resize listener to recalculate on orientation change (mobile)
+    const handleResize = () => {
+      handleInfographScroll();
+    };
+
     window.addEventListener('scroll', scrollHandler, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
     
     // Initial call
     handleInfographScroll();
 
     return () => {
       window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
     <section className="min-h-screen w-full bg-neutral-900 overflow-x-hidden">
+      {/* Mobile Table of Contents - Horizontal scroll at top */}
+      <div className="xl:hidden sticky top-0 z-50 bg-neutral-900/95 backdrop-blur-sm border-b border-white/10">
+        <div className="px-4 py-3">
+          <nav className="flex gap-2 overflow-x-auto scrollbar-hide">
+            {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
+            {tableOfContents.map((item, index) => {
+              const isActive = activeSection === item.id;
+              const isProject = item.type === 'project';
+              
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`flex-shrink-0 px-3 py-2 text-xs font-medium rounded-full transition-all duration-300 whitespace-nowrap ${
+                    isProject
+                      ? 'border-2'
+                      : 'border'
+                  } ${
+                    isActive
+                      ? isProject
+                        ? 'text-white bg-white/10 border-white/50'
+                        : 'text-stone-200 bg-stone-500/20 border-stone-400'
+                      : isProject
+                        ? 'text-stone-300 border-stone-600 hover:text-white hover:border-white/40'
+                        : 'text-stone-400 border-stone-700 hover:text-stone-300 hover:border-stone-500'
+                  }`}
+                >
+                  {item.title}
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+      </div>
+
       <div className="flex flex-col lg:flex-row">
         {/* Main Content */}
-        <div className="flex-1 lg:mr-80 w-full max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 py-8 sm:py-4 lg:py-8">
+        <div className="flex-1 lg:mr-80 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-6 sm:py-8 lg:py-8">
           {/* All Projects in Continuous Scroll */}
           {filteredProjects.map((project) => (
             project.id === 'ecommerce-web' ? 
@@ -2717,7 +2768,7 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Table of Contents Sidebar - Right Side - Hidden on mobile/tablet */}
+        {/* Desktop Table of Contents Sidebar - Right Side - Hidden on mobile/tablet */}
         <div className="hidden xl:block w-64 fixed right-8 top-1/2 transform -translate-y-1/2 h-[70vh] overflow-y-auto scrollbar-hide hover:scrollbar-default">
           <div className="bg-stone-500/12 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
             
@@ -2760,7 +2811,7 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* CSS for bouncing animation */}
+      {/* CSS for animations and mobile-specific styles */}
       <style jsx>{`
         @keyframes bounce {
           0%, 20%, 50%, 80%, 100% {
@@ -2780,6 +2831,15 @@ export default function Projects() {
           50% {
             transform: translateX(8rem);
           }
+        }
+        
+        /* Custom scrollbar hiding for mobile navigation */
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </section>
