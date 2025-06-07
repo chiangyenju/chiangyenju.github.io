@@ -2609,13 +2609,14 @@ export default function Projects() {
     
     const easedProgress = easeInOutCubic(progress);
     
-    // Disable complex animations on mobile to prevent flashing
+    // Return static styles on mobile to prevent any animation flashing
     if (isMobile) {
       return {
         transform: 'none',
-        opacity: Math.max(0.8, Math.min(1, 0.8 + (easedProgress * 0.2))),
+        opacity: 1,
         filter: 'none',
         willChange: 'auto',
+        transition: 'none',
       };
     }
     
@@ -2640,6 +2641,11 @@ export default function Projects() {
 
   // Scroll-driven animation effect for infographics
   useEffect(() => {
+    // Skip scroll animations entirely on mobile to prevent flashing
+    if (isMobile) {
+      return;
+    }
+
     const handleInfographScroll = () => {
       const infographIds = [
         'overview-infographs',
@@ -2661,14 +2667,11 @@ export default function Projects() {
           const windowHeight = window.innerHeight;
           
           // Responsive animation calculation based on screen size
-          const isMobile = window.innerWidth < 768;
           const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
           
           // Adjust animation ranges based on device type
           let animationStartMultiplier = 1.5; // Default for desktop
-          if (isMobile) {
-            animationStartMultiplier = 1.2; // Closer start for mobile
-          } else if (isTablet) {
+          if (isTablet) {
             animationStartMultiplier = 1.3; // Medium for tablet
           }
           
@@ -2722,22 +2725,29 @@ export default function Projects() {
       }
     };
 
-    // Add resize listener to recalculate on orientation change (mobile)
+    // Add resize listener to recalculate on orientation change
     const handleResize = () => {
-      handleInfographScroll();
+      // Update mobile detection
+      const newIsMobile = window.innerWidth < 768;
+      setIsMobile(newIsMobile);
+      
+      // Only recalculate if not mobile
+      if (!newIsMobile) {
+        handleInfographScroll();
+      }
     };
 
     window.addEventListener('scroll', scrollHandler, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });
     
-    // Initial call
+    // Initial call only for desktop
     handleInfographScroll();
 
     return () => {
       window.removeEventListener('scroll', scrollHandler);
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [isMobile]); // Add isMobile as dependency
 
   return (
     <section className="min-h-screen w-full bg-neutral-900 overflow-x-hidden">

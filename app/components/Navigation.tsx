@@ -81,6 +81,7 @@ export default function Navigation() {
               <span style={{
                 fontFamily: 'Zhi Mang Xing, cursive, sans-serif',
                 fontSize: '1.8em',
+                fontWeight: 400,
                 lineHeight: 1,
                 marginLeft: '0.2em',
                 display: 'inline-block',
@@ -91,6 +92,8 @@ export default function Navigation() {
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
               }}>
                 江
               </span>
