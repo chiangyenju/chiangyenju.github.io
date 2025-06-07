@@ -483,45 +483,44 @@ export default function Projects() {
 
           {/* Infographic Blocks - Prominent Container */}
           <div 
-            className="-mx-4 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-16 mb-8"
+            className="-mx-2 sm:-mx-8 lg:-mx-12 xl:-mx-16 mt-12 sm:mt-16 mb-6 sm:mb-8"
             data-infograph-id="overview-infographs"
             style={{
               ...getInfographStyles('overview-infographs'),
-              transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
             }}
           >
-            <div className="py-12 sm:py-16 px-4 sm:px-8 lg:px-12 xl:px-16">
+            <div className="py-8 sm:py-12 lg:py-16 px-2 sm:px-8 lg:px-12 xl:px-16">
               <div className="max-w-6xl mx-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
                   
                   {/* UI/UX Block */}
-                  <div className="group transform hover:scale-[1.02] transition-all duration-500 ease-out" style={{ transform: 'skewY(-1deg)' }}>
-                    <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-stone-500/[0.15] hover:border-stone-400/[0.3] transition-all duration-500 h-full overflow-hidden group-hover:shadow-2xl group-hover:shadow-amber-500/[0.08]">
-                      {/* Subtle geometric accent */}
-                      <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-white/[0.08] to-transparent rounded-full blur-sm opacity-60"></div>
-                      <div className="absolute bottom-4 left-4 w-12 h-0.5 bg-gradient-to-r from-white/[0.15] to-transparent rounded-full"></div>
+                  <div className="group">
+                    <div className="relative bg-gradient-to-br from-stone-500/[0.08] to-stone-600/[0.04] backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-stone-500/[0.15] transition-all duration-300 h-full overflow-hidden">
+                      {/* Reduced geometric accents for mobile */}
+                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 w-6 sm:w-8 h-6 sm:h-8 bg-gradient-to-br from-white/[0.08] to-transparent rounded-full blur-sm opacity-60"></div>
+                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 w-8 sm:w-12 h-0.5 bg-gradient-to-r from-white/[0.15] to-transparent rounded-full"></div>
                       
-                      <div className="relative text-center" style={{ transform: 'skewY(1deg)' }}>
-                        <div className="w-14 h-14 mx-auto mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-2xl flex items-center justify-center relative group-hover:from-white/[0.12] group-hover:to-white/[0.06] transition-all duration-500">
-                          <svg className="w-7 h-7 text-stone-400 group-hover:text-stone-300 transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
+                      <div className="relative text-center">
+                        <div className="w-10 sm:w-12 lg:w-14 h-10 sm:h-12 lg:h-14 mx-auto mb-3 sm:mb-4 lg:mb-6 bg-gradient-to-br from-white/[0.08] to-white/[0.03] rounded-xl sm:rounded-2xl flex items-center justify-center relative transition-all duration-300">
+                          <svg className="w-5 sm:w-6 lg:w-7 h-5 sm:h-6 lg:h-7 text-stone-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
                           </svg>
                         </div>
-                        <h3 className="text-stone-300 text-lg mb-4 font-light tracking-wide group-hover:text-stone-100 transition-colors duration-500" 
+                        <h3 className="text-stone-300 text-base sm:text-lg mb-2 sm:mb-3 lg:mb-4 font-light tracking-wide transition-colors duration-300" 
                             style={{ 
                               fontFamily: 'Helvetica Neue, Arial, sans-serif',
                               letterSpacing: '0.02em'
                             }}>
                           UI/UX Design
                         </h3>
-                        <p className="text-stone-400 text-sm leading-relaxed group-hover:text-stone-300 transition-colors duration-500"
+                        <p className="text-stone-400 text-xs sm:text-sm leading-relaxed transition-colors duration-300"
                  style={{ 
                    fontFamily: 'Helvetica Neue, Arial, sans-serif',
                    fontWeight: '300',
                    letterSpacing: '0.01em',
-                             lineHeight: '1.6'
+                             lineHeight: '1.5'
                  }}>
-                          Crafting intuitive digital experiences through user-centered design methodologies and systematic design thinking.
+                          Crafting intuitive digital experiences through user-centered design methodologies.
               </p>
                       </div>
             </div>
@@ -2596,28 +2595,28 @@ export default function Projects() {
     
     const easedProgress = easeInOutCubic(progress);
     
-    // Enhanced smooth interpolation based on progress
-    const opacity = Math.max(0.15, Math.min(1, 0.15 + (easedProgress * 0.85)));
-    const translateY = (1 - easeOutQuart(progress)) * 40; // Reduced for subtler vertical movement
-    const scale = 0.95 + (easedProgress * 0.05); // Subtle scaling
-    const blur = Math.max(0, (1 - easedProgress) * 2.5); // Blur when out of view
-    
-    // Random left/right sliding animation instead of rotation
-    // Only apply slide effect if directions have been initialized
-    // Reduce slide distance on mobile for better performance and visibility
+    // Check if mobile for performance optimization
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-    const slideDistance = Object.keys(infographDirections).length > 0 ? (1 - easedProgress) * (isMobile ? 40 : 80) : 0;
+    
+    // Reduced animation intensity for mobile to improve performance
+    const mobileMultiplier = isMobile ? 0.5 : 1;
+    
+    // Enhanced smooth interpolation based on progress
+    const opacity = Math.max(0.2, Math.min(1, 0.2 + (easedProgress * 0.8)));
+    const translateY = (1 - easeOutQuart(progress)) * 25 * mobileMultiplier; // Reduced for mobile
+    const scale = 0.96 + (easedProgress * 0.04); // Subtle scaling
+    const blur = Math.max(0, (1 - easedProgress) * (isMobile ? 1 : 2)); // Reduced blur on mobile
+    
+    // Random left/right sliding animation - reduced distance for mobile
+    const slideDistance = Object.keys(infographDirections).length > 0 ? 
+      (1 - easedProgress) * (isMobile ? 25 : 50) : 0;
     const translateX = direction === 'left' ? -slideDistance : slideDistance;
     
-    // Add subtle wave-like secondary movement (reduced on mobile)
-    const waveOffset = Math.sin(progress * Math.PI) * (isMobile ? 1.5 : 3); // Very subtle wave
-    
     return {
-      transform: `translateY(${translateY}px) translateX(${translateX + waveOffset}px) scale(${scale})`,
-      opacity: opacity,
+      transform: `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`, // Use translate3d for GPU acceleration
+      opacity,
       filter: `blur(${blur}px)`,
-      transition: 'none', // Remove transitions for smooth scroll-driven animation
-      willChange: 'transform, opacity, filter' // Optimize for animations
+      willChange: isMobile ? 'transform, opacity' : 'transform, opacity, filter', // Reduce willChange on mobile
     };
   };
 
