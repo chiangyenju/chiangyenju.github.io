@@ -150,6 +150,7 @@ export default function Projects() {
   const navRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [dotPosition, setDotPosition] = useState(0);
 
   // State for infographic scroll animations - now using continuous progress values
@@ -2655,6 +2656,7 @@ export default function Projects() {
           }
           
           const elementTop = rect.top;
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const elementBottom = rect.bottom;
           const elementHeight = rect.height;
           const elementCenter = elementTop + (elementHeight / 2);
