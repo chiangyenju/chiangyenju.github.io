@@ -318,33 +318,42 @@ export default function Projects() {
 
   const tableOfContents = generateTableOfContents();
 
-  // Scroll spy functionality
+  // Scroll spy functionality - throttled for performance
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200;
-      let currentSection = '';
+      if (scrollTimeout) clearTimeout(scrollTimeout);
       
-      // Check which section is currently in view
-      Object.entries(sectionRefs.current).forEach(([sectionId, element]) => {
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          const elementTop = rect.top + window.scrollY;
-          
-          if (scrollPosition >= elementTop) {
-            currentSection = sectionId;
+      scrollTimeout = setTimeout(() => {
+        const scrollPosition = window.scrollY + 200;
+        let currentSection = '';
+        
+        // Check which section is currently in view
+        Object.entries(sectionRefs.current).forEach(([sectionId, element]) => {
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            const elementTop = rect.top + window.scrollY;
+            
+            if (scrollPosition >= elementTop) {
+              currentSection = sectionId;
+            }
           }
-        }
-      });
+        });
 
-      if (currentSection !== activeSection) {
-      setActiveSection(currentSection);
-      }
+        if (currentSection !== activeSection) {
+          setActiveSection(currentSection);
+        }
+      }, 100); // Throttle to every 100ms
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial call
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [activeSection]);
 
   // Update dot position when active section changes (scrolling)
@@ -2715,10 +2724,13 @@ export default function Projects() {
 
     // Add scroll listener with throttling for better performance
     let ticking = false;
+    let lastScrollTime = 0;
     const scrollHandler = () => {
-      if (!ticking) {
+      const now = Date.now();
+      if (!ticking && now - lastScrollTime > 16) { // ~60fps throttling
         requestAnimationFrame(() => {
           handleInfographScroll();
+          lastScrollTime = now;
           ticking = false;
         });
         ticking = true;
@@ -2752,7 +2764,7 @@ export default function Projects() {
   return (
     <section className="min-h-screen w-full bg-neutral-900 overflow-x-hidden">
       {/* Mobile Table of Contents - Horizontal scroll at top */}
-      <div className="xl:hidden sticky top-16 z-40 bg-neutral-900/98 backdrop-blur-md border-b border-white/20 shadow-lg">
+      <div className="xl:hidden sticky top-16 z-40 bg-neutral-900/95 border-b border-white/20 shadow-lg">
         <div className="px-4 py-4">
           <nav className="flex gap-3 overflow-x-auto scrollbar-hide">
             {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
@@ -2799,7 +2811,7 @@ export default function Projects() {
 
         {/* Desktop Table of Contents Sidebar - Right Side - Hidden on mobile/tablet */}
         <div className="hidden xl:block w-64 fixed right-8 top-1/2 transform -translate-y-1/2 h-[70vh] overflow-y-auto scrollbar-hide hover:scrollbar-default">
-          <div className="bg-stone-500/12 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+          <div className="bg-stone-500/8 rounded-2xl p-6 border border-white/10">
             
             <nav className="space-y-2" ref={navRef}>
               {/* Vertical layout for table of contents items */}

@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} bg-ds-primary text-ds-primary antialiased`}>
         
-        {/* Light Animation Background */}
+        {/* Light Animation Background - Disabled for performance 
         <div className="light-container">
           <div className="tunnel-light"></div>
           <div className="light-beam light-beam-1"></div>
@@ -40,6 +40,7 @@ export default function RootLayout({
           <div className="light-beam light-beam-5"></div>
           <div className="light-beam light-beam-6"></div>
         </div>
+        */}
         
         {/* Navigation */}
         <Navigation />

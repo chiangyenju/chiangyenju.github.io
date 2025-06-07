@@ -99,30 +99,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Floating Moon Dot - positioned to fit on screen */}
+          {/* Floating Moon Dot - simplified for performance */}
           <div className="flex justify-center mt-6 sm:mt-10">
             <div 
-              className="w-1.5 h-1.5 bg-ds-interactive rounded-full"
+              className="w-1.5 h-1.5 bg-ds-interactive rounded-full opacity-60"
               style={{ 
-                animation: 'moonFloat 6s ease-in-out infinite',
-                boxShadow: '0 0 6px rgba(255, 255, 255, 0.3)'
+                boxShadow: '0 0 4px rgba(255, 255, 255, 0.2)'
               }}
             ></div>
           </div>
         </div>
       </div>
 
-      {/* CSS for moon floating animation */}
-      <style jsx>{`
-        @keyframes moonFloat {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-12px);
-          }
-        }
-      `}</style>
+
     </section>
   );
 }
