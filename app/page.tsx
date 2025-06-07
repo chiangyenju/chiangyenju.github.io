@@ -21,50 +21,26 @@ export default function Home() {
                 fontWeight: '200'
               }}
             >
-              <span>My name is</span>
-              <span
-                style={{
-                  color: "#f5f5f4",
-                  fontWeight: '300'
-                }}
-              >
-                Andrew Chiang.
-              </span>
+              <span>My name is Andrew Chiang.</span>
               <span
                 style={{
                   fontFamily: 'Georgia, serif',
-                  fontWeight: '900',
+                  fontWeight: '300',
                   fontSize: '1.1em',
                   background: 'linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 30%, #d6d3d1 60%, #a8a29e 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
-                  textShadow: '0 0 20px rgba(245, 245, 244, 0.3)',
                 }}
               >
                 I enjoy creating things.
               </span>
             </p>
-            
-            {/* Call to Action Button - Both mobile and desktop */}
-            <div className="mt-6 sm:mt-8">
-              <Link
-                href="/projects"
-                className="interactive btn-primary"
-                style={{
-                  fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                  fontWeight: '300',
-                  fontSize: '14px',
-                  letterSpacing: '0.02em'
-                }}
-              >
-                View Projects
-              </Link>
-            </div>
+
             
             {/* Tags */}
             <div 
-              className="text-ds-tertiary px-12 sm:px-24 md:px-32 lg:px-40 xl:px-48" 
+              className="text-ds-tertiary px-12 sm:px-24 md:px-32 lg:px-40 xl:px-48 mt-6 sm:mt-8" 
               style={{ 
                 fontFamily: 'Helvetica Neue, Arial, sans-serif',
                 lineHeight: '1.4',
@@ -73,10 +49,10 @@ export default function Home() {
               }}
             >
               {/* Unified layout for all screen sizes - single row */}
-              <div className="flex flex-wrap justify-center gap-x-2 sm:gap-x-4 gap-y-1 sm:gap-y-2">
+              <div className="flex justify-center gap-x-2 sm:gap-x-4">
                 <Link
                   href="/projects"
-                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs sm:text-sm"
+                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs whitespace-nowrap"
                   style={{
                     fontWeight: '200'
                   }}
@@ -85,7 +61,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/projects"
-                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs sm:text-sm"
+                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs whitespace-nowrap"
                   style={{
                     fontWeight: '200'
                   }}
@@ -94,7 +70,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/projects"
-                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs sm:text-sm"
+                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs whitespace-nowrap"
                   style={{
                     fontWeight: '200'
                   }}
@@ -103,7 +79,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/music"
-                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs sm:text-sm"
+                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs whitespace-nowrap"
                   style={{
                     fontWeight: '200'
                   }}
@@ -112,7 +88,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/sandbox"
-                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs sm:text-sm"
+                  className="text-ds-quaternary hover:text-ds-tertiary transition-colors duration-300 text-xs whitespace-nowrap"
                   style={{
                     fontWeight: '200'
                   }}

@@ -59,7 +59,7 @@ export default function Navigation() {
       <div className="max-w-6xl mx-auto px-8 sm:px-12 py-4 sm:py-6">
         <div className="flex items-center justify-between">
           {/* Logo/Brand - Left side */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center focus:outline-none">
             <span
               style={{
                 display: 'inline-flex',
