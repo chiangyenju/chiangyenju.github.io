@@ -1,10 +1,29 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { FiLayout, FiSmartphone, FiUsers, FiTarget } from 'react-icons/fi';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Projects() {
   const [activeSection, setActiveSection] = useState('overview');
+  const figmaRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: figmaRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
+  const y = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [50, 0, 0, -50]
+  );
 
   // Handle scroll to update active section
   useEffect(() => {
@@ -111,11 +130,73 @@ export default function Projects() {
           </div>
         </header>
 
-        {/* Content sections will be added here */}
+        {/* Content sections */}
         <div className="space-y-24">
           <section id="overview">
-            {/* Content will go here */}
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-serif text-2xl">Overview</h2>
+              <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">01</div>
+            </div>
+            <div className="space-y-6">
+              <p className="font-sans text-justify hyphens-auto">
+                This project is an AI-powered interior design tool aimed at helping new homeowners visualize and furnish their living spaces. The platform allows users to upload a photo or layout of their home and receive fully furnished design recommendations, complete with purchasable furniture items. The goal was to make the interior design process more efficient, intuitive, and directly actionable by integrating both AI-driven recommendations and a commerce flow for purchasing items.
+              </p>
+              <blockquote className="border-l-2 border-olive pl-6 py-2 bg-ebony/[0.02] !font-extralight text-justify hyphens-auto">
+                I collaborated closely with an experienced team that included an award-winning interior designer, engineers focused on AI and computer vision, and fellow designers. My work primarily focused on user experience design across platforms, including creating mockups for both the mobile app and the web application. I also contributed to implementing and adapting the design system across responsive breakpoints.
+              </blockquote>
+              <p className="font-sans text-justify hyphens-auto">
+                The project was developed over a six-month period and is currently under an accelerator program. While not yet launched, a working prototype with interactive flows and high-fidelity visuals has been developed to communicate the concept.
+              </p>
+            </div>
           </section>
+
+          {/* Role Infographic */}
+          <div className="py-4 flex flex-wrap justify-center gap-x-12 gap-y-3">
+            <div className="flex items-center gap-2 group">
+              <div className="text-red group-hover:text-red/80 transition-colors">
+                <FiLayout className="w-3.5 h-3.5" />
+              </div>
+              <h3 className="font-serif text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">UI/UX Design</h3>
+            </div>
+
+            <div className="flex items-center gap-2 group">
+              <div className="text-red group-hover:text-red/80 transition-colors">
+                <FiSmartphone className="w-3.5 h-3.5" />
+              </div>
+              <h3 className="font-serif text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">Mobile & Web Development</h3>
+            </div>
+
+            <div className="flex items-center gap-2 group">
+              <div className="text-red group-hover:text-red/80 transition-colors">
+                <FiUsers className="w-3.5 h-3.5" />
+              </div>
+              <h3 className="font-serif text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">User Research</h3>
+            </div>
+
+            <div className="flex items-center gap-2 group">
+              <div className="text-red group-hover:text-red/80 transition-colors">
+                <FiTarget className="w-3.5 h-3.5" />
+              </div>
+              <h3 className="font-serif text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">Product Management</h3>
+            </div>
+          </div>
+
+          {/* Figma Design Image */}
+          <motion.div
+            ref={figmaRef}
+            style={{ opacity, y }}
+            className="mt-16"
+          >
+            <Image
+              src="/projects/interior-design-ai/figma-image.png"
+              alt="Figma design process and components"
+              width={2000}
+              height={1200}
+              className="w-full rounded-lg"
+              priority
+            />
+          </motion.div>
+
           <section id="problem-statement">
             {/* Content will go here */}
           </section>
