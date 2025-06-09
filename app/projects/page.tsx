@@ -355,7 +355,85 @@ export default function Projects() {
             </div>
           </section>
           <section id="design-system">
-            {/* Content will go here */}
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-serif text-2xl">Design System</h2>
+              <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">04</div>
+            </div>
+            <div className="space-y-6">
+              <p className="font-sans md:text-justify hyphens-auto">
+                The project's design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
+              </p>
+
+              <p className="font-sans md:text-justify hyphens-auto">
+                While I was not responsible for creating the system, I applied it rigorously in my design work—especially when adapting the desktop-first system for mobile platforms. The system exists primarily in Figma and is documented with high-level visual and written guidelines to ensure consistency across screens and use cases.
+              </p>
+
+              {/* Design System Components Grid */}
+              <div className="mt-24 space-y-32">
+                <div className="space-y-3">
+                  <div className="text-red text-sm font-serif">Typography</div>
+                  <div className="flex flex-col items-center space-y-8">
+                    <div className="flex items-center space-x-3">
+                      <div className="h-[1px] w-12 bg-ebony/20"></div>
+                      <div className="font-serif text-xs tracking-wider">Heading Style</div>
+                      <div className="h-[1px] w-12 bg-ebony/20"></div>
+                    </div>
+                    <div>
+                      <Image
+                        src="/projects/interior-design-ai/logo-2.png"
+                        alt="Typography example"
+                        width={500}
+                        height={300}
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="h-[1px] w-12 bg-ebony/20"></div>
+                      <div className="font-serif text-xs tracking-wider">Body Text</div>
+                      <div className="h-[1px] w-12 bg-ebony/20"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="text-red text-sm font-serif">Colors</div>
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-6">
+                      <div className="w-10 h-10 rounded-full bg-[#1E1E2A]"></div>
+                      <div className="w-10 h-10 rounded-full bg-[#F5F5F5]"></div>
+                      <div className="w-10 h-10 rounded-full bg-[#9E4F4F]"></div>
+                      <div className="w-10 h-10 rounded-full bg-[#B8C4D9]"></div>
+                      <div className="relative">
+                        <div className="w-10 h-10 rounded-full bg-[#D4B483] absolute -top-2 left-0"></div>
+                        <div className="w-10 h-10 rounded-full bg-[#E8C795]"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="text-red text-sm font-serif">Components</div>
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center justify-center gap-8">
+                      <Image
+                        src="/projects/interior-design-ai/back-button.png"
+                        alt="Back button component"
+                        width={120}
+                        height={48}
+                        className="h-12 w-auto"
+                      />
+                      <Image
+                        src="/projects/interior-design-ai/next-button.png"
+                        alt="Next button component"
+                        width={120}
+                        height={48}
+                        className="h-12 w-auto"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
           <section id="user-experience">
             {/* Content will go here */}
