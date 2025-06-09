@@ -17,7 +17,7 @@ module.exports = {
       fontFamily: {
         'chinese': ['"Zhi Mang Xing"', 'cursive'],
         'serif': ['Georgia', 'serif'],
-        'sans': ['Montserrat', 'sans-serif'],
+        'sans': ['Lexend', 'sans-serif'],
       },
       colors: {
         ebony: '#1e1200',

@@ -170,41 +170,41 @@ export default function Projects() {
           </section>
 
           {/* Role Infographic */}
-          <div className="py-12">
-            <div className="relative p-8 bg-ebony/[0.02] rounded-2xl border border-ebony/5">
+          <div className="py-3">
+            <div className="relative p-6 bg-ebony/[0.02] rounded-2xl border border-ebony/5">
               {/* Decorative corner elements */}
               <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-red/20 rounded-tl-2xl -translate-x-1 -translate-y-1"></div>
               <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-red/20 rounded-tr-2xl translate-x-1 -translate-y-1"></div>
               <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-red/20 rounded-bl-2xl -translate-x-1 translate-y-1"></div>
               <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-red/20 rounded-br-2xl translate-x-1 translate-y-1"></div>
               
-              <div className="flex flex-wrap justify-center gap-x-16 gap-y-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
                 <div className="flex items-center gap-3 group">
                   <div className="text-red group-hover:text-red/80 transition-colors">
                     <FiLayout className="w-4 h-4" />
                   </div>
-                  <h3 className="font-serif text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">UI/UX Design</h3>
+                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">UI/UX Design</h3>
                 </div>
 
                 <div className="flex items-center gap-3 group">
                   <div className="text-red group-hover:text-red/80 transition-colors">
                     <FiSmartphone className="w-4 h-4" />
                   </div>
-                  <h3 className="font-serif text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">Mobile & Web Development</h3>
+                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">Mobile & Web Dev</h3>
                 </div>
 
                 <div className="flex items-center gap-3 group">
                   <div className="text-red group-hover:text-red/80 transition-colors">
                     <FiUsers className="w-4 h-4" />
                   </div>
-                  <h3 className="font-serif text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">User Research</h3>
+                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">User Research</h3>
                 </div>
 
                 <div className="flex items-center gap-3 group">
                   <div className="text-red group-hover:text-red/80 transition-colors">
                     <FiTarget className="w-4 h-4" />
                   </div>
-                  <h3 className="font-serif text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">Product Management</h3>
+                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">Product Mgmt</h3>
                 </div>
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function Projects() {
           <motion.div
             ref={figmaRef}
             style={{ opacity, y }}
-            className="mt-16"
+            className="mt-4"
           >
             <Image
               src="/projects/interior-design-ai/figma-image.png"
@@ -364,73 +364,62 @@ export default function Projects() {
                 The project&apos;s design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
               </p>
 
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify hyphens-auto mb-32">
                 While I was not responsible for creating the system, I applied it rigorously in my design work—especially when adapting the desktop-first system for mobile platforms. The system exists primarily in Figma and is documented with high-level visual and written guidelines to ensure consistency across screens and use cases.
               </p>
 
               {/* Design System Components Grid */}
-              <div className="mt-24 space-y-32">
-                <div className="space-y-3">
-                  <div className="text-red text-sm font-serif">Typography</div>
-                  <div className="flex flex-col items-center space-y-8">
-                    <div className="flex items-center space-x-3">
-                      <div className="h-[1px] w-12 bg-ebony/20"></div>
-                      <div className="font-serif text-xs tracking-wider">Heading Style</div>
-                      <div className="h-[1px] w-12 bg-ebony/20"></div>
-                    </div>
-                    <div>
-                      <Image
-                        src="/projects/interior-design-ai/logo-2.png"
-                        alt="Typography example"
-                        width={500}
-                        height={300}
-                        className="w-full"
-                      />
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <div className="h-[1px] w-12 bg-ebony/20"></div>
-                      <div className="font-serif text-xs tracking-wider">Body Text</div>
-                      <div className="h-[1px] w-12 bg-ebony/20"></div>
-                    </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+                {/* Typography */}
+                <div className="flex flex-col items-center">
+                  <div className="flex items-center space-x-3 mb-10">
+                    <div className="h-[1px] w-12 bg-ebony/20"></div>
+                    <div className="font-serif text-xs tracking-wider">Heading Style</div>
+                    <div className="h-[1px] w-12 bg-ebony/20"></div>
+                  </div>
+                  <div className="mb-10">
+                    <Image
+                      src="/projects/interior-design-ai/logo-2.png"
+                      alt="Typography example"
+                      width={250}
+                      height={167}
+                    />
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="h-[1px] w-12 bg-ebony/20"></div>
+                    <div className="font-serif text-xs tracking-wider">Body Text</div>
+                    <div className="h-[1px] w-12 bg-ebony/20"></div>
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="text-red text-sm font-serif">Colors</div>
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center justify-center gap-6">
-                      <div className="w-10 h-10 rounded-full bg-[#1E1E2A]"></div>
-                      <div className="w-10 h-10 rounded-full bg-[#F5F5F5]"></div>
-                      <div className="w-10 h-10 rounded-full bg-[#9E4F4F]"></div>
-                      <div className="w-10 h-10 rounded-full bg-[#B8C4D9]"></div>
-                      <div className="relative">
-                        <div className="w-10 h-10 rounded-full bg-[#D4B483] absolute -top-2 left-0"></div>
-                        <div className="w-10 h-10 rounded-full bg-[#E8C795]"></div>
-                      </div>
-                    </div>
+                {/* Colors */}
+                <div className="flex flex-col items-center justify-center h-full">
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#1E1E2A]"></div>
+                    <div className="w-10 h-10 rounded-full bg-[#F5F5F5]"></div>
+                    <div className="w-10 h-10 rounded-full bg-[#9E4F4F]"></div>
+                    <div className="w-10 h-10 rounded-full bg-[#B8C4D9]"></div>
+                    <div className="w-10 h-10 rounded-full bg-[#D4B483]"></div>
+                    <div className="w-10 h-10 rounded-full bg-[#E8C795]"></div>
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="text-red text-sm font-serif">Components</div>
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center justify-center gap-8">
-                      <Image
-                        src="/projects/interior-design-ai/back-button.png"
-                        alt="Back button component"
-                        width={120}
-                        height={48}
-                        className="h-12 w-auto"
-                      />
-                      <Image
-                        src="/projects/interior-design-ai/next-button.png"
-                        alt="Next button component"
-                        width={120}
-                        height={48}
-                        className="h-12 w-auto"
-                      />
-                    </div>
-                  </div>
+                {/* Components */}
+                <div className="flex flex-col items-center justify-center h-full gap-3">
+                  <Image
+                    src="/projects/interior-design-ai/back-button.png"
+                    alt="Back button component"
+                    width={100}
+                    height={40}
+                    className="h-10 w-auto"
+                  />
+                  <Image
+                    src="/projects/interior-design-ai/next-button.png"
+                    alt="Next button component"
+                    width={100}
+                    height={40}
+                    className="h-10 w-auto"
+                  />
                 </div>
               </div>
             </div>
@@ -445,128 +434,86 @@ export default function Projects() {
                 The primary user journey was carefully structured to be intuitive and accessible, particularly for users who may not be tech-savvy. The flow is as follows:
               </p>
 
-              {/* User Flow Chart */}
-              <div className="relative py-12 overflow-x-auto">
-                <div className="flex justify-between items-center min-w-[800px] px-4">
-                  {/* Step 1 */}
-                  <div className="flex flex-col items-center w-40 group">
-                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
-                      <div className="font-serif text-2xl">01</div>
+              {/* Elegant Metro Grid */}
+              <div className="relative py-12">
+                <div className="max-w-5xl mx-auto">
+                  {/* Process Grid */}
+                  <div className="grid grid-cols-2 gap-12">
+                    {/* Step 1 */}
+                    <div className="group">
+                      <div className="flex items-start space-x-6">
+                        <span className="font-serif text-xs text-red/40">01</span>
+                        <div>
+                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                            Define your space by specifying room types, dimensions, and floor plan arrangement.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
-                    <div className="text-center">
-                      <h3 className="font-serif text-sm mb-2">Layout</h3>
-                      <p className="font-sans text-xs font-extralight">Specify home layout and rooms</p>
-                    </div>
-                  </div>
 
-                  {/* Arrow 1 */}
-                  <div className="w-12 h-[2px] bg-red/20"></div>
-
-                  {/* Step 2 */}
-                  <div className="flex flex-col items-center w-40 group">
-                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
-                      <div className="font-serif text-2xl">02</div>
+                    {/* Step 2 */}
+                    <div className="group">
+                      <div className="flex items-start space-x-6">
+                        <span className="font-serif text-xs text-red/40">02</span>
+                        <div>
+                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                            Upload room photographs to capture current state, lighting, and spatial context.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
-                    <div className="text-center">
-                      <h3 className="font-serif text-sm mb-2">Photos</h3>
-                      <p className="font-sans text-xs font-extralight">Upload room photos</p>
-                    </div>
-                  </div>
 
-                  {/* Arrow 2 */}
-                  <div className="w-12 h-[2px] bg-red/20"></div>
-
-                  {/* Step 3 */}
-                  <div className="flex flex-col items-center w-40 group">
-                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
-                      <div className="font-serif text-2xl">03</div>
+                    {/* Step 3 */}
+                    <div className="group">
+                      <div className="flex items-start space-x-6">
+                        <span className="font-serif text-xs text-red/40">03</span>
+                        <div>
+                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                            Select your preferred interior style, color schemes, and material preferences.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
-                    <div className="text-center">
-                      <h3 className="font-serif text-sm mb-2">Style</h3>
-                      <p className="font-sans text-xs font-extralight">Choose design preferences</p>
-                    </div>
-                  </div>
 
-                  {/* Arrow 3 */}
-                  <div className="w-12 h-[2px] bg-red/20"></div>
-
-                  {/* Step 4 */}
-                  <div className="flex flex-col items-center w-40 group">
-                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
-                      <div className="font-serif text-2xl">04</div>
+                    {/* Step 4 */}
+                    <div className="group">
+                      <div className="flex items-start space-x-6">
+                        <span className="font-serif text-xs text-red/40">04</span>
+                        <div>
+                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                            AI processes inputs to create personalized design concepts and visualizations.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
-                    <div className="text-center">
-                      <h3 className="font-serif text-sm mb-2">Generate</h3>
-                      <p className="font-sans text-xs font-extralight">AI creates design & product list</p>
-                    </div>
-                  </div>
 
-                  {/* Arrow 4 */}
-                  <div className="w-12 h-[2px] bg-red/20"></div>
-
-                  {/* Step 5 */}
-                  <div className="flex flex-col items-center w-40 group">
-                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
-                      <div className="font-serif text-2xl">05</div>
+                    {/* Step 5 */}
+                    <div className="group">
+                      <div className="flex items-start space-x-6">
+                        <span className="font-serif text-xs text-red/40">05</span>
+                        <div>
+                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                            Browse curated furniture selections and proceed with purchase.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
-                    <div className="text-center">
-                      <h3 className="font-serif text-sm mb-2">Shop</h3>
-                      <p className="font-sans text-xs font-extralight">Purchase & customize items</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              {/* User Flow Details */}
-              <div className="relative p-8 bg-ebony/[0.02] rounded-2xl border border-ebony/5 overflow-hidden">
-                <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-red/20 rounded-tl-2xl -translate-x-1 -translate-y-1"></div>
-                <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-red/20 rounded-tr-2xl translate-x-1 -translate-y-1"></div>
-                <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-red/20 rounded-bl-2xl -translate-x-1 translate-y-1"></div>
-                <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-red/20 rounded-br-2xl translate-x-1 translate-y-1"></div>
-                
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-6 group">
-                    <span className="text-red text-2xl leading-none">•</span>
-                    <div>
-                      <p className="font-sans font-extralight">
-                        Users specify the layout of their home (e.g., number and types of rooms)
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-6 group">
-                    <span className="text-red text-2xl leading-none">•</span>
-                    <div>
-                      <p className="font-sans font-extralight">
-                        For each room, they upload a photo—either empty or already furnished
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-6 group">
-                    <span className="text-red text-2xl leading-none">•</span>
-                    <div>
-                      <p className="font-sans font-extralight">
-                        They select a preferred style and room type
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-6 group">
-                    <span className="text-red text-2xl leading-none">•</span>
-                    <div>
-                      <p className="font-sans font-extralight">
-                        The AI generates a fully furnished version of each room, with styled images and itemized lists (including product names, prices, and quantities)
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-6 group">
-                    <span className="text-red text-2xl leading-none">•</span>
-                    <div>
-                      <p className="font-sans font-extralight">
-                        Users can add items to their cart, swap them out for alternatives, and proceed to purchase with built-in checkout, payment, and delivery functionality
-                      </p>
+                    {/* Summary */}
+                    <div className="group">
+                      <div className="flex items-start space-x-6">
+                        <span className="font-serif text-xs text-red/40">→</span>
+                        <div>
+                          <p className="font-sans text-sm font-extralight leading-relaxed text-red/40">
+                            A seamless journey from concept to completion, transforming spaces with AI-powered design.
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -610,18 +557,32 @@ export default function Projects() {
               {/* User Flow Images */}
               <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
                 <Image
+                  src="/projects/interior-design-ai/homepage-mockup.png"
+                  alt="Homepage interface mockup"
+                  width={1200}
+                  height={800}
+                  className="rounded-lg"
+                />
+                <Image
+                  src="/projects/interior-design-ai/login-mockup.png"
+                  alt="Login interface mockup"
+                  width={1200}
+                  height={800}
+                  className="rounded-lg"
+                />
+                <Image
                   src="/projects/interior-design-ai/capture-mockup.png"
                   alt="Room capture interface mockup"
-                  width={600}
-                  height={400}
-                  className="w-full rounded-lg"
+                  width={1200}
+                  height={800}
+                  className="rounded-lg"
                 />
                 <Image
                   src="/projects/interior-design-ai/results-mockup.png"
                   alt="Results and shopping interface mockup"
-                  width={600}
-                  height={400}
-                  className="w-full rounded-lg"
+                  width={1200}
+                  height={800}
+                  className="rounded-lg"
                 />
               </div>
             </div>
