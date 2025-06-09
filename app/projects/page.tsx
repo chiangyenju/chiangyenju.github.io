@@ -436,7 +436,123 @@ export default function Projects() {
             </div>
           </section>
           <section id="user-experience">
-            {/* Content will go here */}
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-serif text-2xl">User Experience & Interface</h2>
+              <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">05</div>
+            </div>
+            <div className="space-y-6">
+              <p className="font-sans md:text-justify hyphens-auto">
+                The primary user journey was carefully structured to be intuitive and accessible, particularly for users who may not be tech-savvy. The flow is as follows:
+              </p>
+
+              {/* User Flow Diagram */}
+              <div className="relative p-8 bg-ebony/[0.02] rounded-2xl border border-ebony/5 overflow-hidden">
+                <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-red/20 rounded-tl-2xl -translate-x-1 -translate-y-1"></div>
+                <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-red/20 rounded-tr-2xl translate-x-1 -translate-y-1"></div>
+                <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-red/20 rounded-bl-2xl -translate-x-1 translate-y-1"></div>
+                <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-red/20 rounded-br-2xl translate-x-1 translate-y-1"></div>
+                
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-6 group">
+                    <span className="text-red text-2xl leading-none">•</span>
+                    <div>
+                      <p className="font-sans font-extralight">
+                        Users specify the layout of their home (e.g., number and types of rooms)
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-6 group">
+                    <span className="text-red text-2xl leading-none">•</span>
+                    <div>
+                      <p className="font-sans font-extralight">
+                        For each room, they upload a photo—either empty or already furnished
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-6 group">
+                    <span className="text-red text-2xl leading-none">•</span>
+                    <div>
+                      <p className="font-sans font-extralight">
+                        They select a preferred style and room type
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-6 group">
+                    <span className="text-red text-2xl leading-none">•</span>
+                    <div>
+                      <p className="font-sans font-extralight">
+                        The AI generates a fully furnished version of each room, with styled images and itemized lists (including product names, prices, and quantities)
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-6 group">
+                    <span className="text-red text-2xl leading-none">•</span>
+                    <div>
+                      <p className="font-sans font-extralight">
+                        Users can add items to their cart, swap them out for alternatives, and proceed to purchase with built-in checkout, payment, and delivery functionality
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="font-sans md:text-justify hyphens-auto">
+                The goal was to make the interface feel like a guided, step-by-step walkthrough rather than an overwhelming dashboard. Instead of large tutorial videos or dense blocks of text, micro-guidance is built into each step.
+              </p>
+
+              <p className="font-sans">Challenges included:</p>
+
+              <div className="space-y-4 ml-4">
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Visualizing a high-impact design experience without having a fully trained AI model
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Balancing the fixed recommendations of AI-generated results with the exploratory nature of e-commerce browsing
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Differentiating flows between mobile (optimized for scanning and on-the-go interaction) and web (optimized for in-depth browsing and purchase decisions)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* User Flow Images */}
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Image
+                  src="/projects/interior-design-ai/capture-mockup.png"
+                  alt="Room capture interface mockup"
+                  width={600}
+                  height={400}
+                  className="w-full rounded-lg"
+                />
+                <Image
+                  src="/projects/interior-design-ai/results-mockup.png"
+                  alt="Results and shopping interface mockup"
+                  width={600}
+                  height={400}
+                  className="w-full rounded-lg"
+                />
+              </div>
+            </div>
           </section>
           <section id="ai-integration">
             {/* Content will go here */}
