@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { FiLayout, FiSmartphone, FiUsers, FiTarget, FiHome, FiEye, FiBox, FiUser } from 'react-icons/fi';
+import { FiLayout, FiSmartphone, FiUsers, FiTarget } from 'react-icons/fi';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Projects() {
@@ -361,7 +361,7 @@ export default function Projects() {
             </div>
             <div className="space-y-6">
               <p className="font-sans md:text-justify hyphens-auto">
-                The project's design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
+                The project&apos;s design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
               </p>
 
               <p className="font-sans md:text-justify hyphens-auto">
