@@ -1,25 +1,11 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Navigation from './components/Navigation'
 
-const inter = Inter({ subsets: ['latin'] })
-
 export const metadata: Metadata = {
   title: 'chiangyenju',
-  description: 'Chiang Yen Ju - UX Designer & Researcher Portfolio',
-  themeColor: '#1c1917',
-  viewport: 'width=device-width, initial-scale=1',
-  icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: '32x32' },
-    ],
-    apple: [
-      { url: '/favicon.svg', sizes: '180x180', type: 'image/svg+xml' },
-    ],
-    shortcut: '/favicon.svg',
-  },
+  description: 'chiangyenju-portfolio',
+  viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
 }
 
 export default function RootLayout({
@@ -29,28 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-ds-primary text-ds-primary antialiased`}>
-        
-        {/* Light Animation Background - Disabled for performance 
-        <div className="light-container">
-          <div className="tunnel-light"></div>
-          <div className="light-beam light-beam-1"></div>
-          <div className="light-beam light-beam-2"></div>
-          <div className="light-beam light-beam-3"></div>
-          <div className="light-beam light-beam-4"></div>
-          <div className="light-beam light-beam-5"></div>
-          <div className="light-beam light-beam-6"></div>
-        </div>
-        */}
-        
-        {/* Navigation */}
+      <body className="min-h-screen bg-ivory text-ebony font-sans">
         <Navigation />
-        
-        {/* Main Content */}
-        <main className="relative z-10 min-h-screen">
+        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16">
           {children}
         </main>
-        
       </body>
     </html>
   )
