@@ -445,7 +445,79 @@ export default function Projects() {
                 The primary user journey was carefully structured to be intuitive and accessible, particularly for users who may not be tech-savvy. The flow is as follows:
               </p>
 
-              {/* User Flow Diagram */}
+              {/* User Flow Chart */}
+              <div className="relative py-12 overflow-x-auto">
+                <div className="flex justify-between items-center min-w-[800px] px-4">
+                  {/* Step 1 */}
+                  <div className="flex flex-col items-center w-40 group">
+                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
+                      <div className="font-serif text-2xl">01</div>
+                    </div>
+                    <div className="text-center">
+                      <h3 className="font-serif text-sm mb-2">Layout</h3>
+                      <p className="font-sans text-xs font-extralight">Specify home layout and rooms</p>
+                    </div>
+                  </div>
+
+                  {/* Arrow 1 */}
+                  <div className="w-12 h-[2px] bg-red/20"></div>
+
+                  {/* Step 2 */}
+                  <div className="flex flex-col items-center w-40 group">
+                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
+                      <div className="font-serif text-2xl">02</div>
+                    </div>
+                    <div className="text-center">
+                      <h3 className="font-serif text-sm mb-2">Photos</h3>
+                      <p className="font-sans text-xs font-extralight">Upload room photos</p>
+                    </div>
+                  </div>
+
+                  {/* Arrow 2 */}
+                  <div className="w-12 h-[2px] bg-red/20"></div>
+
+                  {/* Step 3 */}
+                  <div className="flex flex-col items-center w-40 group">
+                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
+                      <div className="font-serif text-2xl">03</div>
+                    </div>
+                    <div className="text-center">
+                      <h3 className="font-serif text-sm mb-2">Style</h3>
+                      <p className="font-sans text-xs font-extralight">Choose design preferences</p>
+                    </div>
+                  </div>
+
+                  {/* Arrow 3 */}
+                  <div className="w-12 h-[2px] bg-red/20"></div>
+
+                  {/* Step 4 */}
+                  <div className="flex flex-col items-center w-40 group">
+                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
+                      <div className="font-serif text-2xl">04</div>
+                    </div>
+                    <div className="text-center">
+                      <h3 className="font-serif text-sm mb-2">Generate</h3>
+                      <p className="font-sans text-xs font-extralight">AI creates design & product list</p>
+                    </div>
+                  </div>
+
+                  {/* Arrow 4 */}
+                  <div className="w-12 h-[2px] bg-red/20"></div>
+
+                  {/* Step 5 */}
+                  <div className="flex flex-col items-center w-40 group">
+                    <div className="w-20 h-20 rounded-full bg-ebony/[0.02] border-2 border-red/20 flex items-center justify-center mb-4 group-hover:border-red/40 transition-colors">
+                      <div className="font-serif text-2xl">05</div>
+                    </div>
+                    <div className="text-center">
+                      <h3 className="font-serif text-sm mb-2">Shop</h3>
+                      <p className="font-sans text-xs font-extralight">Purchase & customize items</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* User Flow Details */}
               <div className="relative p-8 bg-ebony/[0.02] rounded-2xl border border-ebony/5 overflow-hidden">
                 <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-red/20 rounded-tl-2xl -translate-x-1 -translate-y-1"></div>
                 <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-red/20 rounded-tr-2xl translate-x-1 -translate-y-1"></div>
