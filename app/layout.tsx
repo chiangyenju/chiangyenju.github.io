@@ -3,26 +3,18 @@ import './globals.css'
 import Navigation from './components/Navigation'
 
 export const metadata: Metadata = {
-  title: 'Andrew Chiang',
+  title: 'yenju portfolio',
   description: 'Personal portfolio of Andrew Chiang',
   viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
   icons: {
     icon: [
       {
-        url: '/favicon.svg',
-        type: 'image/svg+xml',
-      }
-    ],
-    shortcut: [
+        url: '/favicon.ico',
+        sizes: 'any',
+      },
       {
-        url: '/favicon.svg',
-        type: 'image/svg+xml',
-      }
-    ],
-    apple: [
-      {
-        url: '/favicon.svg',
-        type: 'image/svg+xml',
+        url: '/favicon.png',
+        type: 'image/png',
       }
     ]
   }
@@ -36,7 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="alternate icon" href="/favicon.ico" />
       </head>
       <body className="min-h-screen bg-ivory text-ebony font-sans">
         <Navigation />
