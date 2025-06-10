@@ -270,13 +270,13 @@ export default function Projects() {
               <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">01</div>
             </div>
             <div className="space-y-6">
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 This project is an AI-powered interior design tool aimed at helping new homeowners visualize and furnish their living spaces. The platform allows users to upload a photo or layout of their home and receive fully furnished design recommendations, complete with purchasable furniture items. The goal was to make the interior design process more efficient, intuitive, and directly actionable by integrating both AI-driven recommendations and a commerce flow for purchasing items.
               </p>
-              <blockquote className="border-l-2 border-olive pl-6 py-2 bg-ebony/[0.02] !font-extralight md:text-justify hyphens-auto">
+              <blockquote className="border-l-2 border-olive pl-6 py-2 bg-ebony/[0.02] !font-extralight md:text-justify">
                 I collaborated closely with an experienced team that included an award-winning interior designer, engineers focused on AI and computer vision, and fellow designers. My work primarily focused on user experience design across platforms, including creating mockups for both the mobile app and the web application. I also contributed to implementing and adapting the design system across responsive breakpoints.
               </blockquote>
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 The project was developed over a six-month period and is currently under an accelerator program. While not yet launched, a working prototype with interactive flows and high-fidelity visuals has been developed to communicate the concept.
               </p>
             </div>
@@ -349,7 +349,7 @@ export default function Projects() {
               <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">02</div>
             </div>
             <div className="space-y-6">
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 New homeowners often struggle to furnish and design their spaces in a cohesive, functional, and aesthetically aligned manner. Working with professional interior designers can be time-consuming, expensive, and inefficient, particularly when communication breaks down during iterative design phases. This project aimed to replace that slow, linear process with a more flexible, guided, and tech-assisted experience.
               </p>
 
@@ -394,11 +394,11 @@ export default function Projects() {
                 </div>
               </div>
 
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 We also consulted mentors who emphasized the importance of visual clarity, clean user flows, and age-appropriate interaction design. This shifted our direction toward larger content blocks, simplified instructions, and visually rich interfaces.
               </p>
 
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 The project aims to bridge this gap by creating an AI-powered interior design platform that makes professional design accessible to everyone, regardless of budget or expertise.
               </p>
 
@@ -447,7 +447,7 @@ export default function Projects() {
               <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">03</div>
             </div>
             <div className="space-y-6">
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 Most competitors in the space leverage computer vision to create "before and after" images of room designs. However, these tools often overlook critical constraints like physical layout, lighting, and existing furniture. Additionally, they rarely connect users to actual products for purchase, creating a gap between concept and execution.
               </p>
 
@@ -468,11 +468,11 @@ export default function Projects() {
                 </li>
               </ul>
 
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 While some companies have AR tools and AI generative models, they focus more on item-level previews than full-space furnishing. Moreover, many existing solutions fail to provide an end-to-end experience from design to shopping.
               </p>
 
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 We also validated demand through local interviews, focus groups, and the experience of the interior designer on the team, who had firsthand insights from working with real clients.
               </p>
 
@@ -519,11 +519,11 @@ export default function Projects() {
               <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">04</div>
             </div>
             <div className="space-y-6">
-              <p className="font-sans md:text-justify hyphens-auto">
-                The project&apos;s design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
+              <p className="font-sans md:text-justify">
+                The project's design system was built by a specialized design systems expert. It includes comprehensive guidelines on branding, typography, color palettes (six core colors and their usage), and a library of reusable components such as buttons, pagination elements, and grid structures.
               </p>
 
-              <p className="font-sans md:text-justify hyphens-auto mb-32">
+              <p className="font-sans md:text-justify mb-32">
                 While I was not responsible for creating the system, I applied it rigorously in my design work—especially when adapting the desktop-first system for mobile platforms. The system exists primarily in Figma and is documented with high-level visual and written guidelines to ensure consistency across screens and use cases.
               </p>
 
@@ -593,7 +593,7 @@ export default function Projects() {
               <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">05</div>
             </div>
             <div className="space-y-6">
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 The primary user journey was carefully structured to be intuitive and accessible, particularly for users who may not be tech-savvy. The flow is as follows:
               </p>
 
@@ -682,7 +682,7 @@ export default function Projects() {
                 </div>
               </div>
 
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 The goal was to make the interface feel like a guided, step-by-step walkthrough rather than an overwhelming dashboard. Instead of large tutorial videos or dense blocks of text, micro-guidance is built into each step.
               </p>
 
@@ -760,7 +760,7 @@ export default function Projects() {
               <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">06</div>
             </div>
             <div className="space-y-6">
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 The project leverages multiple AI technologies:
               </p>
 
@@ -793,11 +793,11 @@ export default function Projects() {
                 </div>
               </div>
 
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 Each of these approaches presents trade-offs. Computer vision is faster and simpler but less precise. 3D modeling provides a more realistic experience but requires more advanced technology, including accurate 3D models of real furniture.
               </p>
 
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 We are currently evaluating a hybrid model that blends realism with ease-of-use, while continuing to consult domain experts to determine the best path forward. Accurate 3D data remains a bottleneck, especially when relying on product images from suppliers.
               </p>
 
@@ -882,7 +882,7 @@ export default function Projects() {
               <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">07</div>
             </div>
             <div className="space-y-6">
-              <p className="font-sans md:text-justify hyphens-auto">
+              <p className="font-sans md:text-justify">
                 This project presented several interconnected challenges:
               </p>
 
@@ -915,7 +915,7 @@ export default function Projects() {
                 </div>
               </div>
 
-              <p className="font-sans md:text-justify hyphens-auto mt-12">
+              <p className="font-sans md:text-justify mt-12">
                 We made several strategic pivots during the process:
               </p>
 
@@ -948,7 +948,7 @@ export default function Projects() {
                 </div>
               </div>
 
-              <p className="font-sans md:text-justify hyphens-auto mt-12">
+              <p className="font-sans md:text-justify mt-12">
                 Despite the challenges, our team operated with strong communication and high agility. We consistently iterated on designs and priorities to stay aligned with our vision and stakeholder expectations.
               </p>
             </div>

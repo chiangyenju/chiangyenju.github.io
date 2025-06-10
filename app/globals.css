@@ -15,3 +15,10 @@
     font-weight: 400;
   }
 }
+
+/* Prevent hyphenation */
+.hyphens-auto {
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -ms-hyphens: none !important;
+}
