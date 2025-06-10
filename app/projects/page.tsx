@@ -240,9 +240,9 @@ export default function Projects() {
       </nav>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:pl-64">
+      <div className="container mx-auto px-0 sm:px-6 lg:px-8 py-24 lg:pl-64">
         {/* Project Header */}
-        <header className="mb-16">
+        <header className="mb-16 px-4 sm:px-0">
           <h1 className="font-serif text-4xl mb-2">Interior Design AI Platform</h1>
           <p className="font-sans font-thin text-xl text-ebony/80 mb-12">AI-powered room design and visualization tool</p>
           
@@ -264,7 +264,7 @@ export default function Projects() {
 
         {/* Content sections */}
         <div className="space-y-24">
-          <section id="overview">
+          <section id="overview" className="px-4 sm:px-0">
             <div className="flex items-center justify-between mb-8">
               <h2 className="font-serif text-2xl">Overview</h2>
               <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">01</div>
@@ -282,66 +282,56 @@ export default function Projects() {
             </div>
           </section>
 
-          {/* Role Infographic */}
-          <motion.div 
-            ref={roleRef}
-            style={{ opacity: roleOpacity, y: roleY }}
-            className="py-3"
-          >
-            <div className="relative p-6 bg-ebony/[0.02] rounded-2xl border border-ebony/5">
-              {/* Decorative corner elements */}
-              <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-red/20 rounded-tl-2xl -translate-x-1 -translate-y-1"></div>
-              <div className="absolute top-0 right-0 w-12 h-12 border-r-2 border-t-2 border-red/20 rounded-tr-2xl translate-x-1 -translate-y-1"></div>
-              <div className="absolute bottom-0 left-0 w-12 h-12 border-l-2 border-b-2 border-red/20 rounded-bl-2xl -translate-x-1 translate-y-1"></div>
-              <div className="absolute bottom-0 right-0 w-12 h-12 border-r-2 border-b-2 border-red/20 rounded-br-2xl translate-x-1 translate-y-1"></div>
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+          {/* Role Infographic + Figma Image Combined Container */}
+          <div className="relative -mx-4 sm:mx-0">
+            <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center mb-20">
                 <div className="flex items-center gap-3 group">
-                  <div className="text-red group-hover:text-red/80 transition-colors">
+                  <div className="text-olive group-hover:text-olive/80 transition-colors">
                     <FiLayout className="w-4 h-4" />
                   </div>
-                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">UI/UX Design</h3>
+                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">UI/UX Design</h3>
                 </div>
 
                 <div className="flex items-center gap-3 group">
-                  <div className="text-red group-hover:text-red/80 transition-colors">
+                  <div className="text-olive group-hover:text-olive/80 transition-colors">
                     <FiSmartphone className="w-4 h-4" />
                   </div>
-                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">Mobile & Web Dev</h3>
+                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">Mobile & Web Dev</h3>
                 </div>
 
                 <div className="flex items-center gap-3 group">
-                  <div className="text-red group-hover:text-red/80 transition-colors">
+                  <div className="text-olive group-hover:text-olive/80 transition-colors">
                     <FiUsers className="w-4 h-4" />
                   </div>
-                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">User Research</h3>
+                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">User Research</h3>
                 </div>
 
                 <div className="flex items-center gap-3 group">
-                  <div className="text-red group-hover:text-red/80 transition-colors">
+                  <div className="text-olive group-hover:text-olive/80 transition-colors">
                     <FiTarget className="w-4 h-4" />
                   </div>
-                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ebony/80 transition-colors whitespace-nowrap">Product Mgmt</h3>
+                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">Product Mgmt</h3>
                 </div>
               </div>
-            </div>
-          </motion.div>
 
-          {/* Figma Design Image */}
-          <motion.div
-            ref={figmaRef}
-            style={{ opacity, y }}
-            className="mt-4"
-          >
-            <Image
-              src="/projects/interior-design-ai/figma-image.png"
-              alt="Figma design process and components"
-              width={2000}
-              height={1200}
-              className="w-full rounded-lg"
-              priority
-            />
-          </motion.div>
+              {/* Figma Design Image */}
+              <motion.div
+                ref={figmaRef}
+                style={{ opacity, y }}
+                className="relative"
+              >
+                <Image
+                  src="/projects/interior-design-ai/figma-image.png"
+                  alt="Figma design process and components"
+                  width={2000}
+                  height={1200}
+                  className="w-full rounded-lg"
+                  priority
+                />
+              </motion.div>
+            </div>
+          </div>
 
           <section id="problem-statement">
             <div className="flex items-center justify-between mb-8">
@@ -403,42 +393,50 @@ export default function Projects() {
               </p>
 
               {/* Flipcard Images Grid */}
-              <motion.div 
-                ref={flipcardRef}
-                style={{ opacity: flipcardOpacity, y: flipcardY }}
-                className="mt-16 bg-ebony/[0.02] p-8 rounded-lg border border-ebony/5"
-              >
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  <Image
-                    src="/projects/interior-design-ai/flipcard-1.png"
-                    alt="Interior Design AI Flipcard 1"
-                    width={200}
-                    height={120}
-                    className="rounded shadow-sm w-full"
-                  />
-                  <Image
-                    src="/projects/interior-design-ai/flipcard-2.png"
-                    alt="Interior Design AI Flipcard 2"
-                    width={200}
-                    height={120}
-                    className="rounded shadow-sm w-full"
-                  />
-                  <Image
-                    src="/projects/interior-design-ai/flipcard-3.png"
-                    alt="Interior Design AI Flipcard 3"
-                    width={200}
-                    height={120}
-                    className="rounded shadow-sm w-full"
-                  />
-                  <Image
-                    src="/projects/interior-design-ai/flipcard-4.png"
-                    alt="Interior Design AI Flipcard 4"
-                    width={200}
-                    height={120}
-                    className="rounded shadow-sm w-full"
-                  />
+              <div className="relative -mx-4 sm:mx-0">
+                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
+                  <div className="flex items-center justify-center gap-3 group mb-12">
+                    <div className="text-olive group-hover:text-olive/80 transition-colors">
+                      <FiUsers className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">User Survey Design Component</h3>
+                  </div>
+                  <motion.div 
+                    ref={flipcardRef}
+                    style={{ opacity: flipcardOpacity, y: flipcardY }}
+                    className="grid grid-cols-2 md:grid-cols-4 gap-3"
+                  >
+                    <Image
+                      src="/projects/interior-design-ai/flipcard-1.png"
+                      alt="Interior Design AI Flipcard 1"
+                      width={200}
+                      height={120}
+                      className="rounded shadow-sm w-full"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/flipcard-2.png"
+                      alt="Interior Design AI Flipcard 2"
+                      width={200}
+                      height={120}
+                      className="rounded shadow-sm w-full"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/flipcard-3.png"
+                      alt="Interior Design AI Flipcard 3"
+                      width={200}
+                      height={120}
+                      className="rounded shadow-sm w-full"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/flipcard-4.png"
+                      alt="Interior Design AI Flipcard 4"
+                      width={200}
+                      height={120}
+                      className="rounded shadow-sm w-full"
+                    />
+                  </motion.div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
           <section id="market-research">
@@ -477,40 +475,50 @@ export default function Projects() {
               </p>
 
               {/* Bedroom Images */}
-              <motion.div
-                ref={bedroomRef}
-                style={{ opacity: bedroomOpacity, y: bedroomY }}
-                className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
-              >
-                <Image
-                  src="/projects/interior-design-ai/bedroom-1.jpg"
-                  alt="Original bedroom design"
-                  width={500}
-                  height={300}
-                  className="w-full rounded-lg"
-                />
-                <Image
-                  src="/projects/interior-design-ai/bedroom-ai-1.jpg"
-                  alt="AI generated bedroom design 1"
-                  width={500}
-                  height={300}
-                  className="w-full rounded-lg"
-                />
-                <Image
-                  src="/projects/interior-design-ai/bedroom-ai-2.jpg"
-                  alt="AI generated bedroom design 2"
-                  width={500}
-                  height={300}
-                  className="w-full rounded-lg"
-                />
-                <Image
-                  src="/projects/interior-design-ai/bedroom-ai-3.jpg"
-                  alt="AI generated bedroom design 3"
-                  width={500}
-                  height={300}
-                  className="w-full rounded-lg"
-                />
-              </motion.div>
+              <div className="relative -mx-4 sm:mx-0">
+                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
+                  <div className="flex items-center justify-center gap-3 group mb-12">
+                    <div className="text-olive group-hover:text-olive/80 transition-colors">
+                      <FiTarget className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">Market Solutions</h3>
+                  </div>
+                  <motion.div
+                    ref={bedroomRef}
+                    style={{ opacity: bedroomOpacity, y: bedroomY }}
+                    className="grid grid-cols-2 md:grid-cols-4 gap-4"
+                  >
+                    <Image
+                      src="/projects/interior-design-ai/bedroom-1.jpg"
+                      alt="Original bedroom design"
+                      width={500}
+                      height={300}
+                      className="w-full rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/bedroom-ai-1.jpg"
+                      alt="AI generated bedroom design 1"
+                      width={500}
+                      height={300}
+                      className="w-full rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/bedroom-ai-2.jpg"
+                      alt="AI generated bedroom design 2"
+                      width={500}
+                      height={300}
+                      className="w-full rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/bedroom-ai-3.jpg"
+                      alt="AI generated bedroom design 3"
+                      width={500}
+                      height={300}
+                      className="w-full rounded-lg"
+                    />
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </section>
           <section id="design-system">
@@ -528,63 +536,73 @@ export default function Projects() {
               </p>
 
               {/* Design System Components Grid */}
-              <motion.div
-                ref={designSystemRef}
-                style={{ opacity: designSystemOpacity, y: designSystemY }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-16"
-              >
-                {/* Typography */}
-                <div className="flex flex-col items-center">
-                  <div className="flex items-center space-x-3 mb-10">
-                    <div className="h-[1px] w-12 bg-ebony/20"></div>
-                    <div className="font-serif text-xs tracking-wider">Heading Style</div>
-                    <div className="h-[1px] w-12 bg-ebony/20"></div>
+              <div className="relative -mx-4 sm:mx-0">
+                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
+                  <div className="flex items-center justify-center gap-3 group mb-12">
+                    <div className="text-olive group-hover:text-olive/80 transition-colors">
+                      <FiLayout className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">Design System Components</h3>
                   </div>
-                  <div className="mb-10">
-                    <Image
-                      src="/projects/interior-design-ai/logo-2.png"
-                      alt="Typography example"
-                      width={250}
-                      height={167}
-                    />
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="h-[1px] w-12 bg-ebony/20"></div>
-                    <div className="font-serif text-xs tracking-wider">Body Text</div>
-                    <div className="h-[1px] w-12 bg-ebony/20"></div>
-                  </div>
-                </div>
+                  <motion.div
+                    ref={designSystemRef}
+                    style={{ opacity: designSystemOpacity, y: designSystemY }}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-16"
+                  >
+                    {/* Typography */}
+                    <div className="flex flex-col items-center">
+                      <div className="flex items-center space-x-3 mb-10">
+                        <div className="h-[1px] w-12 bg-ivory/20"></div>
+                        <div className="font-serif text-xs tracking-wider">Heading Style</div>
+                        <div className="h-[1px] w-12 bg-ivory/20"></div>
+                      </div>
+                      <div className="mb-10">
+                        <Image
+                          src="/projects/interior-design-ai/logo-2.png"
+                          alt="Typography example"
+                          width={250}
+                          height={167}
+                        />
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="h-[1px] w-12 bg-ivory/20"></div>
+                        <div className="font-serif text-xs tracking-wider">Body Text</div>
+                        <div className="h-[1px] w-12 bg-ivory/20"></div>
+                      </div>
+                    </div>
 
-                {/* Colors */}
-                <div className="flex flex-col items-center justify-center h-full">
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#1E1E2A]"></div>
-                    <div className="w-10 h-10 rounded-full bg-[#F5F5F5]"></div>
-                    <div className="w-10 h-10 rounded-full bg-[#9E4F4F]"></div>
-                    <div className="w-10 h-10 rounded-full bg-[#B8C4D9]"></div>
-                    <div className="w-10 h-10 rounded-full bg-[#D4B483]"></div>
-                    <div className="w-10 h-10 rounded-full bg-[#E8C795]"></div>
-                  </div>
-                </div>
+                    {/* Colors */}
+                    <div className="flex flex-col items-center justify-center h-full">
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#1E1E2A]"></div>
+                        <div className="w-10 h-10 rounded-full bg-[#F5F5F5]"></div>
+                        <div className="w-10 h-10 rounded-full bg-[#9E4F4F]"></div>
+                        <div className="w-10 h-10 rounded-full bg-[#B8C4D9]"></div>
+                        <div className="w-10 h-10 rounded-full bg-[#D4B483]"></div>
+                        <div className="w-10 h-10 rounded-full bg-[#E8C795]"></div>
+                      </div>
+                    </div>
 
-                {/* Components */}
-                <div className="flex flex-col items-center justify-center h-full gap-3">
-                  <Image
-                    src="/projects/interior-design-ai/back-button.png"
-                    alt="Back button component"
-                    width={100}
-                    height={40}
-                    className="h-10 w-auto"
-                  />
-                  <Image
-                    src="/projects/interior-design-ai/next-button.png"
-                    alt="Next button component"
-                    width={100}
-                    height={40}
-                    className="h-10 w-auto"
-                  />
+                    {/* Components */}
+                    <div className="flex flex-col items-center justify-center h-full gap-3">
+                      <Image
+                        src="/projects/interior-design-ai/back-button.png"
+                        alt="Back button component"
+                        width={100}
+                        height={40}
+                        className="h-10 w-auto"
+                      />
+                      <Image
+                        src="/projects/interior-design-ai/next-button.png"
+                        alt="Next button component"
+                        width={100}
+                        height={40}
+                        className="h-10 w-auto"
+                      />
+                    </div>
+                  </motion.div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
           <section id="user-experience">
@@ -597,82 +615,83 @@ export default function Projects() {
                 The primary user journey was carefully structured to be intuitive and accessible, particularly for users who may not be tech-savvy. The flow is as follows:
               </p>
 
-              {/* Elegant Metro Grid */}
-              <div className="relative py-12">
-                <div className="max-w-5xl mx-auto">
+              {/* User Flow Diagram */}
+              <div className="relative -mx-4 sm:mx-0">
+                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
+                  <div className="flex items-center justify-center gap-3 group mb-12">
+                    <div className="text-olive group-hover:text-olive/80 transition-colors">
+                      <FiUsers className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">User Flow Diagram</h3>
+                  </div>
                   {/* Process Grid */}
                   <div className="grid grid-cols-2 gap-12">
                     {/* Step 1 */}
-                    <div className="group">
+                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-red/40">01</span>
+                        <span className="font-serif text-xs text-olive">01</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             Define your space by specifying room types, dimensions, and floor plan arrangement.
                           </p>
                         </div>
                       </div>
-                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
 
                     {/* Step 2 */}
-                    <div className="group">
+                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-red/40">02</span>
+                        <span className="font-serif text-xs text-olive">02</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             Upload room photographs to capture current state, lighting, and spatial context.
                           </p>
                         </div>
                       </div>
-                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
 
                     {/* Step 3 */}
-                    <div className="group">
+                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-red/40">03</span>
+                        <span className="font-serif text-xs text-olive">03</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             Select your preferred interior style, color schemes, and material preferences.
                           </p>
                         </div>
                       </div>
-                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
 
                     {/* Step 4 */}
-                    <div className="group">
+                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-red/40">04</span>
+                        <span className="font-serif text-xs text-olive">04</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             AI processes inputs to create personalized design concepts and visualizations.
                           </p>
                         </div>
                       </div>
-                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
 
                     {/* Step 5 */}
-                    <div className="group">
+                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-red/40">05</span>
+                        <span className="font-serif text-xs text-olive">05</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed">
+                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             Browse curated furniture selections and proceed with purchase.
                           </p>
                         </div>
                       </div>
-                      <div className="mt-4 h-px bg-gradient-to-r from-red/10 to-transparent"></div>
                     </div>
 
                     {/* Summary */}
-                    <div className="group">
+                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-red/40">→</span>
+                        <span className="font-serif text-xs text-olive">→</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed text-red/40">
+                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory/80">
                             A seamless journey from concept to completion, transforming spaces with AI-powered design.
                           </p>
                         </div>
@@ -682,15 +701,11 @@ export default function Projects() {
                 </div>
               </div>
 
-              <p className="font-sans md:text-justify">
-                The goal was to make the interface feel like a guided, step-by-step walkthrough rather than an overwhelming dashboard. Instead of large tutorial videos or dense blocks of text, micro-guidance is built into each step.
-              </p>
-
-              <p className="font-sans">Challenges included:</p>
+              <p className="font-sans mt-12">Challenges included:</p>
 
               <div className="space-y-4 ml-4">
                 <div className="flex items-center space-x-6 group">
-                  <span className="text-red text-2xl leading-none">•</span>
+                  <span className="text-olive text-2xl leading-none">•</span>
                   <div>
                     <p className="font-sans font-extralight">
                       Visualizing a high-impact design experience without having a fully trained AI model
@@ -699,7 +714,7 @@ export default function Projects() {
                 </div>
 
                 <div className="flex items-center space-x-6 group">
-                  <span className="text-red text-2xl leading-none">•</span>
+                  <span className="text-olive text-2xl leading-none">•</span>
                   <div>
                     <p className="font-sans font-extralight">
                       Balancing the fixed recommendations of AI-generated results with the exploratory nature of e-commerce browsing
@@ -708,7 +723,7 @@ export default function Projects() {
                 </div>
 
                 <div className="flex items-center space-x-6 group">
-                  <span className="text-red text-2xl leading-none">•</span>
+                  <span className="text-olive text-2xl leading-none">•</span>
                   <div>
                     <p className="font-sans font-extralight">
                       Differentiating flows between mobile (optimized for scanning and on-the-go interaction) and web (optimized for in-depth browsing and purchase decisions)
@@ -718,40 +733,50 @@ export default function Projects() {
               </div>
 
               {/* User Flow Images */}
-              <motion.div
-                ref={userFlowRef}
-                style={{ opacity: userFlowOpacity, y: userFlowY }}
-                className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
-              >
-                <Image
-                  src="/projects/interior-design-ai/homepage-mockup.png"
-                  alt="Homepage interface mockup"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg"
-                />
-                <Image
-                  src="/projects/interior-design-ai/login-mockup.png"
-                  alt="Login interface mockup"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg"
-                />
-                <Image
-                  src="/projects/interior-design-ai/capture-mockup.png"
-                  alt="Room capture interface mockup"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg"
-                />
-                <Image
-                  src="/projects/interior-design-ai/results-mockup.png"
-                  alt="Results and shopping interface mockup"
-                  width={1200}
-                  height={800}
-                  className="rounded-lg"
-                />
-              </motion.div>
+              <div className="relative -mx-4 sm:mx-0">
+                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
+                  <div className="flex items-center justify-center gap-3 group mb-12">
+                    <div className="text-olive group-hover:text-olive/80 transition-colors">
+                      <FiSmartphone className="w-4 h-4" />
+                    </div>
+                    <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">Interface Mockups</h3>
+                  </div>
+                  <motion.div
+                    ref={userFlowRef}
+                    style={{ opacity: userFlowOpacity, y: userFlowY }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                  >
+                    <Image
+                      src="/projects/interior-design-ai/homepage-mockup.png"
+                      alt="Homepage interface mockup"
+                      width={1200}
+                      height={800}
+                      className="rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/login-mockup.png"
+                      alt="Login interface mockup"
+                      width={1200}
+                      height={800}
+                      className="rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/capture-mockup.png"
+                      alt="Room capture interface mockup"
+                      width={1200}
+                      height={800}
+                      className="rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/results-mockup.png"
+                      alt="Results and shopping interface mockup"
+                      width={1200}
+                      height={800}
+                      className="rounded-lg"
+                    />
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </section>
           <section id="ai-integration">
@@ -802,78 +827,88 @@ export default function Projects() {
               </p>
 
               {/* AI Process Visualization */}
-              <motion.div
-                ref={aiProcessRef}
-                style={{ opacity: aiProcessOpacity, y: aiProcessY }}
-                className="mt-16"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                  {/* Input and Style Selection */}
-                  <div className="flex flex-col items-center justify-center min-h-full space-y-12">
-                    <div className="bg-ebony/[0.02] p-6 rounded-lg border border-ebony/5">
-                      <Image
-                        src="/projects/interior-design-ai/empty-room.png"
-                        alt="Empty room photo"
-                        width={600}
-                        height={450}
-                        className="rounded"
-                      />
+              <div className="relative -mx-4 sm:mx-0">
+                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
+                  <div className="flex items-center justify-center gap-3 group mb-12">
+                    <div className="text-olive group-hover:text-olive/80 transition-colors">
+                      <FiTarget className="w-4 h-4" />
                     </div>
-                    <div className="flex items-center gap-3">
-                      <div className="h-[1px] w-8 bg-ebony/10"></div>
-                      <div className="font-serif text-xs tracking-wider text-ebony/40">Living Room Selected</div>
-                      <div className="h-[1px] w-8 bg-ebony/10"></div>
-                    </div>
+                    <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">AI Style Generation</h3>
+                  </div>
+                  <motion.div
+                    ref={aiProcessRef}
+                    style={{ opacity: aiProcessOpacity, y: aiProcessY }}
+                    className="mt-16"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                      {/* Input and Style Selection */}
+                      <div className="flex flex-col items-center justify-center min-h-full space-y-12">
+                        <div className="bg-ebony/[0.02] p-6 rounded-lg border border-ebony/5">
+                          <Image
+                            src="/projects/interior-design-ai/empty-room.png"
+                            alt="Empty room photo"
+                            width={600}
+                            height={450}
+                            className="rounded"
+                          />
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="h-[1px] w-8 bg-ivory/10"></div>
+                          <div className="font-serif text-xs tracking-wider text-ivory/40">Living Room Selected</div>
+                          <div className="h-[1px] w-8 bg-ivory/10"></div>
+                        </div>
 
-                    <div className="flex gap-3">
-                      <button 
-                        onClick={() => setActiveStyle('transitional')}
-                        className={`font-sans text-sm font-bold uppercase px-6 py-3 rounded-full transition-all duration-300 ${
-                          activeStyle === 'transitional' 
-                            ? 'bg-red/5 border border-red/10 text-red' 
-                            : 'bg-ebony/[0.02] border border-ebony/5 hover:bg-ebony/[0.04]'
-                        }`}
-                      >
-                        Transitional
-                      </button>
-                      <button 
-                        onClick={() => setActiveStyle('farmhouse')}
-                        className={`font-sans text-sm font-bold uppercase px-6 py-3 rounded-full transition-all duration-300 ${
-                          activeStyle === 'farmhouse' 
-                            ? 'bg-red/5 border border-red/10 text-red' 
-                            : 'bg-ebony/[0.02] border border-ebony/5 hover:bg-ebony/[0.04]'
-                        }`}
-                      >
-                        Modern Farmhouse
-                      </button>
+                        <div className="flex gap-3">
+                          <button 
+                            onClick={() => setActiveStyle('transitional')}
+                            className={`font-sans text-sm font-bold uppercase px-6 py-3 rounded-full transition-all duration-300 ${
+                              activeStyle === 'transitional' 
+                                ? 'bg-olive/10 border border-olive/20 text-ivory' 
+                                : 'bg-ivory/5 border border-ivory/10 hover:bg-ivory/10 text-olive/60'
+                            }`}
+                          >
+                            Transitional
+                          </button>
+                          <button 
+                            onClick={() => setActiveStyle('farmhouse')}
+                            className={`font-sans text-sm font-bold uppercase px-6 py-3 rounded-full transition-all duration-300 ${
+                              activeStyle === 'farmhouse' 
+                                ? 'bg-olive/10 border border-olive/20 text-ivory' 
+                                : 'bg-ivory/5 border border-ivory/10 hover:bg-ivory/10 text-olive/60'
+                            }`}
+                          >
+                            Modern Farmhouse
+                          </button>
+                        </div>
+                      </div>
+                      <div className="space-y-8">
+                        <div className={`bg-ivory/5 p-8 rounded-lg border transition-all duration-300 ${
+                          activeStyle === 'transitional' ? 'border-olive/20' : 'border-ivory/10 opacity-50'
+                        }`}>
+                          <Image
+                            src="/projects/interior-design-ai/results-1.png"
+                            alt="Transitional style result"
+                            width={1000}
+                            height={750}
+                            className="rounded"
+                          />
+                        </div>
+                        <div className={`bg-ivory/5 p-8 rounded-lg border transition-all duration-300 ${
+                          activeStyle === 'farmhouse' ? 'border-olive/20' : 'border-ivory/10 opacity-50'
+                        }`}>
+                          <Image
+                            src="/projects/interior-design-ai/results-2.png"
+                            alt="Modern Farmhouse style result"
+                            width={1000}
+                            height={750}
+                            className="rounded"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="space-y-8">
-                    <div className={`bg-ebony/[0.02] p-8 rounded-lg border transition-all duration-300 ${
-                      activeStyle === 'transitional' ? 'border-red/10' : 'border-ebony/5 opacity-50'
-                    }`}>
-                      <Image
-                        src="/projects/interior-design-ai/results-1.png"
-                        alt="Transitional style result"
-                        width={1000}
-                        height={750}
-                        className="rounded"
-                      />
-                    </div>
-                    <div className={`bg-ebony/[0.02] p-8 rounded-lg border transition-all duration-300 ${
-                      activeStyle === 'farmhouse' ? 'border-red/10' : 'border-ebony/5 opacity-50'
-                    }`}>
-                      <Image
-                        src="/projects/interior-design-ai/results-2.png"
-                        alt="Modern Farmhouse style result"
-                        width={1000}
-                        height={750}
-                        className="rounded"
-                      />
-                    </div>
-                  </div>
+                  </motion.div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </section>
           <section id="challenges">
@@ -888,7 +923,7 @@ export default function Projects() {
 
               <div className="space-y-4 ml-4">
                 <div className="flex items-center space-x-6 group">
-                  <span className="text-red text-2xl leading-none">•</span>
+                  <span className="text-olive text-2xl leading-none">•</span>
                   <div>
                     <p className="font-sans font-extralight">
                       Defining where and how AI fits into the user journey in a meaningful, outcome-oriented way
@@ -897,7 +932,7 @@ export default function Projects() {
                 </div>
 
                 <div className="flex items-center space-x-6 group">
-                  <span className="text-red text-2xl leading-none">•</span>
+                  <span className="text-olive text-2xl leading-none">•</span>
                   <div>
                     <p className="font-sans font-extralight">
                       Navigating fast-moving technology trends that could outdate features in a matter of months
@@ -906,7 +941,7 @@ export default function Projects() {
                 </div>
 
                 <div className="flex items-center space-x-6 group">
-                  <span className="text-red text-2xl leading-none">•</span>
+                  <span className="text-olive text-2xl leading-none">•</span>
                   <div>
                     <p className="font-sans font-extralight">
                       Managing the complexity of combining AI generation, user interaction, and e-commerce in a single, cohesive experience
