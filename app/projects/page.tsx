@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Projects() {
   const [activeSection, setActiveSection] = useState('overview');
+  const [activeStyle, setActiveStyle] = useState('transitional');
   const figmaRef = useRef(null);
   const bedroomRef = useRef(null);
   
@@ -280,6 +281,44 @@ export default function Projects() {
               <p className="font-sans md:text-justify hyphens-auto">
                 We also consulted mentors who emphasized the importance of visual clarity, clean user flows, and age-appropriate interaction design. This shifted our direction toward larger content blocks, simplified instructions, and visually rich interfaces.
               </p>
+
+              <p className="font-sans md:text-justify hyphens-auto">
+                The project aims to bridge this gap by creating an AI-powered interior design platform that makes professional design accessible to everyone, regardless of budget or expertise.
+              </p>
+
+              {/* Flipcard Images Grid */}
+              <div className="mt-16 bg-ebony/[0.02] p-8 rounded-lg border border-ebony/5">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <Image
+                    src="/projects/interior-design-ai/flipcard-1.png"
+                    alt="Interior Design AI Flipcard 1"
+                    width={200}
+                    height={120}
+                    className="rounded shadow-sm w-full"
+                  />
+                  <Image
+                    src="/projects/interior-design-ai/flipcard-2.png"
+                    alt="Interior Design AI Flipcard 2"
+                    width={200}
+                    height={120}
+                    className="rounded shadow-sm w-full"
+                  />
+                  <Image
+                    src="/projects/interior-design-ai/flipcard-3.png"
+                    alt="Interior Design AI Flipcard 3"
+                    width={200}
+                    height={120}
+                    className="rounded shadow-sm w-full"
+                  />
+                  <Image
+                    src="/projects/interior-design-ai/flipcard-4.png"
+                    alt="Interior Design AI Flipcard 4"
+                    width={200}
+                    height={120}
+                    className="rounded shadow-sm w-full"
+                  />
+                </div>
+              </div>
             </div>
           </section>
           <section id="market-research">
@@ -588,10 +627,202 @@ export default function Projects() {
             </div>
           </section>
           <section id="ai-integration">
-            {/* Content will go here */}
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-serif text-2xl">AI Integration & Technical Considerations</h2>
+              <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">06</div>
+            </div>
+            <div className="space-y-6">
+              <p className="font-sans md:text-justify hyphens-auto">
+                The project leverages multiple AI technologies:
+              </p>
+
+              <div className="space-y-4 ml-4">
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Computer Vision: Reads room images to infer layout, lighting, and design opportunities
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      3D Modeling: Used to simulate realistic spatial arrangements and ensure item dimensions are consistent with physical constraints
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Generative Design Models: Provides furnishing recommendations based on design styles, layout rules, and product databases
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="font-sans md:text-justify hyphens-auto">
+                Each of these approaches presents trade-offs. Computer vision is faster and simpler but less precise. 3D modeling provides a more realistic experience but requires more advanced technology, including accurate 3D models of real furniture.
+              </p>
+
+              <p className="font-sans md:text-justify hyphens-auto">
+                We are currently evaluating a hybrid model that blends realism with ease-of-use, while continuing to consult domain experts to determine the best path forward. Accurate 3D data remains a bottleneck, especially when relying on product images from suppliers.
+              </p>
+
+              {/* AI Process Visualization */}
+              <div className="mt-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                  {/* Input and Style Selection */}
+                  <div className="flex flex-col items-center justify-center min-h-full space-y-12">
+                    <div className="bg-ebony/[0.02] p-6 rounded-lg border border-ebony/5">
+                      <Image
+                        src="/projects/interior-design-ai/empty-room.png"
+                        alt="Empty room photo"
+                        width={600}
+                        height={450}
+                        className="rounded"
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="h-[1px] w-8 bg-ebony/10"></div>
+                      <div className="font-serif text-xs tracking-wider text-ebony/40">Living Room Selected</div>
+                      <div className="h-[1px] w-8 bg-ebony/10"></div>
+                    </div>
+
+                    <div className="flex gap-3">
+                      <button 
+                        onClick={() => setActiveStyle('transitional')}
+                        className={`font-sans text-sm font-bold uppercase px-6 py-3 rounded-full transition-all duration-300 ${
+                          activeStyle === 'transitional' 
+                            ? 'bg-red/5 border border-red/10 text-red' 
+                            : 'bg-ebony/[0.02] border border-ebony/5 hover:bg-ebony/[0.04]'
+                        }`}
+                      >
+                        Transitional
+                      </button>
+                      <button 
+                        onClick={() => setActiveStyle('farmhouse')}
+                        className={`font-sans text-sm font-bold uppercase px-6 py-3 rounded-full transition-all duration-300 ${
+                          activeStyle === 'farmhouse' 
+                            ? 'bg-red/5 border border-red/10 text-red' 
+                            : 'bg-ebony/[0.02] border border-ebony/5 hover:bg-ebony/[0.04]'
+                        }`}
+                      >
+                        Modern Farmhouse
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Results */}
+                  <div className="space-y-8">
+                    <div className={`bg-ebony/[0.02] p-8 rounded-lg border transition-all duration-300 ${
+                      activeStyle === 'transitional' ? 'border-red/10' : 'border-ebony/5 opacity-50'
+                    }`}>
+                      <Image
+                        src="/projects/interior-design-ai/results-1.png"
+                        alt="Transitional style result"
+                        width={1000}
+                        height={750}
+                        className="rounded"
+                      />
+                    </div>
+                    <div className={`bg-ebony/[0.02] p-8 rounded-lg border transition-all duration-300 ${
+                      activeStyle === 'farmhouse' ? 'border-red/10' : 'border-ebony/5 opacity-50'
+                    }`}>
+                      <Image
+                        src="/projects/interior-design-ai/results-2.png"
+                        alt="Modern Farmhouse style result"
+                        width={1000}
+                        height={750}
+                        className="rounded"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
           <section id="challenges">
-            {/* Content will go here */}
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="font-serif text-2xl">Challenges & Learnings</h2>
+              <div className="font-serif text-8xl text-ebony/[0.03] leading-none select-none">07</div>
+            </div>
+            <div className="space-y-6">
+              <p className="font-sans md:text-justify hyphens-auto">
+                This project presented several interconnected challenges:
+              </p>
+
+              <div className="space-y-4 ml-4">
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Defining where and how AI fits into the user journey in a meaningful, outcome-oriented way
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Navigating fast-moving technology trends that could outdate features in a matter of months
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Managing the complexity of combining AI generation, user interaction, and e-commerce in a single, cohesive experience
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="font-sans md:text-justify hyphens-auto mt-12">
+                We made several strategic pivots during the process:
+              </p>
+
+              <div className="space-y-4 ml-4">
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Transitioning from web-first to mobile-first due to the camera-focused nature of user interaction
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Refining the user flow based on mentor and user feedback
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-6 group">
+                  <span className="text-red text-2xl leading-none">•</span>
+                  <div>
+                    <p className="font-sans font-extralight">
+                      Reworking visual and content design to suit older users with moderate styling preferences
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="font-sans md:text-justify hyphens-auto mt-12">
+                Despite the challenges, our team operated with strong communication and high agility. We consistently iterated on designs and priorities to stay aligned with our vision and stakeholder expectations.
+              </p>
+            </div>
           </section>
         </div>
       </div>
