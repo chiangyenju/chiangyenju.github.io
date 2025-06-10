@@ -625,7 +625,7 @@ export default function Projects() {
                     <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">User Flow Diagram</h3>
                   </div>
                   {/* Process Grid */}
-                  <div className="grid grid-cols-2 gap-12">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12">
                     {/* Step 1 */}
                     <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
