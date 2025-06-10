@@ -10,6 +10,12 @@ export default function Projects() {
   const [activeStyle, setActiveStyle] = useState('transitional');
   const figmaRef = useRef(null);
   const bedroomRef = useRef(null);
+  const heroRef = useRef(null);
+  const roleRef = useRef(null);
+  const flipcardRef = useRef(null);
+  const designSystemRef = useRef(null);
+  const userFlowRef = useRef(null);
+  const aiProcessRef = useRef(null);
   
   const { scrollYProgress: figmaScrollProgress } = useScroll({
     target: figmaRef,
@@ -18,6 +24,36 @@ export default function Projects() {
   
   const { scrollYProgress: bedroomScrollProgress } = useScroll({
     target: bedroomRef,
+    offset: ["start end", "end start"]
+  });
+
+  const { scrollYProgress: heroScrollProgress } = useScroll({
+    target: heroRef,
+    offset: ["start end", "end start"]
+  });
+
+  const { scrollYProgress: roleScrollProgress } = useScroll({
+    target: roleRef,
+    offset: ["start end", "end start"]
+  });
+
+  const { scrollYProgress: flipcardScrollProgress } = useScroll({
+    target: flipcardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const { scrollYProgress: designSystemScrollProgress } = useScroll({
+    target: designSystemRef,
+    offset: ["start end", "end start"]
+  });
+
+  const { scrollYProgress: userFlowScrollProgress } = useScroll({
+    target: userFlowRef,
+    offset: ["start end", "end start"]
+  });
+
+  const { scrollYProgress: aiProcessScrollProgress } = useScroll({
+    target: aiProcessRef,
     offset: ["start end", "end start"]
   });
   
@@ -33,6 +69,54 @@ export default function Projects() {
     [50, 0, 0, -50]
   );
 
+  const heroOpacity = useTransform(
+    heroScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
+  const heroY = useTransform(
+    heroScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [50, 0, 0, -50]
+  );
+
+  const roleOpacity = useTransform(
+    roleScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
+  const roleY = useTransform(
+    roleScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [50, 0, 0, -50]
+  );
+
+  const flipcardOpacity = useTransform(
+    flipcardScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
+  const flipcardY = useTransform(
+    flipcardScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [50, 0, 0, -50]
+  );
+
+  const designSystemOpacity = useTransform(
+    designSystemScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
+  const designSystemY = useTransform(
+    designSystemScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [50, 0, 0, -50]
+  );
+
   const bedroomOpacity = useTransform(
     bedroomScrollProgress,
     [0, 0.3, 0.7, 1],
@@ -41,6 +125,30 @@ export default function Projects() {
 
   const bedroomY = useTransform(
     bedroomScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [50, 0, 0, -50]
+  );
+
+  const userFlowOpacity = useTransform(
+    userFlowScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
+  const userFlowY = useTransform(
+    userFlowScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [50, 0, 0, -50]
+  );
+
+  const aiProcessOpacity = useTransform(
+    aiProcessScrollProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 1, 1, 0]
+  );
+
+  const aiProcessY = useTransform(
+    aiProcessScrollProgress,
     [0, 0.3, 0.7, 1],
     [50, 0, 0, -50]
   );
@@ -139,7 +247,11 @@ export default function Projects() {
           <p className="font-sans font-thin text-xl text-ebony/80 mb-12">AI-powered room design and visualization tool</p>
           
           {/* Hero Image */}
-          <div className="relative aspect-[21/9] w-full overflow-hidden rounded-lg bg-ebony/5">
+          <motion.div 
+            ref={heroRef}
+            style={{ opacity: heroOpacity, y: heroY }}
+            className="relative aspect-[21/9] w-full overflow-hidden rounded-lg bg-ebony/5"
+          >
             <Image
               src="/projects/interior-design-ai/hero-image.png"
               alt="Interior Design AI Platform hero image"
@@ -147,7 +259,7 @@ export default function Projects() {
               className="object-cover"
               priority
             />
-          </div>
+          </motion.div>
         </header>
 
         {/* Content sections */}
@@ -171,7 +283,11 @@ export default function Projects() {
           </section>
 
           {/* Role Infographic */}
-          <div className="py-3">
+          <motion.div 
+            ref={roleRef}
+            style={{ opacity: roleOpacity, y: roleY }}
+            className="py-3"
+          >
             <div className="relative p-6 bg-ebony/[0.02] rounded-2xl border border-ebony/5">
               {/* Decorative corner elements */}
               <div className="absolute top-0 left-0 w-12 h-12 border-l-2 border-t-2 border-red/20 rounded-tl-2xl -translate-x-1 -translate-y-1"></div>
@@ -209,7 +325,7 @@ export default function Projects() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Figma Design Image */}
           <motion.div
@@ -287,7 +403,11 @@ export default function Projects() {
               </p>
 
               {/* Flipcard Images Grid */}
-              <div className="mt-16 bg-ebony/[0.02] p-8 rounded-lg border border-ebony/5">
+              <motion.div 
+                ref={flipcardRef}
+                style={{ opacity: flipcardOpacity, y: flipcardY }}
+                className="mt-16 bg-ebony/[0.02] p-8 rounded-lg border border-ebony/5"
+              >
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   <Image
                     src="/projects/interior-design-ai/flipcard-1.png"
@@ -318,7 +438,7 @@ export default function Projects() {
                     className="rounded shadow-sm w-full"
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </section>
           <section id="market-research">
@@ -408,7 +528,11 @@ export default function Projects() {
               </p>
 
               {/* Design System Components Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+              <motion.div
+                ref={designSystemRef}
+                style={{ opacity: designSystemOpacity, y: designSystemY }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-16"
+              >
                 {/* Typography */}
                 <div className="flex flex-col items-center">
                   <div className="flex items-center space-x-3 mb-10">
@@ -460,7 +584,7 @@ export default function Projects() {
                     className="h-10 w-auto"
                   />
                 </div>
-              </div>
+              </motion.div>
             </div>
           </section>
           <section id="user-experience">
@@ -594,7 +718,11 @@ export default function Projects() {
               </div>
 
               {/* User Flow Images */}
-              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+              <motion.div
+                ref={userFlowRef}
+                style={{ opacity: userFlowOpacity, y: userFlowY }}
+                className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8"
+              >
                 <Image
                   src="/projects/interior-design-ai/homepage-mockup.png"
                   alt="Homepage interface mockup"
@@ -623,7 +751,7 @@ export default function Projects() {
                   height={800}
                   className="rounded-lg"
                 />
-              </div>
+              </motion.div>
             </div>
           </section>
           <section id="ai-integration">
@@ -674,7 +802,11 @@ export default function Projects() {
               </p>
 
               {/* AI Process Visualization */}
-              <div className="mt-16">
+              <motion.div
+                ref={aiProcessRef}
+                style={{ opacity: aiProcessOpacity, y: aiProcessY }}
+                className="mt-16"
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
                   {/* Input and Style Selection */}
                   <div className="flex flex-col items-center justify-center min-h-full space-y-12">
@@ -687,7 +819,6 @@ export default function Projects() {
                         className="rounded"
                       />
                     </div>
-
                     <div className="flex items-center gap-3">
                       <div className="h-[1px] w-8 bg-ebony/10"></div>
                       <div className="font-serif text-xs tracking-wider text-ebony/40">Living Room Selected</div>
@@ -717,8 +848,6 @@ export default function Projects() {
                       </button>
                     </div>
                   </div>
-
-                  {/* Results */}
                   <div className="space-y-8">
                     <div className={`bg-ebony/[0.02] p-8 rounded-lg border transition-all duration-300 ${
                       activeStyle === 'transitional' ? 'border-red/10' : 'border-ebony/5 opacity-50'
@@ -744,7 +873,7 @@ export default function Projects() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </section>
           <section id="challenges">

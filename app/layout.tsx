@@ -3,9 +3,17 @@ import './globals.css'
 import Navigation from './components/Navigation'
 
 export const metadata: Metadata = {
-  title: 'chiangyenju',
-  description: 'chiangyenju-portfolio',
+  title: 'Andrew Chiang',
+  description: 'Personal portfolio of Andrew Chiang',
   viewport: 'width=device-width, initial-scale=1, viewport-fit=cover',
+  icons: {
+    icon: [
+      {
+        url: '/favicon.svg',
+        type: 'image/svg+xml',
+      }
+    ]
+  }
 }
 
 export default function RootLayout({
