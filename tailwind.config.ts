@@ -47,30 +47,12 @@ export default {
           800: '#662222',
           900: '#4d1a1a',
         },
-        'ivory': '#FDFFF0',
-        'ebony': '#1E1E2A',
-        'red': '#970C10',
-        'olive': '#D4B483',
-      },
-      fontFamily: {
-        'sans': ['var(--font-inter)'],
-        'serif': ['var(--font-playfair)'],
-        'chinese': ['var(--font-zhimangxing)'],
       },
       keyframes: {
         'metallic-shine': {
           '0%': { backgroundPosition: '100% 50%' },
           '50%': { backgroundPosition: '0% 50%' },
           '100%': { backgroundPosition: '100% 50%' },
-        },
-        'splash-scale': {
-          '0%': { transform: 'scale(0.95)' },
-          '50%': { transform: 'scale(1.05)' },
-          '100%': { transform: 'scale(0.95)' },
-        },
-        'splash-rotate': {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
         },
         'twinkle-1': {
           '0%, 100%': { opacity: '1', transform: 'scale(1.2)' },
@@ -130,8 +112,6 @@ export default {
         'twinkle-9': 'twinkle-9 5.2s ease-in-out infinite',
         'twinkle-10': 'twinkle-10 3.7s ease-in-out infinite',
         'twinkle-11': 'twinkle-11 4.7s ease-in-out infinite',
-        'splash-scale': 'splash-scale 8s ease-in-out infinite',
-        'splash-rotate': 'splash-rotate 20s linear infinite',
       },
     },
   },

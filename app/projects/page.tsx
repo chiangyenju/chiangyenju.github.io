@@ -746,65 +746,34 @@ export default function Projects() {
                     style={{ opacity: userFlowOpacity, y: userFlowY }}
                     className="grid grid-cols-1 md:grid-cols-2 gap-8"
                   >
-                    {/* Homepage Mockup */}
-                    <div className="relative">
-                      <div className="absolute inset-0 -m-8">
-                        <div className="absolute inset-0 bg-olive/10 rounded-full blur-3xl animate-splash-scale"></div>
-                        <div className="absolute inset-0 bg-red/5 rounded-full blur-2xl animate-splash-rotate origin-center"></div>
-                      </div>
-                      <Image
-                        src="/projects/interior-design-ai/homepage-mockup.png"
-                        alt="Homepage interface mockup"
-                        width={1200}
-                        height={800}
-                        className="rounded-lg relative z-10"
-                      />
-                    </div>
-
-                    {/* Login Mockup */}
-                    <div className="relative">
-                      <div className="absolute inset-0 -m-8">
-                        <div className="absolute inset-0 bg-olive/10 rounded-full blur-3xl animate-splash-scale"></div>
-                        <div className="absolute inset-0 bg-red/5 rounded-full blur-2xl animate-splash-rotate origin-center"></div>
-                      </div>
-                      <Image
-                        src="/projects/interior-design-ai/login-mockup.png"
-                        alt="Login interface mockup"
-                        width={1200}
-                        height={800}
-                        className="rounded-lg relative z-10"
-                      />
-                    </div>
-
-                    {/* Capture Mockup */}
-                    <div className="relative">
-                      <div className="absolute inset-0 -m-8">
-                        <div className="absolute inset-0 bg-olive/10 rounded-full blur-3xl animate-splash-scale"></div>
-                        <div className="absolute inset-0 bg-red/5 rounded-full blur-2xl animate-splash-rotate origin-center"></div>
-                      </div>
-                      <Image
-                        src="/projects/interior-design-ai/capture-mockup.png"
-                        alt="Room capture interface mockup"
-                        width={1200}
-                        height={800}
-                        className="rounded-lg relative z-10"
-                      />
-                    </div>
-
-                    {/* Results Mockup */}
-                    <div className="relative">
-                      <div className="absolute inset-0 -m-8">
-                        <div className="absolute inset-0 bg-olive/10 rounded-full blur-3xl animate-splash-scale"></div>
-                        <div className="absolute inset-0 bg-red/5 rounded-full blur-2xl animate-splash-rotate origin-center"></div>
-                      </div>
-                      <Image
-                        src="/projects/interior-design-ai/results-mockup.png"
-                        alt="Results and shopping interface mockup"
-                        width={1200}
-                        height={800}
-                        className="rounded-lg relative z-10"
-                      />
-                    </div>
+                    <Image
+                      src="/projects/interior-design-ai/homepage-mockup.png"
+                      alt="Homepage interface mockup"
+                      width={1200}
+                      height={800}
+                      className="rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/login-mockup.png"
+                      alt="Login interface mockup"
+                      width={1200}
+                      height={800}
+                      className="rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/capture-mockup.png"
+                      alt="Room capture interface mockup"
+                      width={1200}
+                      height={800}
+                      className="rounded-lg"
+                    />
+                    <Image
+                      src="/projects/interior-design-ai/results-mockup.png"
+                      alt="Results and shopping interface mockup"
+                      width={1200}
+                      height={800}
+                      className="rounded-lg"
+                    />
                   </motion.div>
                 </div>
               </div>
