@@ -41,6 +41,12 @@ module.exports = {
           '2xl': '6rem',
         },
       },
+      keyframes: {
+        blink: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0 },
+        },
+      },
     },
   },
   plugins: [],

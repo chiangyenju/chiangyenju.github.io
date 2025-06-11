@@ -1,8 +1,18 @@
+'use client';
+
 import { FiLinkedin } from 'react-icons/fi';
 import { FaSoundcloud } from 'react-icons/fa';
 import Image from 'next/image';
+import TypewriterText from './components/TypewriterText';
+import TypewriterIcon from './components/TypewriterIcon';
+import { useState } from 'react';
 
 export default function Home() {
+  const [firstLineComplete, setFirstLineComplete] = useState(false);
+  const [secondLineComplete, setSecondLineComplete] = useState(false);
+  const [firstLineContent, setFirstLineContent] = useState<string | null>(null);
+  const [secondLineContent, setSecondLineContent] = useState<string | null>(null);
+  
   return (
     <div className="h-[calc(100vh-4rem)] flex flex-col justify-start pt-[20vh]">
       <div className="flex flex-col items-center px-4 space-y-16">
@@ -17,31 +27,67 @@ export default function Home() {
                 priority
               />
             </div>
-            <p className="font-sans font-thin text-sm sm:text-base">My name is Andrew Chiang.</p>
+            <div style={{ minHeight: '1.5rem' }}>
+              {!firstLineComplete ? (
+                <TypewriterText 
+                  text="My name is Andrew Chiang."
+                  className="font-sans font-thin text-sm sm:text-base"
+                  delay={500}
+                  speed={0.08}
+                  onComplete={() => {
+                    setFirstLineContent("My name is Andrew Chiang.");
+                    setFirstLineComplete(true);
+                  }}
+                />
+              ) : (
+                <p className="font-sans font-thin text-sm sm:text-base">
+                  {firstLineContent}
+                </p>
+              )}
+            </div>
           </div>
-          <h1 className="font-serif font-bold text-xl sm:text-2xl md:text-3xl">I enjoy creating things.</h1>
+          <div style={{ minHeight: '2.5rem' }}>
+            {firstLineComplete && !secondLineComplete ? (
+              <TypewriterText 
+                text="I enjoy creating things."
+                className="font-serif font-bold text-xl sm:text-2xl md:text-3xl"
+                delay={200}
+                speed={0.1}
+                onComplete={() => {
+                  setSecondLineContent("I enjoy creating things.");
+                  setSecondLineComplete(true);
+                }}
+              />
+            ) : secondLineContent && (
+              <p className="font-serif font-bold text-xl sm:text-2xl md:text-3xl">
+                {secondLineContent}
+              </p>
+            )}
+          </div>
         </div>
         
         {/* Social Media Links */}
-        <div className="flex items-center justify-center space-x-4">
-          <a 
-            href="https://www.linkedin.com/in/chiangyenju/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-ebony/60 hover:text-olive transition-colors"
-            aria-label="LinkedIn Profile"
-          >
-            <FiLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
-          </a>
-          <a 
-            href="https://soundcloud.com/chiangyenju" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-ebony/60 hover:text-olive transition-colors"
-            aria-label="SoundCloud Profile"
-          >
-            <FaSoundcloud className="w-4 h-4 sm:w-5 sm:h-5" />
-          </a>
+        <div className="flex items-center justify-center space-x-8">
+          <div className="w-4 h-4 sm:w-5 sm:h-5">
+            <TypewriterIcon 
+              href="https://www.linkedin.com/in/chiangyenju/"
+              delay={secondLineComplete ? 500 : 99999}
+              ariaLabel="LinkedIn Profile"
+              speed={0.3}
+            >
+              <FiLinkedin className="w-4 h-4 sm:w-5 sm:h-5" />
+            </TypewriterIcon>
+          </div>
+          <div className="w-4 h-4 sm:w-5 sm:h-5">
+            <TypewriterIcon 
+              href="https://soundcloud.com/chiangyenju"
+              delay={secondLineComplete ? 1000 : 99999}
+              ariaLabel="SoundCloud Profile"
+              speed={0.3}
+            >
+              <FaSoundcloud className="w-4 h-4 sm:w-5 sm:h-5" />
+            </TypewriterIcon>
+          </div>
         </div>
       </div>
     </div>
