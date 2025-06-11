@@ -5,6 +5,17 @@ import Image from 'next/image';
 import { FiLayout, FiSmartphone, FiUsers, FiTarget } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import AnimatedMockup from '../components/AnimatedMockup';
+import DrawingAnimation from '../components/DrawingAnimation';
+import SimultaneousDrawingAnimation from '../components/SimultaneousDrawingAnimation';
+
+// Animation paths for mockups
+const ANIMATION_PATHS = {
+  homepage: "M 20,20 L 80,20 L 80,80 L 20,80 L 20,20 Z",
+  login: "M 50,20 C 65,20 80,35 80,50 C 80,65 65,80 50,80 C 35,80 20,65 20,50 C 20,35 35,20 50,20 M 50,35 C 58,35 65,42 65,50 C 65,58 58,65 50,65 C 42,65 35,58 35,50 C 35,42 42,35 50,35",
+  capture: "M 20,20 L 80,20 L 80,80 L 20,80 L 20,20 M 35,35 L 65,35 L 65,65 L 35,65 L 35,35 M 50,20 L 50,35 M 20,50 L 35,50 M 65,50 L 80,50 M 50,65 L 50,80",
+  results: "M 20,30 L 80,30 M 20,50 L 80,50 M 20,70 L 80,70"
+};
 
 export default function Projects() {
   const [activeSection, setActiveSection] = useState('overview');
@@ -661,34 +672,71 @@ export default function Projects() {
                     style={{ opacity: userFlowAnimation.opacity, y: userFlowAnimation.y }}
                     className="grid grid-cols-1 md:grid-cols-2 gap-8"
                   >
-                    <Image
-                      src="/projects/interior-design-ai/homepage-mockup.png"
-                      alt="Homepage interface mockup"
-                      width={1200}
-                      height={800}
-                      className="rounded-lg"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/login-mockup.png"
-                      alt="Login interface mockup"
-                      width={1200}
-                      height={800}
-                      className="rounded-lg"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/capture-mockup.png"
-                      alt="Room capture interface mockup"
-                      width={1200}
-                      height={800}
-                      className="rounded-lg"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/results-mockup.png"
-                      alt="Results and shopping interface mockup"
-                      width={1200}
-                      height={800}
-                      className="rounded-lg"
-                    />
+                    <div className="relative">
+                      <Image
+                        src="/projects/interior-design-ai/homepage-mockup.png"
+                        alt="Homepage interface mockup"
+                        width={1200}
+                        height={800}
+                        className="relative z-10 rounded-lg"
+                      />
+                      <div className="absolute inset-0 z-0">
+                        <DrawingAnimation
+                          pathData="M 20,20 L 80,20 L 80,80 L 20,80 L 20,20 Z"
+                          delay={0}
+                        />
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <Image
+                        src="/projects/interior-design-ai/login-mockup.png"
+                        alt="Login interface mockup"
+                        width={1200}
+                        height={800}
+                        className="relative z-10 rounded-lg"
+                      />
+                      <div className="absolute inset-0 z-0">
+                        <DrawingAnimation
+                          pathData="M 50,20 C 65,20 80,35 80,50 C 80,65 65,80 50,80 C 35,80 20,65 20,50 C 20,35 35,20 50,20 M 50,35 C 58,35 65,42 65,50 C 65,58 58,65 50,65 C 42,65 35,58 35,50 C 35,42 42,35 50,35"
+                          delay={0.5}
+                        />
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <Image
+                        src="/projects/interior-design-ai/capture-mockup.png"
+                        alt="Room capture interface mockup"
+                        width={1200}
+                        height={800}
+                        className="relative z-10 rounded-lg"
+                      />
+                      <div className="absolute inset-0 z-0">
+                        <SimultaneousDrawingAnimation
+                          paths={[
+                            "M 50,20 L 80,70", // Outer right line
+                            "M 50,20 L 20,70", // Outer left line
+                            "M 50,30 L 70,65", // Inner right line
+                            "M 50,30 L 30,65"  // Inner left line
+                          ]}
+                          delay={1}
+                        />
+                      </div>
+                    </div>
+                    <div className="relative">
+                      <Image
+                        src="/projects/interior-design-ai/results-mockup.png"
+                        alt="Results and shopping interface mockup"
+                        width={1200}
+                        height={800}
+                        className="relative z-10 rounded-lg"
+                      />
+                      <div className="absolute inset-0 z-0">
+                        <DrawingAnimation
+                          pathData="M 20,30 L 80,30 M 20,50 L 80,50 M 20,70 L 80,70"
+                          delay={1.5}
+                        />
+                      </div>
+                    </div>
                   </motion.div>
                 </div>
               </div>
