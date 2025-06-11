@@ -5,11 +5,11 @@ import Image from 'next/image';
 import { FiLayout, FiSmartphone, FiUsers, FiTarget } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import BouncingDot from '../components/BouncingDot';
 
 export default function Projects() {
   const [activeSection, setActiveSection] = useState('overview');
   const [activeStyle, setActiveStyle] = useState('transitional');
+  const [spotlightStep, setSpotlightStep] = useState(1);
   
   // Refs for scroll animations with proper types
   const figmaRef = useRef<HTMLDivElement>(null);
@@ -48,6 +48,15 @@ export default function Projects() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Add useEffect for spotlight animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSpotlightStep((prev) => (prev % 6) + 1);
+    }, 3000); // Change spotlight every 3 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -499,7 +508,7 @@ export default function Projects() {
 
               {/* User Flow Diagram */}
               <div className="relative -mx-4 sm:mx-0">
-                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory relative user-flow-container">
+                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
                   <div className="flex items-center justify-center gap-3 group mb-12">
                     <div className="text-olive group-hover:text-olive/80 transition-colors">
                       <FiUsers className="w-4 h-4" />
@@ -509,11 +518,15 @@ export default function Projects() {
                   {/* Process Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12">
                     {/* Step 1 */}
-                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
+                    <div className="group p-6 rounded-lg transition-all duration-1000">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive" data-step="1">01</span>
+                        <span className={`font-serif text-xs transition-colors duration-1000 ${
+                          spotlightStep === 1 ? 'text-olive' : 'text-olive/20'
+                        }`}>01</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
+                          <p className={`font-sans text-sm font-extralight leading-relaxed transition-colors duration-1000 ${
+                            spotlightStep === 1 ? 'text-ivory' : 'text-ivory/30'
+                          }`}>
                             Define your space by specifying room types, dimensions, and floor plan arrangement.
                           </p>
                         </div>
@@ -521,11 +534,15 @@ export default function Projects() {
                     </div>
 
                     {/* Step 2 */}
-                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
+                    <div className="group p-6 rounded-lg transition-all duration-1000">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive" data-step="2">02</span>
+                        <span className={`font-serif text-xs transition-colors duration-1000 ${
+                          spotlightStep === 2 ? 'text-olive' : 'text-olive/20'
+                        }`}>02</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
+                          <p className={`font-sans text-sm font-extralight leading-relaxed transition-colors duration-1000 ${
+                            spotlightStep === 2 ? 'text-ivory' : 'text-ivory/30'
+                          }`}>
                             Upload room photographs to capture current state, lighting, and spatial context.
                           </p>
                         </div>
@@ -533,11 +550,15 @@ export default function Projects() {
                     </div>
 
                     {/* Step 3 */}
-                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
+                    <div className="group p-6 rounded-lg transition-all duration-1000">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive" data-step="3">03</span>
+                        <span className={`font-serif text-xs transition-colors duration-1000 ${
+                          spotlightStep === 3 ? 'text-olive' : 'text-olive/20'
+                        }`}>03</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
+                          <p className={`font-sans text-sm font-extralight leading-relaxed transition-colors duration-1000 ${
+                            spotlightStep === 3 ? 'text-ivory' : 'text-ivory/30'
+                          }`}>
                             Select your preferred interior style, color schemes, and material preferences.
                           </p>
                         </div>
@@ -545,11 +566,15 @@ export default function Projects() {
                     </div>
 
                     {/* Step 4 */}
-                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
+                    <div className="group p-6 rounded-lg transition-all duration-1000">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive" data-step="4">04</span>
+                        <span className={`font-serif text-xs transition-colors duration-1000 ${
+                          spotlightStep === 4 ? 'text-olive' : 'text-olive/20'
+                        }`}>04</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
+                          <p className={`font-sans text-sm font-extralight leading-relaxed transition-colors duration-1000 ${
+                            spotlightStep === 4 ? 'text-ivory' : 'text-ivory/30'
+                          }`}>
                             AI processes inputs to create personalized design concepts and visualizations.
                           </p>
                         </div>
@@ -557,11 +582,15 @@ export default function Projects() {
                     </div>
 
                     {/* Step 5 */}
-                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
+                    <div className="group p-6 rounded-lg transition-all duration-1000">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive" data-step="5">05</span>
+                        <span className={`font-serif text-xs transition-colors duration-1000 ${
+                          spotlightStep === 5 ? 'text-olive' : 'text-olive/20'
+                        }`}>05</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
+                          <p className={`font-sans text-sm font-extralight leading-relaxed transition-colors duration-1000 ${
+                            spotlightStep === 5 ? 'text-ivory' : 'text-ivory/30'
+                          }`}>
                             Browse curated furniture selections and proceed with purchase.
                           </p>
                         </div>
@@ -569,18 +598,21 @@ export default function Projects() {
                     </div>
 
                     {/* Summary */}
-                    <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
+                    <div className="group p-6 rounded-lg transition-all duration-1000">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive" data-step="arrow">→</span>
+                        <span className={`font-serif text-xs transition-colors duration-1000 ${
+                          spotlightStep === 6 ? 'text-olive' : 'text-olive/20'
+                        }`}>→</span>
                         <div>
-                          <p className="font-sans text-sm font-extralight leading-relaxed text-ivory/80">
+                          <p className={`font-sans text-sm font-extralight leading-relaxed transition-colors duration-1000 ${
+                            spotlightStep === 6 ? 'text-ivory' : 'text-ivory/30'
+                          }`}>
                             A seamless journey from concept to completion, transforming spaces with AI-powered design.
                           </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <BouncingDot />
                 </div>
               </div>
 
