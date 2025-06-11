@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FiLayout, FiSmartphone, FiUsers, FiTarget } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import BouncingDot from '../components/BouncingDot';
 
 export default function Projects() {
   const [activeSection, setActiveSection] = useState('overview');
@@ -510,7 +511,7 @@ export default function Projects() {
                     {/* Step 1 */}
                     <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive">01</span>
+                        <span className="font-serif text-xs text-olive" data-step="1">01</span>
                         <div>
                           <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             Define your space by specifying room types, dimensions, and floor plan arrangement.
@@ -522,7 +523,7 @@ export default function Projects() {
                     {/* Step 2 */}
                     <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive">02</span>
+                        <span className="font-serif text-xs text-olive" data-step="2">02</span>
                         <div>
                           <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             Upload room photographs to capture current state, lighting, and spatial context.
@@ -534,7 +535,7 @@ export default function Projects() {
                     {/* Step 3 */}
                     <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive">03</span>
+                        <span className="font-serif text-xs text-olive" data-step="3">03</span>
                         <div>
                           <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             Select your preferred interior style, color schemes, and material preferences.
@@ -546,7 +547,7 @@ export default function Projects() {
                     {/* Step 4 */}
                     <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive">04</span>
+                        <span className="font-serif text-xs text-olive" data-step="4">04</span>
                         <div>
                           <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             AI processes inputs to create personalized design concepts and visualizations.
@@ -558,7 +559,7 @@ export default function Projects() {
                     {/* Step 5 */}
                     <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive">05</span>
+                        <span className="font-serif text-xs text-olive" data-step="5">05</span>
                         <div>
                           <p className="font-sans text-sm font-extralight leading-relaxed text-ivory">
                             Browse curated furniture selections and proceed with purchase.
@@ -570,7 +571,7 @@ export default function Projects() {
                     {/* Summary */}
                     <div className="group bg-ivory/5 p-6 rounded-lg hover:bg-ivory/10 transition-all">
                       <div className="flex items-start space-x-6">
-                        <span className="font-serif text-xs text-olive">→</span>
+                        <span className="font-serif text-xs text-olive" data-step="arrow">→</span>
                         <div>
                           <p className="font-sans text-sm font-extralight leading-relaxed text-ivory/80">
                             A seamless journey from concept to completion, transforming spaces with AI-powered design.
@@ -579,6 +580,7 @@ export default function Projects() {
                       </div>
                     </div>
                   </div>
+                  <BouncingDot />
                 </div>
               </div>
 
