@@ -5,15 +5,10 @@ import Image from 'next/image';
 import { FiLayout, FiSmartphone, FiUsers, FiTarget } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
-import TypewriterText from '../components/TypewriterText';
 
 export default function Projects() {
   const [activeSection, setActiveSection] = useState('overview');
   const [activeStyle, setActiveStyle] = useState('transitional');
-  const [titleComplete, setTitleComplete] = useState(false);
-  const [subtitleComplete, setSubtitleComplete] = useState(false);
-  const [titleContent, setTitleContent] = useState<string | null>(null);
-  const [subtitleContent, setSubtitleContent] = useState<string | null>(null);
   
   // Refs for scroll animations with proper types
   const figmaRef = useRef<HTMLDivElement>(null);
@@ -59,7 +54,7 @@ export default function Projects() {
       {/* Fixed Sidebar Navigation */}
       <nav className="fixed top-32 left-8 w-56 hidden lg:block">
         <div className="font-sans font-extrabold text-xs uppercase tracking-wider text-ebony mb-6">
-          {titleContent || "Interior Design AI Platform"}
+          Interior Design AI Platform
         </div>
         <ul className="space-y-3 border-l border-ebony/10 pl-4">
           <li>
@@ -125,42 +120,12 @@ export default function Projects() {
       <div className="container mx-auto px-0 sm:px-6 lg:px-8 py-24 lg:pl-64">
         {/* Project Header */}
         <header className="mb-16 px-4 sm:px-0">
-          <div style={{ minHeight: '2.5rem' }}>
-            {!titleComplete ? (
-              <TypewriterText 
-                text="Interior Design AI Platform"
-                className="font-serif text-4xl mb-2"
-                delay={500}
-                speed={0.08}
-                onComplete={() => {
-                  setTitleContent("Interior Design AI Platform");
-                  setTitleComplete(true);
-                }}
-              />
-            ) : (
-              <h1 className="font-serif text-4xl mb-2">
-                {titleContent}
-              </h1>
-            )}
-          </div>
-          <div style={{ minHeight: '1.5rem', marginBottom: '3rem' }}>
-            {titleComplete && !subtitleComplete ? (
-              <TypewriterText 
-                text="AI-powered room design and visualization tool"
-                className="font-sans font-thin text-xl text-ebony/80"
-                delay={200}
-                speed={0.08}
-                onComplete={() => {
-                  setSubtitleContent("AI-powered room design and visualization tool");
-                  setSubtitleComplete(true);
-                }}
-              />
-            ) : subtitleContent && (
-              <p className="font-sans font-thin text-xl text-ebony/80">
-                {subtitleContent}
-              </p>
-            )}
-          </div>
+          <h1 className="font-serif text-4xl mb-2">
+            Interior Design AI Platform
+          </h1>
+          <p className="font-sans font-thin text-xl text-ebony/80 mb-12">
+            AI-powered room design and visualization tool
+          </p>
           
           {/* Hero Image */}
           <motion.div 
