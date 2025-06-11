@@ -14,14 +14,18 @@ export default function BouncingDot() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // Function to get element position
+    // Function to get element position relative to container
     const getElementPosition = (selector: string): Position | null => {
       const element = document.querySelector(selector);
-      if (!element) return null;
-      const rect = element.getBoundingClientRect();
+      const container = element?.closest('.user-flow-container');
+      if (!element || !container) return null;
+      
+      const elementRect = element.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      
       return {
-        x: rect.left + rect.width / 2,
-        y: rect.top + rect.height / 2
+        x: elementRect.left - containerRect.left + elementRect.width / 2,
+        y: elementRect.top - containerRect.top + elementRect.height / 2
       };
     };
 
@@ -87,7 +91,7 @@ export default function BouncingDot() {
 
   return (
     <motion.div
-      className="fixed w-3 h-3 bg-olive rounded-full pointer-events-none"
+      className="absolute w-4 h-4 bg-olive rounded-full pointer-events-none shadow-[0_0_10px_rgba(147,161,141,0.5)]"
       animate={{
         x: positions[currentIndex].x,
         y: positions[currentIndex].y,

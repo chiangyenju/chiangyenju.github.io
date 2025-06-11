@@ -499,7 +499,7 @@ export default function Projects() {
 
               {/* User Flow Diagram */}
               <div className="relative -mx-4 sm:mx-0">
-                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
+                <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory relative user-flow-container">
                   <div className="flex items-center justify-center gap-3 group mb-12">
                     <div className="text-olive group-hover:text-olive/80 transition-colors">
                       <FiUsers className="w-4 h-4" />
