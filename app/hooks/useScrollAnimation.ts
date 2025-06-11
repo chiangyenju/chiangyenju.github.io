@@ -1,7 +1,7 @@
 import { useScroll, useTransform } from 'framer-motion';
 import { RefObject } from 'react';
 
-export function useScrollAnimation(ref: RefObject<HTMLElement>) {
+export function useScrollAnimation(ref: RefObject<HTMLElement | null>) {
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]

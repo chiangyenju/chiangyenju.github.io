@@ -10,15 +10,15 @@ export default function Projects() {
   const [activeSection, setActiveSection] = useState('overview');
   const [activeStyle, setActiveStyle] = useState('transitional');
   
-  // Refs for scroll animations
-  const figmaRef = useRef(null);
-  const bedroomRef = useRef(null);
-  const heroRef = useRef(null);
-  const roleRef = useRef(null);
-  const flipcardRef = useRef(null);
-  const designSystemRef = useRef(null);
-  const userFlowRef = useRef(null);
-  const aiProcessRef = useRef(null);
+  // Refs for scroll animations with proper types
+  const figmaRef = useRef<HTMLDivElement>(null);
+  const bedroomRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const roleRef = useRef<HTMLDivElement>(null);
+  const flipcardRef = useRef<HTMLDivElement>(null);
+  const designSystemRef = useRef<HTMLDivElement>(null);
+  const userFlowRef = useRef<HTMLDivElement>(null);
+  const aiProcessRef = useRef<HTMLDivElement>(null);
   
   // Use the custom hook for each ref
   const figmaAnimation = useScrollAnimation(figmaRef);
