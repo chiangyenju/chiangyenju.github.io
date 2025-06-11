@@ -3,11 +3,14 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { FiLayout, FiSmartphone, FiUsers, FiTarget } from 'react-icons/fi';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 export default function Projects() {
   const [activeSection, setActiveSection] = useState('overview');
   const [activeStyle, setActiveStyle] = useState('transitional');
+  
+  // Refs for scroll animations
   const figmaRef = useRef(null);
   const bedroomRef = useRef(null);
   const heroRef = useRef(null);
@@ -17,141 +20,15 @@ export default function Projects() {
   const userFlowRef = useRef(null);
   const aiProcessRef = useRef(null);
   
-  const { scrollYProgress: figmaScrollProgress } = useScroll({
-    target: figmaRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const { scrollYProgress: bedroomScrollProgress } = useScroll({
-    target: bedroomRef,
-    offset: ["start end", "end start"]
-  });
-
-  const { scrollYProgress: heroScrollProgress } = useScroll({
-    target: heroRef,
-    offset: ["start end", "end start"]
-  });
-
-  const { scrollYProgress: roleScrollProgress } = useScroll({
-    target: roleRef,
-    offset: ["start end", "end start"]
-  });
-
-  const { scrollYProgress: flipcardScrollProgress } = useScroll({
-    target: flipcardRef,
-    offset: ["start end", "end start"]
-  });
-
-  const { scrollYProgress: designSystemScrollProgress } = useScroll({
-    target: designSystemRef,
-    offset: ["start end", "end start"]
-  });
-
-  const { scrollYProgress: userFlowScrollProgress } = useScroll({
-    target: userFlowRef,
-    offset: ["start end", "end start"]
-  });
-
-  const { scrollYProgress: aiProcessScrollProgress } = useScroll({
-    target: aiProcessRef,
-    offset: ["start end", "end start"]
-  });
-  
-  const opacity = useTransform(
-    figmaScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-
-  const y = useTransform(
-    figmaScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 0, 0, -50]
-  );
-
-  const heroOpacity = useTransform(
-    heroScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-
-  const heroY = useTransform(
-    heroScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 0, 0, -50]
-  );
-
-  const roleOpacity = useTransform(
-    roleScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-
-  const roleY = useTransform(
-    roleScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 0, 0, -50]
-  );
-
-  const flipcardOpacity = useTransform(
-    flipcardScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-
-  const flipcardY = useTransform(
-    flipcardScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 0, 0, -50]
-  );
-
-  const designSystemOpacity = useTransform(
-    designSystemScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-
-  const designSystemY = useTransform(
-    designSystemScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 0, 0, -50]
-  );
-
-  const bedroomOpacity = useTransform(
-    bedroomScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-
-  const bedroomY = useTransform(
-    bedroomScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 0, 0, -50]
-  );
-
-  const userFlowOpacity = useTransform(
-    userFlowScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-
-  const userFlowY = useTransform(
-    userFlowScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 0, 0, -50]
-  );
-
-  const aiProcessOpacity = useTransform(
-    aiProcessScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [0, 1, 1, 0]
-  );
-
-  const aiProcessY = useTransform(
-    aiProcessScrollProgress,
-    [0, 0.3, 0.7, 1],
-    [50, 0, 0, -50]
-  );
+  // Use the custom hook for each ref
+  const figmaAnimation = useScrollAnimation(figmaRef);
+  const bedroomAnimation = useScrollAnimation(bedroomRef);
+  const heroAnimation = useScrollAnimation(heroRef);
+  const roleAnimation = useScrollAnimation(roleRef);
+  const flipcardAnimation = useScrollAnimation(flipcardRef);
+  const designSystemAnimation = useScrollAnimation(designSystemRef);
+  const userFlowAnimation = useScrollAnimation(userFlowRef);
+  const aiProcessAnimation = useScrollAnimation(aiProcessRef);
 
   // Handle scroll to update active section
   useEffect(() => {
@@ -249,7 +126,7 @@ export default function Projects() {
           {/* Hero Image */}
           <motion.div 
             ref={heroRef}
-            style={{ opacity: heroOpacity, y: heroY }}
+            style={{ opacity: heroAnimation.opacity, y: heroAnimation.y }}
             className="relative aspect-[21/9] w-full overflow-hidden rounded-lg bg-ebony/5"
           >
             <Image
@@ -318,7 +195,7 @@ export default function Projects() {
               {/* Figma Design Image */}
               <motion.div
                 ref={figmaRef}
-                style={{ opacity, y }}
+                style={{ opacity: figmaAnimation.opacity, y: figmaAnimation.y }}
                 className="relative"
               >
                 <Image
@@ -403,7 +280,7 @@ export default function Projects() {
                   </div>
                   <motion.div 
                     ref={flipcardRef}
-                    style={{ opacity: flipcardOpacity, y: flipcardY }}
+                    style={{ opacity: flipcardAnimation.opacity, y: flipcardAnimation.y }}
                     className="grid grid-cols-2 md:grid-cols-4 gap-3"
                   >
                     <Image
@@ -485,7 +362,7 @@ export default function Projects() {
                   </div>
                   <motion.div
                     ref={bedroomRef}
-                    style={{ opacity: bedroomOpacity, y: bedroomY }}
+                    style={{ opacity: bedroomAnimation.opacity, y: bedroomAnimation.y }}
                     className="grid grid-cols-2 md:grid-cols-4 gap-4"
                   >
                     <Image
@@ -546,7 +423,7 @@ export default function Projects() {
                   </div>
                   <motion.div
                     ref={designSystemRef}
-                    style={{ opacity: designSystemOpacity, y: designSystemY }}
+                    style={{ opacity: designSystemAnimation.opacity, y: designSystemAnimation.y }}
                     className="grid grid-cols-1 md:grid-cols-3 gap-16"
                   >
                     {/* Typography */}
@@ -743,7 +620,7 @@ export default function Projects() {
                   </div>
                   <motion.div
                     ref={userFlowRef}
-                    style={{ opacity: userFlowOpacity, y: userFlowY }}
+                    style={{ opacity: userFlowAnimation.opacity, y: userFlowAnimation.y }}
                     className="grid grid-cols-1 md:grid-cols-2 gap-8"
                   >
                     <Image
@@ -837,7 +714,7 @@ export default function Projects() {
                   </div>
                   <motion.div
                     ref={aiProcessRef}
-                    style={{ opacity: aiProcessOpacity, y: aiProcessY }}
+                    style={{ opacity: aiProcessAnimation.opacity, y: aiProcessAnimation.y }}
                     className="mt-16"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
