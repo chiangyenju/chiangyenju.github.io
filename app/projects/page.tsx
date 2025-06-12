@@ -8,6 +8,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import AnimatedMockup from '../components/AnimatedMockup';
 import DrawingAnimation from '../components/DrawingAnimation';
 import SimultaneousDrawingAnimation from '../components/SimultaneousDrawingAnimation';
+import FlipCards from '../components/FlipCards';
 
 // Animation paths for mockups
 const ANIMATION_PATHS = {
@@ -306,36 +307,9 @@ export default function Projects() {
                   <motion.div 
                     ref={flipcardRef}
                     style={{ opacity: flipcardAnimation.opacity, y: flipcardAnimation.y }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-3"
+                    className="h-[400px] lg:h-[300px]"
                   >
-                    <Image
-                      src="/projects/interior-design-ai/flipcard-1.png"
-                      alt="Interior Design AI Flipcard 1"
-                      width={200}
-                      height={120}
-                      className="rounded shadow-sm w-full"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/flipcard-2.png"
-                      alt="Interior Design AI Flipcard 2"
-                      width={200}
-                      height={120}
-                      className="rounded shadow-sm w-full"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/flipcard-3.png"
-                      alt="Interior Design AI Flipcard 3"
-                      width={200}
-                      height={120}
-                      className="rounded shadow-sm w-full"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/flipcard-4.png"
-                      alt="Interior Design AI Flipcard 4"
-                      width={200}
-                      height={120}
-                      className="rounded shadow-sm w-full"
-                    />
+                    <FlipCards />
                   </motion.div>
                 </div>
               </div>
