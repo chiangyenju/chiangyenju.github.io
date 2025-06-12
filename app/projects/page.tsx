@@ -9,6 +9,7 @@ import AnimatedMockup from '../components/AnimatedMockup';
 import DrawingAnimation from '../components/DrawingAnimation';
 import SimultaneousDrawingAnimation from '../components/SimultaneousDrawingAnimation';
 import FlipCards from '../components/FlipCards';
+import AIImageCarousel from '../components/AIImageCarousel';
 
 // Animation paths for mockups
 const ANIMATION_PATHS = {
@@ -362,35 +363,27 @@ export default function Projects() {
                   <motion.div
                     ref={bedroomRef}
                     style={{ opacity: bedroomAnimation.opacity, y: bedroomAnimation.y }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-4"
+                    className="w-full max-w-[800px] mx-auto"
                   >
-                    <Image
-                      src="/projects/interior-design-ai/bedroom-1.jpg"
-                      alt="Original bedroom design"
-                      width={500}
-                      height={300}
-                      className="w-full rounded-lg"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/bedroom-ai-1.jpg"
-                      alt="AI generated bedroom design 1"
-                      width={500}
-                      height={300}
-                      className="w-full rounded-lg"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/bedroom-ai-2.jpg"
-                      alt="AI generated bedroom design 2"
-                      width={500}
-                      height={300}
-                      className="w-full rounded-lg"
-                    />
-                    <Image
-                      src="/projects/interior-design-ai/bedroom-ai-3.jpg"
-                      alt="AI generated bedroom design 3"
-                      width={500}
-                      height={300}
-                      className="w-full rounded-lg"
+                    <AIImageCarousel
+                      images={[
+                        {
+                          src: "/projects/interior-design-ai/bedroom-1.jpg",
+                          alt: "Original bedroom design"
+                        },
+                        {
+                          src: "/projects/interior-design-ai/bedroom-ai-1.jpg",
+                          alt: "AI generated bedroom design 1"
+                        },
+                        {
+                          src: "/projects/interior-design-ai/bedroom-ai-2.jpg",
+                          alt: "AI generated bedroom design 2"
+                        },
+                        {
+                          src: "/projects/interior-design-ai/bedroom-ai-3.jpg",
+                          alt: "AI generated bedroom design 3"
+                        }
+                      ]}
                     />
                   </motion.div>
                 </div>
