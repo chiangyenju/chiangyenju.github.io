@@ -27,7 +27,7 @@ const AIImageCarousel: React.FC<AIImageCarouselProps> = ({ images }) => {
   }, [images.length]);
 
   return (
-    <div className="relative w-full h-[400px] md:h-[600px] lg:h-[800px] overflow-hidden rounded-lg group">
+    <div className="relative w-full h-[200px] md:h-[300px] lg:h-[400px] overflow-hidden rounded-lg group">
       {images.map((image, index) => (
         <div
           key={index}

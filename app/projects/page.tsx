@@ -10,6 +10,7 @@ import DrawingAnimation from '../components/DrawingAnimation';
 import SimultaneousDrawingAnimation from '../components/SimultaneousDrawingAnimation';
 import FlipCards from '../components/FlipCards';
 import AIImageCarousel from '../components/AIImageCarousel';
+import DesignSystemRotator from '../components/DesignSystemRotator';
 
 // Animation paths for mockups
 const ANIMATION_PATHS = {
@@ -416,59 +417,9 @@ export default function Projects() {
                   <motion.div
                     ref={designSystemRef}
                     style={{ opacity: designSystemAnimation.opacity, y: designSystemAnimation.y }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-16"
+                    className="w-full max-w-xl mx-auto"
                   >
-                    {/* Typography */}
-                    <div className="flex flex-col items-center">
-                      <div className="flex items-center space-x-3 mb-10">
-                        <div className="h-[1px] w-12 bg-ivory/20"></div>
-                        <div className="font-serif text-xs tracking-wider">Heading Style</div>
-                        <div className="h-[1px] w-12 bg-ivory/20"></div>
-                      </div>
-                      <div className="mb-10">
-                        <Image
-                          src="/projects/interior-design-ai/logo-2.png"
-                          alt="Typography example"
-                          width={250}
-                          height={167}
-                        />
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <div className="h-[1px] w-12 bg-ivory/20"></div>
-                        <div className="font-serif text-xs tracking-wider">Body Text</div>
-                        <div className="h-[1px] w-12 bg-ivory/20"></div>
-                      </div>
-                    </div>
-
-                    {/* Colors */}
-                    <div className="flex flex-col items-center justify-center h-full">
-                      <div className="grid grid-cols-3 gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[#1E1E2A]"></div>
-                        <div className="w-10 h-10 rounded-full bg-[#F5F5F5]"></div>
-                        <div className="w-10 h-10 rounded-full bg-[#9E4F4F]"></div>
-                        <div className="w-10 h-10 rounded-full bg-[#B8C4D9]"></div>
-                        <div className="w-10 h-10 rounded-full bg-[#D4B483]"></div>
-                        <div className="w-10 h-10 rounded-full bg-[#E8C795]"></div>
-                      </div>
-                    </div>
-
-                    {/* Components */}
-                    <div className="flex flex-col items-center justify-center h-full gap-3">
-                      <Image
-                        src="/projects/interior-design-ai/back-button.png"
-                        alt="Back button component"
-                        width={100}
-                        height={40}
-                        className="h-10 w-auto"
-                      />
-                      <Image
-                        src="/projects/interior-design-ai/next-button.png"
-                        alt="Next button component"
-                        width={100}
-                        height={40}
-                        className="h-10 w-auto"
-                      />
-                    </div>
+                    <DesignSystemRotator />
                   </motion.div>
                 </div>
               </div>
