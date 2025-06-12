@@ -11,6 +11,7 @@ import SimultaneousDrawingAnimation from '../components/SimultaneousDrawingAnima
 import FlipCards from '../components/FlipCards';
 import AIImageCarousel from '../components/AIImageCarousel';
 import DesignSystemRotator from '../components/DesignSystemRotator';
+import PressableButton from '../components/PressableButton';
 
 // Animation paths for mockups
 const ANIMATION_PATHS = {
@@ -740,26 +741,18 @@ export default function Projects() {
                         </div>
 
                         <div className="flex gap-3">
-                          <button 
+                          <PressableButton 
+                            isActive={activeStyle === 'transitional'}
                             onClick={() => setActiveStyle('transitional')}
-                            className={`font-sans text-sm font-bold uppercase px-6 py-3 rounded-full transition-all duration-300 ${
-                              activeStyle === 'transitional' 
-                                ? 'bg-olive/10 border border-olive/20 text-ivory' 
-                                : 'bg-ivory/5 border border-ivory/10 hover:bg-ivory/10 text-olive/60'
-                            }`}
                           >
                             Transitional
-                          </button>
-                          <button 
+                          </PressableButton>
+                          <PressableButton 
+                            isActive={activeStyle === 'farmhouse'}
                             onClick={() => setActiveStyle('farmhouse')}
-                            className={`font-sans text-sm font-bold uppercase px-6 py-3 rounded-full transition-all duration-300 ${
-                              activeStyle === 'farmhouse' 
-                                ? 'bg-olive/10 border border-olive/20 text-ivory' 
-                                : 'bg-ivory/5 border border-ivory/10 hover:bg-ivory/10 text-olive/60'
-                            }`}
                           >
                             Modern Farmhouse
-                          </button>
+                          </PressableButton>
                         </div>
                       </div>
                       <div className="space-y-8">
