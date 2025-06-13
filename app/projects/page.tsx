@@ -192,32 +192,24 @@ export default function Projects() {
           <div className="relative -mx-4 sm:mx-0">
             <div className="bg-ebony rounded-[30px] sm:rounded-[50px] pt-20 pb-24 px-8 sm:px-12 text-ivory">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 justify-items-center mb-20">
-                <div className="flex items-center gap-3 group">
-                  <div className="text-olive group-hover:text-olive/80 transition-colors">
-                    <FiLayout className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">UI/UX Design</h3>
+                <div className="relative flex items-center justify-center group py-12 sm:py-8">
+                  <FiLayout className="absolute text-7xl text-olive/40 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+                  <h3 className="relative font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap z-10">UI/UX Design</h3>
                 </div>
 
-                <div className="flex items-center gap-3 group">
-                  <div className="text-olive group-hover:text-olive/80 transition-colors">
-                    <FiSmartphone className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">Mobile & Web Dev</h3>
+                <div className="relative flex items-center justify-center group py-12 sm:py-8">
+                  <FiSmartphone className="absolute text-7xl text-olive/40 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+                  <h3 className="relative font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap z-10">Mobile & Web Dev</h3>
                 </div>
 
-                <div className="flex items-center gap-3 group">
-                  <div className="text-olive group-hover:text-olive/80 transition-colors">
-                    <FiUsers className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">User Research</h3>
+                <div className="relative flex items-center justify-center group py-12 sm:py-8">
+                  <FiUsers className="absolute text-7xl text-olive/40 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+                  <h3 className="relative font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap z-10">User Research</h3>
                 </div>
 
-                <div className="flex items-center gap-3 group">
-                  <div className="text-olive group-hover:text-olive/80 transition-colors">
-                    <FiTarget className="w-4 h-4" />
-                  </div>
-                  <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">Product Mgmt</h3>
+                <div className="relative flex items-center justify-center group py-12 sm:py-8">
+                  <FiTarget className="absolute text-7xl text-olive/40 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+                  <h3 className="relative font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap z-10">Product Mgmt</h3>
                 </div>
               </div>
 
@@ -305,7 +297,7 @@ export default function Projects() {
                     <div className="text-olive group-hover:text-olive/80 transition-colors">
                       <FiUsers className="w-4 h-4" />
                     </div>
-                    <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">User Survey Design Component</h3>
+                    <h3 className="font-sans font-bold uppercase text-sm group-hover:text-ivory/80 transition-colors whitespace-nowrap">User Survey Style Component</h3>
                   </div>
                   <motion.div 
                     ref={flipcardRef}
