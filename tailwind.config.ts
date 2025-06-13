@@ -98,10 +98,6 @@ export default {
           '0%, 100%': { opacity: '1', transform: 'scale(1.1)' },
           '50%': { opacity: '0.7', transform: 'scale(1)' },
         },
-        press: {
-          '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(0.95) translateY(2px)' },
-        },
       },
       animation: {
         'metallic-shine': 'metallic-shine 3s ease-in-out infinite',
@@ -116,7 +112,6 @@ export default {
         'twinkle-9': 'twinkle-9 5.2s ease-in-out infinite',
         'twinkle-10': 'twinkle-10 3.7s ease-in-out infinite',
         'twinkle-11': 'twinkle-11 4.7s ease-in-out infinite',
-        press: 'press 0.5s ease-in-out',
       },
     },
   },

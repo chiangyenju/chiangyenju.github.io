@@ -11,7 +11,7 @@ import SimultaneousDrawingAnimation from '../components/SimultaneousDrawingAnima
 import FlipCards from '../components/FlipCards';
 import AIImageCarousel from '../components/AIImageCarousel';
 import DesignSystemRotator from '../components/DesignSystemRotator';
-import PressableButton from '../components/PressableButton';
+import AIGenerationFlow from '../components/AIGenerationFlow';
 
 // Animation paths for mockups
 const ANIMATION_PATHS = {
@@ -722,64 +722,7 @@ export default function Projects() {
                     style={{ opacity: aiProcessAnimation.opacity, y: aiProcessAnimation.y }}
                     className="mt-16"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-                      {/* Input and Style Selection */}
-                      <div className="flex flex-col items-center justify-center min-h-full space-y-12">
-                        <div className="bg-ebony/[0.02] p-6 rounded-lg border border-ebony/5">
-                          <Image
-                            src="/projects/interior-design-ai/empty-room.png"
-                            alt="Empty room photo"
-                            width={600}
-                            height={450}
-                            className="rounded"
-                          />
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <div className="h-[1px] w-8 bg-ivory/10"></div>
-                          <div className="font-serif text-xs tracking-wider text-ivory/40">Living Room Selected</div>
-                          <div className="h-[1px] w-8 bg-ivory/10"></div>
-                        </div>
-
-                        <div className="flex gap-3">
-                          <PressableButton 
-                            isActive={activeStyle === 'transitional'}
-                            onClick={() => setActiveStyle('transitional')}
-                          >
-                            Transitional
-                          </PressableButton>
-                          <PressableButton 
-                            isActive={activeStyle === 'farmhouse'}
-                            onClick={() => setActiveStyle('farmhouse')}
-                          >
-                            Modern Farmhouse
-                          </PressableButton>
-                        </div>
-                      </div>
-                      <div className="space-y-8">
-                        <div className={`bg-ivory/5 p-8 rounded-lg border transition-all duration-300 ${
-                          activeStyle === 'transitional' ? 'border-olive/20' : 'border-ivory/10 opacity-50'
-                        }`}>
-                          <Image
-                            src="/projects/interior-design-ai/results-1.png"
-                            alt="Transitional style result"
-                            width={1000}
-                            height={750}
-                            className="rounded"
-                          />
-                        </div>
-                        <div className={`bg-ivory/5 p-8 rounded-lg border transition-all duration-300 ${
-                          activeStyle === 'farmhouse' ? 'border-olive/20' : 'border-ivory/10 opacity-50'
-                        }`}>
-                          <Image
-                            src="/projects/interior-design-ai/results-2.png"
-                            alt="Modern Farmhouse style result"
-                            width={1000}
-                            height={750}
-                            className="rounded"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                    <AIGenerationFlow />
                   </motion.div>
                 </div>
               </div>
