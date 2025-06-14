@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import AIImageCarousel from './AIImageCarousel';
 
 const ANIMATION_DURATION = 3000; // Duration for each path
 const TOTAL_PATHS = 2; // Number of paths to animate
@@ -104,7 +105,7 @@ const AIGenerationFlow = () => {
       </div>
 
       {/* Row 4: Result Images */}
-      <div className="w-full max-w-[700px] grid grid-cols-2 gap-16">
+      <div className="w-full max-w-[700px] grid grid-cols-2 gap-16 relative">
         <motion.div 
           className={`relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-500 ${getImageHighlight(0)}`}
           animate={{ scale: activePath === 0 ? 1.05 : 1 }}
@@ -127,6 +128,43 @@ const AIGenerationFlow = () => {
             className="object-cover"
           />
         </motion.div>
+      </div>
+
+      {/* Tag: Items Included */}
+      <div className="w-full flex justify-center my-4">
+        <span className="px-6 py-2 rounded-full bg-olive/10 text-olive text-xs font-bold tracking-widest uppercase shadow-sm">Items Included</span>
+      </div>
+
+      {/* Row 5: Item Carousels */}
+      <div className="w-full max-w-[700px] grid grid-cols-2 gap-16 mt-8">
+        <div>
+          <AIImageCarousel
+            images={[
+              { src: "/projects/interior-design-ai/transitional-items/item1.png", alt: "Transitional item 1" },
+              { src: "/projects/interior-design-ai/transitional-items/item2.png", alt: "Transitional item 2" },
+              { src: "/projects/interior-design-ai/transitional-items/item3.png", alt: "Transitional item 3" },
+              { src: "/projects/interior-design-ai/transitional-items/item4.png", alt: "Transitional item 4" },
+              { src: "/projects/interior-design-ai/transitional-items/item5.png", alt: "Transitional item 5" },
+              { src: "/projects/interior-design-ai/transitional-items/item6.png", alt: "Transitional item 6" },
+              { src: "/projects/interior-design-ai/transitional-items/item7.png", alt: "Transitional item 7" },
+              { src: "/projects/interior-design-ai/transitional-items/item8.png", alt: "Transitional item 8" },
+              { src: "/projects/interior-design-ai/transitional-items/item9.png", alt: "Transitional item 9" },
+            ]}
+            isActive={activePath === 0}
+          />
+        </div>
+        <div>
+          <AIImageCarousel
+            images={[
+              { src: "/projects/interior-design-ai/modern-farmhouse-items/item1.png", alt: "Modern Farmhouse item 1" },
+              { src: "/projects/interior-design-ai/modern-farmhouse-items/item2.png", alt: "Modern Farmhouse item 2" },
+              { src: "/projects/interior-design-ai/modern-farmhouse-items/item3.png", alt: "Modern Farmhouse item 3" },
+              { src: "/projects/interior-design-ai/modern-farmhouse-items/item4.png", alt: "Modern Farmhouse item 4" },
+              { src: "/projects/interior-design-ai/modern-farmhouse-items/item5.png", alt: "Modern Farmhouse item 5" },
+            ]}
+            isActive={activePath === 1}
+          />
+        </div>
       </div>
     </div>
   );
