@@ -29,7 +29,7 @@ const AIImageCarousel: React.FC<AIImageCarouselProps> = ({ images, isActive = tr
   }, [images.length]);
 
   return (
-    <div className={`relative w-full aspect-[5/2] overflow-visible rounded-2xl group transition-all duration-500 ${isActive ? 'brightness-100 shadow-2xl' : 'brightness-75 grayscale-[30%]'}`}>
+    <div className={`relative w-full aspect-[5/2] sm:aspect-[5/2] overflow-visible rounded-2xl group transition-all duration-500 ${isActive ? 'brightness-100 shadow-2xl' : 'brightness-75 grayscale-[30%]'}`}>
       <div className="w-full h-full relative">
         {images.map((image, index) => {
           let stateClass = '';
@@ -53,19 +53,19 @@ const AIImageCarousel: React.FC<AIImageCarouselProps> = ({ images, isActive = tr
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  width={320}
-                  height={200}
-                  className="object-contain w-full h-full"
+                  width={640}
+                  height={400}
+                  className="object-contain w-full h-full sm:w-full sm:h-full md:w-[90%] md:h-[90%] lg:w-[95%] lg:h-[95%] xl:w-[98%] xl:h-[98%]"
                   style={{ maxWidth: '100%', maxHeight: '100%' }}
                 />
               ) : (
-                <div className="w-[80%] h-[80%] bg-white rounded-2xl flex items-center justify-center shadow-md">
+                <div className="w-[95%] h-[95%] sm:w-[90%] sm:h-[90%] md:w-[95%] md:h-[95%] lg:w-[98%] lg:h-[98%] xl:w-full xl:h-full bg-white rounded-2xl flex items-center justify-center shadow-md">
                   <Image
                     src={image.src}
                     alt={image.alt}
-                    width={320}
-                    height={200}
-                    className="object-contain w-full h-full p-4"
+                    width={640}
+                    height={400}
+                    className="object-contain w-full h-full p-2 sm:p-4 md:p-6 lg:p-8 xl:p-10"
                     style={{ maxWidth: '100%', maxHeight: '100%' }}
                   />
                 </div>
