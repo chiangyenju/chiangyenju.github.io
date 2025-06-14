@@ -35,7 +35,7 @@ const AIGenerationFlow = () => {
   return (
     <div className="w-full flex flex-col items-center space-y-16">
       {/* Row 1: Empty Room */}
-      <div className="w-full max-w-[500px] relative aspect-[4/3] rounded-lg overflow-hidden">
+      <div className="w-full max-w-xs sm:max-w-[400px] md:max-w-[500px] mx-auto p-2 sm:p-4 relative aspect-[4/3] rounded-lg overflow-hidden">
         <Image
           src="/projects/interior-design-ai/empty-room.png"
           alt="Empty room"
