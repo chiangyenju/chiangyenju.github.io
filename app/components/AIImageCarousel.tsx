@@ -9,9 +9,10 @@ interface AIImageCarouselProps {
     alt: string;
   }[];
   isActive?: boolean;
+  noItemBg?: boolean;
 }
 
-const AIImageCarousel: React.FC<AIImageCarouselProps> = ({ images, isActive = true }) => {
+const AIImageCarousel: React.FC<AIImageCarouselProps> = ({ images, isActive = true, noItemBg = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -48,16 +49,27 @@ const AIImageCarousel: React.FC<AIImageCarouselProps> = ({ images, isActive = tr
               className={`absolute top-0 left-0 w-full h-full flex items-center justify-center ${stateClass}`}
               style={{ pointerEvents: index === currentIndex ? 'auto' : 'none' }}
             >
-              <div className="w-[80%] h-[80%] bg-white rounded-2xl flex items-center justify-center shadow-md">
+              {noItemBg ? (
                 <Image
                   src={image.src}
                   alt={image.alt}
                   width={320}
                   height={200}
-                  className="object-contain w-full h-full p-4"
+                  className="object-contain w-full h-full"
                   style={{ maxWidth: '100%', maxHeight: '100%' }}
                 />
-              </div>
+              ) : (
+                <div className="w-[80%] h-[80%] bg-white rounded-2xl flex items-center justify-center shadow-md">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={320}
+                    height={200}
+                    className="object-contain w-full h-full p-4"
+                    style={{ maxWidth: '100%', maxHeight: '100%' }}
+                  />
+                </div>
+              )}
             </div>
           );
         })}

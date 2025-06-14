@@ -12,6 +12,7 @@ import FlipCards from '../components/FlipCards';
 import AIImageCarousel from '../components/AIImageCarousel';
 import DesignSystemRotator from '../components/DesignSystemRotator';
 import AIGenerationFlow from '../components/AIGenerationFlow';
+import MarketSolutionsCarousel from '../components/MarketSolutionsCarousel';
 
 // Animation paths for mockups
 const ANIMATION_PATHS = {
@@ -359,7 +360,7 @@ export default function Projects() {
                     style={{ opacity: bedroomAnimation.opacity, y: bedroomAnimation.y }}
                     className="w-full max-w-[800px] mx-auto"
                   >
-                    <AIImageCarousel
+                    <MarketSolutionsCarousel
                       images={[
                         {
                           src: "/projects/interior-design-ai/bedroom-1.jpg",
