@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import AIImageCarousel from './AIImageCarousel';
 
-const ANIMATION_DURATION = 3000; // Duration for each path
+const ANIMATION_DURATION = 6000; // Duration for each path
 const TOTAL_PATHS = 2; // Number of paths to animate
 
 const AIGenerationFlow = () => {
